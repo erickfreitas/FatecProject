@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SimpleInjector, Version=3.3.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SimpleInjector.3.3.2\lib\net45\SimpleInjector.dll</HintPath>
+    <Reference Include="SimpleInjector, Version=4.0.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.4.0.0\lib\net45\SimpleInjector.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -46,6 +46,20 @@
   <ItemGroup>
     <Compile Include="BootStrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Project.Application\Project.Application\Project.Application.csproj">
+      <Project>{a833fcbd-1122-4f8d-90d2-3c4fce948ade}</Project>
+      <Name>Project.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Project.Domain\Project.Domain\Project.Domain.csproj">
+      <Project>{f2f48700-544e-4da4-9f61-41435c2260c6}</Project>
+      <Name>Project.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Project.Infra.Data\Project.Infra.Data\Project.Infra.Data.csproj">
+      <Project>{51418ec6-8406-49a5-8cd4-897847d479de}</Project>
+      <Name>Project.Infra.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

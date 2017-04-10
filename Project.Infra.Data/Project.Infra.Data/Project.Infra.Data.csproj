@@ -69,10 +69,6 @@
       <Project>{f2f48700-544e-4da4-9f61-41435c2260c6}</Project>
       <Name>Project.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Project.Infra.CrossCutting.IoC\Project.Infra.CrossCutting.IoC\Project.Infra.CrossCutting.IoC.csproj">
-      <Project>{7b4bcbdc-e2dd-4ee8-bd45-7bde0578b448}</Project>
-      <Name>Project.Infra.CrossCutting.IoC</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -53,16 +53,11 @@
     <Compile Include="Interfaces\Services\ISubCategoriaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoriaService.cs" />
+    <Compile Include="Services\ProdutoService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Services\SubCategoriaService.cs" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\..\Project.Infra.CrossCutting.IoC\Project.Infra.CrossCutting.IoC\Project.Infra.CrossCutting.IoC.csproj">
-      <Project>{7b4bcbdc-e2dd-4ee8-bd45-7bde0578b448}</Project>
-      <Name>Project.Infra.CrossCutting.IoC</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

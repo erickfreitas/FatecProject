@@ -11,7 +11,7 @@ namespace Project.Infra.Data.Context
     public class ProjectContext : DbContext
     {
         public ProjectContext()
-            :base("ProjectDataBase")
+            :base("ProjectConnection")
         {
 
         }

@@ -4,6 +4,7 @@ using Project.Application.Interfaces;
 using Project.Application.ViewModels;
 using Project.Domain.Entities;
 using Project.Domain.Interfaces.Services;
+using AutoMapper;
 
 namespace Project.Application.AppServices
 {
@@ -19,27 +20,27 @@ namespace Project.Application.AppServices
 
         public void Add(SubCategoriaViewModel subCategoriaViewModel)
         {
-            throw new NotImplementedException();
+            _subCategoriaService.Add(Mapper.Map<SubCategoriaViewModel, SubCategoria>(subCategoriaViewModel));
         }
 
         public IEnumerable<SubCategoriaViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            return Mapper.Map<IEnumerable<SubCategoria>, IEnumerable<SubCategoriaViewModel>>(_subCategoriaService.GetAll());
         }
 
         public SubCategoriaViewModel GetById(int subCategoriaId)
         {
-            throw new NotImplementedException();
+            return Mapper.Map<SubCategoria, SubCategoriaViewModel>(_subCategoriaService.GetById(subCategoriaId));
         }
 
         public void Remove(SubCategoriaViewModel subCategoriaViewModel)
         {
-            throw new NotImplementedException();
+            _subCategoriaService.Remove(Mapper.Map<SubCategoriaViewModel, SubCategoria>(subCategoriaViewModel));
         }
 
         public void Update(SubCategoriaViewModel subCategoriaViewModel)
         {
-            throw new NotImplementedException();
+            _subCategoriaService.Update(Mapper.Map<SubCategoriaViewModel, SubCategoria>(subCategoriaViewModel));
         }
     }
 }

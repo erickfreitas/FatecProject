@@ -4,6 +4,7 @@ using Project.Application.Interfaces;
 using Project.Application.ViewModels;
 using Project.Domain.Entities;
 using Project.Domain.Interfaces.Services;
+using AutoMapper;
 
 namespace Project.Application.AppServices
 {
@@ -19,27 +20,27 @@ namespace Project.Application.AppServices
 
         public void Add(ProdutoViewModel produtoViewModel)
         {
-            throw new NotImplementedException();
+            _produtoService.Add(Mapper.Map<ProdutoViewModel, Produto>(produtoViewModel));
         }
 
         public IEnumerable<ProdutoViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            return Mapper.Map<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoService.GetAll());
         }
 
         public ProdutoViewModel GetById(int produtoId)
         {
-            throw new NotImplementedException();
+            return Mapper.Map<Produto, ProdutoViewModel>(_produtoService.GetById(produtoId));
         }
 
         public void Remove(ProdutoViewModel produtoViewModel)
         {
-            throw new NotImplementedException();
+            _produtoService.Remove(Mapper.Map<ProdutoViewModel, Produto>(produtoViewModel));
         }
 
         public void Update(ProdutoViewModel produtoViewModel)
         {
-            throw new NotImplementedException();
+            _produtoService.Update(Mapper.Map<ProdutoViewModel, Produto>(produtoViewModel));
         }
     }
 }

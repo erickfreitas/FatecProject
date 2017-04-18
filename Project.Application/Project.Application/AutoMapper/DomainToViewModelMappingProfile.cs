@@ -11,7 +11,9 @@ namespace Project.Application.AutoMapper
         {
             CreateMap<Categoria, CategoriaViewModel>();
             CreateMap<SubCategoria, SubCategoriaViewModel>();
-            CreateMap<Produto, ProdutoViewModel>();
+            CreateMap<Produto, ProdutoViewModel>()
+                .ForMember(dest => dest.CategoriaViewModel, opt => opt.MapFrom(src => src.Categoria))
+                .ForMember(dest => dest.SubCategoriaViewModel, opt => opt.MapFrom(src => src.SubCategoria));
         }
 
     }

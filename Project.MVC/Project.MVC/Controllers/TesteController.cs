@@ -8,5 +8,10 @@ namespace Project.MVC.Controllers
         {
             return View();
         }
+
+        public ActionResult Vitrine()
+        {
+            return View();
+        }
     }
 }

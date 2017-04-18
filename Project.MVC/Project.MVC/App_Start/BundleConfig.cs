@@ -65,11 +65,11 @@ namespace Project.MVC
             bundles.Add(new ScriptBundle("~/StoreContent/home/script").Include(
                       "~/Content/StoreContent/js/home.js"));
 
-            bundles.Add(new ScriptBundle("~/StoreContent/jquert-cycle2/script").Include(
+            bundles.Add(new ScriptBundle("~/StoreContent/jquery-cycle2/script").Include(
                       "~/Content/StoreContent/js/jquery.cycle2.min.js"));
 
-            bundles.Add(new ScriptBundle("~/StoreContent/jquert-easing/script").Include(
-                      "~/Content/StoreContent/js/jquery.easing.1.3"));
+            bundles.Add(new ScriptBundle("~/StoreContent/jquery-easing/script").Include(
+                      "~/Content/StoreContent/js/jquery.easing.1.3.js"));
 
             bundles.Add(new ScriptBundle("~/StoreContent/jquery-custom-scroll/script").Include(
                       "~/Content/StoreContent/js/jquery.mCustomScrollbar.js"));
@@ -81,7 +81,7 @@ namespace Project.MVC
                       "~/Content/StoreContent/js/jquery.parallax-1.1.js"));
 
             bundles.Add(new ScriptBundle("~/StoreContent/jquery-mousewheel/script").Include(
-                      "~/Content/StoreContent/js/jquery.mousewheel.min"));
+                      "~/Content/StoreContent/js/jquery.mousewheel.min.js"));
 
             bundles.Add(new ScriptBundle("~/StoreContent/jquery-scrollme/script").Include(
                       "~/Content/StoreContent/js/jquery.scrollme.min.js"));
@@ -123,7 +123,7 @@ namespace Project.MVC
                       "~/Content/StoreContent/plugins/bxslider/plugins/jquery.bxslider.min.js"));
 
             bundles.Add(new ScriptBundle("~/StoreContent/icheck/script").Include(
-                      "~/Content/StoreContent/plugins/bxslider/plugins/icheck.min.js"));
+                      "~/Content/StoreContent/plugins/icheck-1.x/icheck.min.js"));
 
             bundles.Add(new ScriptBundle("~/StoreContent/intense/script").Include(
                       "~/Content/StoreContent/js/plugins/intense-images-master/intense.js"));

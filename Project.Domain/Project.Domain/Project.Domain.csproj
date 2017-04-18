@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Categoria.cs" />
+    <Compile Include="Entities\ProdutoImagem.cs" />
     <Compile Include="Entities\Produto.cs" />
     <Compile Include="Entities\SubCategoria.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaRepository.cs" />

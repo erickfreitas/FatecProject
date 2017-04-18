@@ -147,6 +147,7 @@
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Controllers\TesteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +196,8 @@
     <Content Include="Content\StoreContent\js\footable.js" />
     <Content Include="Content\StoreContent\js\footable.sortable.js" />
     <Content Include="Content\StoreContent\js\grids.js" />
+    <Content Include="Content\StoreContent\js\html5shiv.js" />
+    <Content Include="Content\StoreContent\js\jquery.min.js" />
     <Content Include="Content\StoreContent\js\jquery.mousewheel.min.js" />
     <Content Include="Content\StoreContent\js\hideMaxListItem-min.js" />
     <Content Include="Content\StoreContent\js\home.js" />
@@ -209,7 +212,9 @@
     <Content Include="Content\StoreContent\js\jquery\jquery-1.10.1.min.js" />
     <Content Include="Content\StoreContent\js\owl.carousel.min.js" />
     <Content Include="Content\StoreContent\js\pace.min.js" />
+    <Content Include="Content\StoreContent\js\respond.min.js" />
     <Content Include="Content\StoreContent\js\script.js" />
+    <Content Include="Content\StoreContent\js\select2.min.js" />
     <Content Include="Content\StoreContent\js\sidebar-nav.js" />
     <Content Include="Content\StoreContent\js\skrollr.min.js" />
     <Content Include="Content\StoreContent\js\smoothproducts-thumb.js" />
@@ -321,6 +326,8 @@
     <Content Include="Content\StoreContent\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\StoreContent\fonts\fontawesome-webfont.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Images\Products\30.jpg" />
+    <Content Include="Images\Slider\banner-footer.jpg" />
     <Content Include="Images\Slider\slider-0.jpg" />
     <Content Include="Images\Slider\slider-1.jpg" />
     <Content Include="Images\Slider\slider-2.png" />
@@ -359,11 +366,14 @@
     <Content Include="Views\Categorias\Index.cshtml" />
     <Content Include="Views\Shared\_StoreLayout.cshtml" />
     <Content Include="Views\Teste\Index.cshtml" />
-    <Content Include="Views\Teste\_HomeVitrine.cshtml" />
+    <Content Include="Views\Teste\Vitrine.cshtml" />
+    <Content Include="Views\Produtos\Novo.cshtml" />
+    <Content Include="Views\Produtos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\PanelContent\" />
+    <Folder Include="Images\Users\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

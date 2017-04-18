@@ -19,6 +19,7 @@ namespace Project.Infra.Data.Context
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<SubCategoria> SubCategorias { get; set; }
         public DbSet<Produto> Produtos { get; set; }
+        public DbSet<ProdutoImagem> ProdutoImagens { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -38,6 +39,7 @@ namespace Project.Infra.Data.Context
             modelBuilder.Configurations.Add(new CategoriaConfiguration());
             modelBuilder.Configurations.Add(new SubCategoriaConfiguration());
             modelBuilder.Configurations.Add(new ProdutoConfiguration());
+            modelBuilder.Configurations.Add(new ProdutoImagemConfiguration());
         }
 
         public override int SaveChanges()

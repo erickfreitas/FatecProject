@@ -1,4 +1,6 @@
-﻿namespace Project.Domain.Entities
+﻿using System.Collections.Generic;
+
+namespace Project.Domain.Entities
 {
     public class Produto
     {
@@ -7,8 +9,9 @@
         public string Descricao { get; set; }
         public string Detalhes { get; set; }
         public int CategoriaId { get; set; }
-        public Categoria Categoria { get; set; }
+        public virtual Categoria Categoria { get; set; }
         public int SubCategoriaId { get; set; }
-        public SubCategoria SubCategoria { get; set; }
+        public virtual SubCategoria SubCategoria { get; set; }
+        public virtual ICollection<ProdutoImagem> ProdutoImagens { get; set; }
     }
 }

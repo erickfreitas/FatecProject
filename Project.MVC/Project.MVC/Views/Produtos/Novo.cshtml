@@ -3,14 +3,17 @@
     ViewBag.Title = "Cadastrar novo Produto - Quero Trocar!";
     Layout = "~/Views/Shared/_StoreLayout.cshtml";
 }
+@section Styles {
+    @Styles.Render("~/StoreContent/file-input/css")
+}
 <div class="container main-container headerOffset">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-lg-10 col-lg-offset-1">
                 <div class="panel panel-default ">
                     <div id="collapse1" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            @using (Html.BeginForm("Novo", "Produtos", FormMethod.Post, new { @class = "form-horizontal" }))
+                            @using (Ajax.BeginForm("Novo", "Produtos", new AjaxOptions { OnBegin = "DesabilitarForm()", OnFailure = "console.log(data)", OnSuccess = "CarregarModal(data)", UpdateTargetId = "collapse1", InsertionMode = InsertionMode.InsertAfter, HttpMethod = "Post" }, new { @class = "form-horizontal", @id = "Produto-Form" }))
                             {
                                 <fieldset>
                                     <legend style="text-align:center;">Cadastrar novo produto</legend>
@@ -18,11 +21,11 @@
                                         @Html.LabelFor(model => model.Nome, new { @class = "col-md-4 control-label" })
                                         <div class="col-md-4">
                                             @Html.TextBoxFor(model => model.Nome, new { @class = "form-control input-md", @placeholder = "Nome do produto" })
-                                            @Html.ValidationMessageFor(model => model.Nome, "",  new { @class = "text-danger" })
+                                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>                                   
+                                    </div>
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Descricao, new { @class = "col-md-4 control-label" })                                       
+                                        @Html.LabelFor(model => model.Descricao, new { @class = "col-md-4 control-label" })
                                         <div class="col-md-7">
                                             @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control", @placeholder = "Descrição", @style = "max-witdh: 450px;", @rows = "2" })
                                             @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
@@ -38,22 +41,23 @@
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.CategoriaId, new { @class = "col-md-4 control-label" })
                                         <div class="col-md-4">
-                                            @Html.DropDownList("CategoriaId", (IEnumerable<SelectListItem>)ViewBag.Categorias, string.Empty, new { @class = "form-control select2-hidden-accessible", @tabindex = "-1" })
+                                            @Html.DropDownList("CategoriaId", (IEnumerable<SelectListItem>)ViewBag.Categorias, string.Empty, new { @class = "form-control", @tabindex = "-1", @onchange = "CarregarSubCategorias();" })
                                             @Html.ValidationMessageFor(model => model.CategoriaId, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.SubCategoriaId, new { @class = "col-md-4 control-label" })
                                         <div class="col-md-4">
-                                            @Html.DropDownList("SubCategoriaId", (IEnumerable<SelectListItem>)ViewBag.SubCategorias, string.Empty, new { @class = "form-control select2-hidden-accessible", @tabindex = "-1" })
+                                            @Html.DropDownList("SubCategoriaId", (IEnumerable<SelectListItem>)ViewBag.SubCategorias, string.Empty, new { @class = "form-control", @tabindex = "-1" })
                                             @Html.ValidationMessageFor(model => model.SubCategoriaId, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
+                                    </div>                                    
                                 </fieldset>
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    <a class="btn btn-default" href="@Url.Action("Index", "Produtos")"> <span class="add2cart"> Voltar </span> </a>
+                                    <button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Aguarde">Cadastrar</button>
                                 </div>
-                            }
+                            }                                                   
                         </div>
                     </div>
                 </div>
@@ -61,6 +65,57 @@
         </div>
     </div>
 </div>
+@section modals{
+    @Html.Partial("_ModalProdutoImagens")    
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/unobstrusive")
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    @Scripts.Render("~/StoreContent/file-input/script")
+}
+@section InternalScripts{
+    <script>
+        $('#imagem').fileinput({
+            language: 'pt-BR',
+            allowedFileExtensions: ['jpg', 'png', 'jpeg'],
+            showCancel : false,
+            fileActionSettings: { showUpload: false },
+            maxFileCount: 4,
+        });
+
+        $('#imagem').on('filebatchuploadcomplete', function (event, files, extra) {
+            setTimeout(function () {
+                $('#CadastrarImagens').modal("hide");
+                $('#Produto-Form button').attr('disabled', 'disabled');
+            }, 1500);
+            setTimeout(function () { window.location.replace("/Produtos"); }, 3000);
+        });
+
+        function CarregarSubCategorias() {
+            var categoriaId = $("#CategoriaId").val();
+            $.get("/Produtos/BuscarSubCategorias", { categoriaId: categoriaId }, function (data) {
+                var htmlContent = "";
+                $(data).each(function (index, value) {
+                    htmlContent += "<option value=\"" + value.SubCategoriaId + "\">" + value.Nome + "</option>";
+                });
+                $("#SubCategoriaId").html(htmlContent);
+            });
+        }
+
+        function DesabilitarForm() {
+            $("#Produto-Form input").prop("disabled", true);
+            $("#Produto-Form select").prop("disabled", true);
+            $("#Produto-Form textarea").prop("disabled", true);
+            $('#Produto-Form button').button("loading");
+        }
+
+        function CarregarModal(produto) {            
+            $('#Produto-Form button').button("reset");            
+            $('#imagem').fileinput('refresh', { uploadExtraData: { produtoId: produto.ProdutoId } });
+            $('#CadastrarImagens').modal(({ backdrop: 'static', keyboard: false }));
+        }
+
+    </script>
 }

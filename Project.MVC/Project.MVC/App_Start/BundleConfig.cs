@@ -19,6 +19,10 @@ namespace Project.MVC
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/unobstrusive").Include(
+                       "~/Scripts/jquery.js",
+                       "~/Scripts/jquery.unobtrusive*"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
@@ -145,6 +149,14 @@ namespace Project.MVC
 
             bundles.Add(new StyleBundle("~/StoreContent/swiper/css").Include(
                       "~/Content/StoreContent/plugins/swiper-master/css/swiper-min.css"));
+
+            bundles.Add(new ScriptBundle("~/StoreContent/file-input/script").Include(
+                      "~/Content/StoreContent/plugins/fileinput/sortable.min.js",
+                      "~/Content/StoreContent/plugins/fileinput/fileinput.min.js",
+                      "~/Content/StoreContent/plugins/fileinput/pt-BR.js"));
+
+            bundles.Add(new StyleBundle("~/StoreContent/file-input/css").Include(
+                      "~/Content/StoreContent/css/fileinput.min.css"));
         }
     }
 }

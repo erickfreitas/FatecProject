@@ -6,7 +6,7 @@ namespace Project.Application.Interfaces
 {
     public interface IProdutoAppService : IAppServiceBase<Produto>
     {
-        void Add(ProdutoViewModel produtoViewModel);
+        ProdutoViewModel Add(ProdutoViewModel produtoViewModel);
 
         IEnumerable<ProdutoViewModel> GetAll();
 

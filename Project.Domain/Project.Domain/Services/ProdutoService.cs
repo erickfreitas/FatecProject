@@ -1,4 +1,5 @@
-﻿using Project.Domain.Entities;
+﻿using System;
+using Project.Domain.Entities;
 using Project.Domain.Interfaces.Repositories;
 using Project.Domain.Interfaces.Services;
 
@@ -12,6 +13,11 @@ namespace Project.Domain.Services
             :base(produtoRepository)
         {
             _produtoRepository = produtoRepository;
+        }
+
+        public new Produto Add(Produto produto)
+        {
+            return _produtoRepository.Add(produto);
         }
     }
 }

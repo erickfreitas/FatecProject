@@ -28,6 +28,11 @@ namespace Project.Application.AppServices
             return Mapper.Map<IEnumerable<SubCategoria>, IEnumerable<SubCategoriaViewModel>>(_subCategoriaService.GetAll());
         }
 
+        public IEnumerable<SubCategoriaViewModel> GetByCategoria(int categoriaId)
+        {
+            return Mapper.Map<IEnumerable<SubCategoria>, IEnumerable<SubCategoriaViewModel>>(_subCategoriaService.GetByCategoria(categoriaId));
+        }
+
         public SubCategoriaViewModel GetById(int subCategoriaId)
         {
             return Mapper.Map<SubCategoria, SubCategoriaViewModel>(_subCategoriaService.GetById(subCategoriaId));

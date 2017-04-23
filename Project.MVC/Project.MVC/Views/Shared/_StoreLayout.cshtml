@@ -6,11 +6,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/StoreContent/bootstrap/css")
     @Styles.Render("~/StoreContent/skin-1/css")
     @Styles.Render("~/StoreContent/style/css")
     @Styles.Render("~/StoreContent/home-v7/css")
-
+    @RenderSection("styles", required: false)
+    @RenderSection("internalstyles", required: false)
     <!--[if lt IE 9]>
         <script src="@Url.Content("~/Content/StoreContent/js/html5shiv.js")"></script>
         <script src="@Url.Content("~/Content/StoreContent/js/respond.min.js")"></script>
@@ -127,7 +129,7 @@
                     <span class="icon-bar"> </span>
                 </button>
                 <a class="navbar-brand " href="index.html">
-                    <img src="images/quero-trocar.png" alt="QUEROTROCAR!">
+                    <img src="#" alt="QUEROTROCAR!">
                 </a>
                 <div class="search-box pull-right hidden-lg hidden-md hidden-sm">
                     <div class="input-group">
@@ -223,7 +225,7 @@
                 <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
             </div>
         </div>
-    </div>    
+    </div>
     @RenderBody()
     <footer>
         <div class="footer">
@@ -312,10 +314,11 @@
             </div>
         </div>
     </footer>
+    @RenderSection("modals", required: false)
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
-    <script src="@Url.Content("~/Content/StoreContent/js/jquery.min.js")"></script>
-    @Scripts.Render("~/StoreContent/bootstrap/script")
+    @*<script src="@Url.Content("~/Content/StoreContent/js/jquery.min.js")"></script>*@
+    @*@Scripts.Render("~/StoreContent/bootstrap/script")*@
     @Scripts.Render("~/StoreContent/jquery-cycle2/script")
     @Scripts.Render("~/StoreContent/jquery-easing/script")
     @Scripts.Render("~/StoreContent/jquery-parallax/script")
@@ -327,6 +330,7 @@
     <script src="@Url.Content("~/Content/StoreContent/js/select2.min.js")"></script>
     @Scripts.Render("~/StoreContent/bootstrap-touchspin/script")
     @Scripts.Render("~/StoreContent/home/script")
-    @Scripts.Render("~/StoreContent/script/script") 
+    @Scripts.Render("~/StoreContent/script/script")
+    @RenderSection("internalscripts", required: false)
 </body>
 </html>

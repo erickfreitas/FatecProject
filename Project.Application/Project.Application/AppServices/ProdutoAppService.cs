@@ -18,9 +18,10 @@ namespace Project.Application.AppServices
             _produtoService = produtoService;
         }
 
-        public void Add(ProdutoViewModel produtoViewModel)
+        public ProdutoViewModel Add(ProdutoViewModel produtoViewModel)
         {
-            _produtoService.Add(Mapper.Map<ProdutoViewModel, Produto>(produtoViewModel));
+            var produtoAdicionado = _produtoService.Add(Mapper.Map<ProdutoViewModel, Produto>(produtoViewModel));
+            return Mapper.Map<Produto, ProdutoViewModel>(produtoAdicionado);
         }
 
         public IEnumerable<ProdutoViewModel> GetAll()

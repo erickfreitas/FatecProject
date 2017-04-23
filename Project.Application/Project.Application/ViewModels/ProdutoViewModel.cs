@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Project.Application.ViewModels
@@ -37,5 +38,7 @@ namespace Project.Application.ViewModels
         public int SubCategoriaId { get; set; }
 
         public SubCategoriaViewModel SubCategoriaViewModel { get; set; }
+
+        public IEnumerable<ProdutoImagemViewModel> ProdutoImagemViewModels { get; set; }
     }
 }

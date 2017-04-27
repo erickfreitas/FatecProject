@@ -12,7 +12,7 @@ namespace Project.Application.Interfaces
 
         ProdutoImagemViewModel GetById(int produtoImagemId);
 
-        void Remove(ProdutoImagemViewModel produtoImagemViewModel);
+        void Remove(int produtoImagemId);
 
         void Update(ProdutoImagemViewModel produtoImagemViewModel);
     }

@@ -44,29 +44,29 @@ namespace Project.Infra.Data.Context
 
         public override int SaveChanges()
         {
-            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("WhenCreated") != null))
+            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCriacao") != null))
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Property("WhenCreated").CurrentValue = DateTime.Now;
+                    entry.Property("DataCriacao").CurrentValue = DateTime.Now;
                 }
 
                 if (entry.State == EntityState.Modified)
                 {
-                    entry.Property("WhenCreated").IsModified = false;
+                    entry.Property("DataCriacao").IsModified = false;
                 }
             }
 
-            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("WhenChanged") != null))
+            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataAlteracao") != null))
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Property("WhenChanged").CurrentValue = DateTime.Now;
+                    entry.Property("DataAlteracao").CurrentValue = DateTime.Now;
                 }
 
                 if (entry.State == EntityState.Modified)
                 {
-                    entry.Property("WhenChanged").CurrentValue = DateTime.Now;
+                    entry.Property("DataAlteracao").CurrentValue = DateTime.Now;
                 }
             }
 

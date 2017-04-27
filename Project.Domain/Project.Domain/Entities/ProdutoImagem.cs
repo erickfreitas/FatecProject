@@ -1,4 +1,6 @@
-﻿namespace Project.Domain.Entities
+﻿using System;
+
+namespace Project.Domain.Entities
 {
     public class ProdutoImagem
     {
@@ -6,6 +8,7 @@
         public string Caminho { get; set; }
         public bool Destaque { get; set; }
         public int ProdutoId { get; set; }
+        public DateTime DataCriacao { get; set; }
         public virtual Produto Produto { get; set; }
     }
 }

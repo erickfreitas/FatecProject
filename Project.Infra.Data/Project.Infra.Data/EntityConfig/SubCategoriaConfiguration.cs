@@ -18,6 +18,12 @@ namespace Project.Infra.Data.EntityConfig
                 .IsRequired()
                 .HasMaxLength(30);
 
+            Property(s => s.DataCriacao)
+                .IsRequired();
+
+            Property(p => p.DataAlteracao)
+                .IsRequired();
+
             //Relacionamentos
             HasRequired(s => s.Categoria)
                 .WithMany(c => c.SubCategorias)

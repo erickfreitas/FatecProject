@@ -387,6 +387,7 @@
     <Content Include="Views\Produtos\Novo.cshtml" />
     <Content Include="Views\Produtos\Index.cshtml" />
     <Content Include="Views\Produtos\_ModalProdutoImagens.cshtml" />
+    <Content Include="Views\Produtos\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

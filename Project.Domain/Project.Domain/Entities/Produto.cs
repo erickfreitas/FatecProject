@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Project.Domain.Entities
 {
@@ -12,6 +13,8 @@ namespace Project.Domain.Entities
         public virtual Categoria Categoria { get; set; }
         public int SubCategoriaId { get; set; }
         public virtual SubCategoria SubCategoria { get; set; }
+        public DateTime DataCriacao { get; set; }
+        public DateTime DataAlteracao { get; set; }
         public virtual ICollection<ProdutoImagem> ProdutoImagens { get; set; }
     }
 }

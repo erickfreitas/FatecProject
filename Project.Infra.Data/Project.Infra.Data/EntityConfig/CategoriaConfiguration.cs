@@ -17,6 +17,12 @@ namespace Project.Infra.Data.EntityConfig
             Property(c => c.Nome)
                 .IsRequired()
                 .HasMaxLength(30);
+
+            Property(c => c.DataCriacao)
+                .IsRequired();
+
+            Property(c => c.DataAlteracao)
+                .IsRequired();
         }
     }
 }

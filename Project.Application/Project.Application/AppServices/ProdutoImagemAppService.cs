@@ -33,9 +33,10 @@ namespace Project.Application.AppServices
             return Mapper.Map<ProdutoImagem, ProdutoImagemViewModel>(_produtoImagemService.GetById(produtoImagemId));
         }
 
-        public void Remove(ProdutoImagemViewModel produtoImagemViewModel)
+        public void Remove(int produtoImagemId)
         {
-            _produtoImagemService.Remove(Mapper.Map<ProdutoImagemViewModel, ProdutoImagem>(produtoImagemViewModel));
+            var produto = _produtoImagemService.GetById(produtoImagemId);
+            _produtoImagemService.Remove(produto);
         }
 
         public void Update(ProdutoImagemViewModel produtoImagemViewModel)

@@ -20,6 +20,9 @@ namespace Project.Infra.Data.EntityConfig
             Property(i => i.Destaque)
                 .IsRequired();
 
+            Property(i => i.DataCriacao)
+                .IsRequired();
+
             //Relacionamentos
             HasRequired(i => i.Produto)
                 .WithMany(p => p.ProdutoImagens)

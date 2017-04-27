@@ -15,7 +15,7 @@ namespace Project.Application.ViewModels
         {
             ProdutoId = produtoId;
             Destaque = false;
-            Caminho = string.Format("~/Images/Products/{0}.{1}", Guid.NewGuid().ToString(), imagem.FileName.Split('.')[1]);
+            Caminho = string.Format("~/Images/Products/{0}.{1}", Guid.NewGuid().ToString(), imagem.FileName.Substring(imagem.FileName.LastIndexOf('.') + 1));
         }
 
         [Key]
@@ -29,5 +29,8 @@ namespace Project.Application.ViewModels
 
         [Required]
         public int ProdutoId { get; set; }
+
+        [ScaffoldColumn(false)]
+        public DateTime DataCriacao { get; set; }
     }
 }

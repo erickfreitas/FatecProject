@@ -1,0 +1,330 @@
+﻿@model Project.Application.ViewModels.ProdutoViewModel
+@{
+    ViewBag.Title = string.Format("Produto {0}- Quero Trocar!", Model.Nome);
+    Layout = "~/Views/Shared/_StoreLayout.cshtml";
+}
+@section Styles {
+    @Styles.Render("~/StoreContent/product-details/css")
+    @Styles.Render("~/StoreContent/magnific/css")
+    @Styles.Render("~/StoreContent/jquery-bxslider/css")
+}
+<section class="section-product-info">
+    <div class="container-1400 container main-container product-details-container ">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+                <div class="product-images-carousel-wrapper">
+                    <div class="productMainImage hasWhiteImg">
+                        <ul class="bxslider product-view-slides product-view-slides-h ">
+                            @foreach (var imagem in Model.ProdutoImagemViewModels)
+                            {
+                                <li><img src="@Url.Content(imagem.Caminho)" alt="img" /></li>
+                            }                            
+                        </ul>
+                    </div>
+                    <div class="product-view-thumb-wrapper has-carousel-v hasWhiteImg">
+                        <div class="product-view-thumb-nav prev"></div>
+                        <ul id="bx-pager" class="product-view-thumb ">
+                            @{
+                                var count = 0;
+                                foreach (var imagem in Model.ProdutoImagemViewModels)
+                                {
+                                    <li>
+                                        <a class="thumb-item-link" data-slide-index="@count" href="">
+                                            <img src="@Url.Content(imagem.Caminho)" alt="img" />
+                                        </a>
+                                    </li>
+                                    count++;
+                                }
+                            }
+                        </ul>
+                        <div class="product-view-thumb-nav next"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                <div class="product-details-info-wrapper">
+                    <h2 class="product-details-product-title">@Model.Nome</h2>
+                    <div class="product-details-product-color">
+                        <span class="selected-color">
+                            <strong>Descrição:</strong>
+                            <span class="color-value">@Model.Descricao</span>
+                        </span>
+                    </div>
+                    <div class="product-details-product-color">
+                        <span class="selected-color">
+                            <strong>Categoria:</strong>
+                            <span class="color-value">@Model.CategoriaViewModel.Nome</span>
+                        </span>
+                    </div>
+                    <div class="product-details-product-color">
+                        <span class="selected-color">
+                            <strong>Sub-Categoria:</strong>
+                            <span class="color-value">@Model.SubCategoriaViewModel.Nome</span>
+                        </span>
+                    </div>
+                    <div class="row review-item">
+                        <div class="col-lg-3 col-sm-3  left">
+                            <div class="review-item-user">
+                                <div class="review-item-user-profile">
+                                    <img class="img-circle" alt="" src="images/product_details/user-2.jpg">
+                                </div>
+                                <div class="user-name">
+                                    <p>John Doe </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9  col-sm-9 right">
+                            <div class="rating commentRating">
+                                <p>
+                                    <span><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                    <span> <i class="fa fa-star-o "></i> </span>
+                                    <span class="ratingInfo">
+                                        <span> / </span>
+                                        <a data-target="#modal-review" data-toggle="modal"> 4.0 </a>
+                                    </span>
+                                </p>
+                            </div>
+                            <h5 class="reviewUserTitle"><strong>Marcela Lima Alves</strong></h5>
+                            <a class="btn btn-danger">Visualizar perfil</a>
+                        </div>
+                    </div>
+                    <div class="row row-cart-actions clearfix ">
+                        <div class="col-sm-12 ">
+                            <a class="btn btn-block btn-success">Trocar</a>
+                            <a class="btn btn-block btn-info">Adicionar a lista de Desejos</a>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+</section>
+<section class="section-product-info-bottom">
+    <div class="product-details-bottom-bar">
+        <div class="container-1400 container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <ul class="nav nav-tabs flat list-unstyled list-inline social-inline" role="tablist">
+                        <li role="presentation" class="">
+                            <a href="#tab1" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="false">
+                                Detalhes
+                            </a>
+                        </li>
+                        <li role="presentation" class="">
+                            <a href="#tab4" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">
+                                Dúvidas
+                            </a>
+                        </li>
+                        <li role="presentation" class="">
+                            <a href="#tab3" aria-controls="messages" role="tab" data-toggle="tab" aria-expanded="false">
+                                Ofertas rejeitadas
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <div class="review-title-bar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-tab-content">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab1">
+            <div class="product-story-inner ">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-lg-12 ">
+                            <div class="hw100 display-table">
+                                <div class="hw100 display-table-cell">
+                                    <div class="product-story-info-box">
+                                        <div class="product-story-info-text ">
+                                            <h5 class="subtitle">Mais sobre o produto</h5>
+                                            <h3 class="title">Características do Produto @Model.Nome</h3>
+                                            <p class="desc">
+                                                @Model.Detalhes
+                                            </p>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab2">
+            <div class="product-story-inner ">
+                <div class="container">
+                    <div class="row has-equal-height-child">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  is-equal">
+                            <div class="hw100 display-table">
+                                <div class="hw100 display-table-cell">
+                                    <div class="product-story-info-box">
+                                        <div class="product-story-info-text " data-wow-duration=".8s" data-wow-delay="0">
+                                            <h3 class="title">Additional info</h3>
+                                            <p class="desc">
+                                                In legendos salutatus qui, sit primis percipit probatus at. Est vidit
+                                                iuvaret platonem eu. Et nam suas sint. Adhuc putant vivendo in has,
+                                                omittam persecuti pro in. An ceteros tacimates facilisis nam, ex magna
+                                                consul per.
+                                            </p>
+                                            <ul class="list">
+                                                <li>Suspendisse vestibulum lectus id viverra viverra.</li>
+                                                <li>Etiam a leo ut ipsum blandit elementum .</li>
+                                                <li>Proin et ex gravida, sodales mauris id, .</li>
+                                                <li>Maecenas id eros nec tellus .</li>
+                                                <li>Praesent imperdiet est at sem .</li>
+                                                <li>Lorem ipsum dolor sit amet, .</li>
+                                                <li>Pellentesque pretium diam vitae risus vestibulum, .</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  is-equal">
+                            <div class="product-story-a-img " data-wow-duration="1s" data-wow-delay="0.25">
+                                <img alt="Image Title" src="images/product_details/product-features.jpg" class="img-responsive ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab3">
+            <br />
+            <div class="container">
+                @foreach (var imagem in Model.ProdutoImagemViewModels)
+                {
+                    <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                        <div class="product">
+                            <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                                <i class="glyphicon glyphicon-heart"></i>
+                            </a>
+                            <div class="image">
+                                <div class="quickview">
+                                    <a data-toggle="modal" class="btn btn-xs btn-quickview" href="ajax/product.html" data-target="#productSetailsModalAjax">Visualizar </a>
+                                </div>
+                                <a href="product-details.html">
+                                    <img src="images/product/30.jpg" alt="img" class="img-responsive">
+                                </a>
+                                <div class="promotion">
+                                    <span class="new-product">Recente</span>
+                                </div>
+                            </div>
+                            <div class="action-control">
+                                <h4><a href="product-details.html">Home Theater Philips</a></h4>
+                                <a class="btn btn-primary">
+                                    <span class="add2cart">Detalhes</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }                
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab4">
+            <section class="section-review whitebg" id="product-review">
+                <div class="container">
+                    <div class="hero-section-header productReviewTitleBAr">
+                        <h3 class="hero-section-title"><i class="fa fa-2x  fa-comments-o"></i>Perguntas</h3>
+                    </div>
+                    <div class="all-review-wrapper ">
+                        <div class="row review-item">
+                            <div class="col-lg-3 col-sm-3  left">
+                                <div class="review-item-user">
+                                    <div class="review-item-user-profile">
+                                        <img class="img-circle" alt="" src="images/site/default-user.png">
+                                    </div>
+                                    <div class="user-name">
+                                        <p>Paulo Ricardo</p>
+                                        <small>5m atrás</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9  col-sm-9 right">
+                                <h5 class="reviewUserTitle"><strong>Tamanho do produto?</strong></h5>
+                                <p class="commentText">
+                                    Quais são as dimensões do produto? Preciso saber a altura e largura da lavadora para ver se ela cabe na minha lavanderia.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 review-load-more">
+                                <div class=" text-center">
+                                    <a href="#" class="btn  btn-default  ">
+                                        <i class="fa fa-plus-sign">+</i> Carregar mais perguntas
+                                    </a>
+                                    <a class="btn  btn-success" data-target="#modal-review" data-toggle="modal">
+                                        <i class="fa fa-edit"></i> Escrever pergunta
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/StoreContent/bootstrap/script")
+    @Scripts.Render("~/StoreContent/jquery-fitvids/script")
+    @Scripts.Render("~/StoreContent/jquery-bxslider/script")
+}
+@section InternalScripts{
+    <script>
+        $(document).ready(function () {
+
+            var $$mainImgSliderPager = $('#bx-pager');
+            var $mainImgSlider = $('.bxslider').bxSlider({
+                pagerCustom: '#bx-pager',
+                video: true,
+                useCSS: false,
+                mode: 'vertical',
+                controls: false
+            });
+            var settings = function () {
+                var mobileSettings = {
+                    slideWidth: 60,
+                    minSlides: 2,
+                    maxSlides: 4,
+                    slideMargin: 10,
+                    controls: false,
+                    touchEnabled: false
+
+                };
+                var pcSettings = {
+                    mode: 'vertical',
+                    minSlides: 4,
+                    pager: false,
+                    slideMargin: 10,
+                    nextSelector: '.product-view-thumb-nav.next',
+                    prevSelector: '.product-view-thumb-nav.prev',
+                    nextText: ' <i class="fa fa-angle-down"></i>',
+                    prevText: ' <i class="fa fa-angle-up"></i>'
+                };
+                return ($(window).width() < 768) ? mobileSettings : pcSettings;
+            }
+
+            var thumbSlider;
+
+            function tourLandingScript() {
+                thumbSlider.reloadSlider(settings());
+            }
+
+            thumbSlider = $('.has-carousel-v .product-view-thumb').bxSlider(settings());
+            $(window).resize(tourLandingScript);
+
+        });
+    </script>    
+}

@@ -11,7 +11,7 @@ namespace Project.Infra.Data.Context
     public class ProjectContext : DbContext
     {
         public ProjectContext()
-            :base("ProjectConnection")
+            :base("ProjectConnection2")
         {
 
         }
@@ -20,6 +20,7 @@ namespace Project.Infra.Data.Context
         public DbSet<SubCategoria> SubCategorias { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<ProdutoImagem> ProdutoImagens { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -40,6 +41,7 @@ namespace Project.Infra.Data.Context
             modelBuilder.Configurations.Add(new SubCategoriaConfiguration());
             modelBuilder.Configurations.Add(new ProdutoConfiguration());
             modelBuilder.Configurations.Add(new ProdutoImagemConfiguration());
+            modelBuilder.Configurations.Add(new UsuarioConfiguration());
         }
 
         public override int SaveChanges()

@@ -118,13 +118,13 @@ namespace Project.MVC
                       "~/Content/StoreContent/js/smoothproducts.min.js"));
 
             bundles.Add(new ScriptBundle("~/StoreContent/jquery-fitvids/script").Include(
-                      "~/Content/StoreContent/plugins/bxslider/plugins/jquery.fitvidsn.js"));
+                      "~/Content/StoreContent/plugins/bxslider/plugins/jquery.fitvids.js"));
 
             bundles.Add(new StyleBundle("~/StoreContent/jquery-bxslider/css").Include(
-                      "~/Content/StoreContent/plugins/bxslider/plugins/jquery.bxslider.css"));
+                      "~/Content/StoreContent/plugins/bxslider/jquery.bxslider.css"));
 
             bundles.Add(new ScriptBundle("~/StoreContent/jquery-bxslider/script").Include(
-                      "~/Content/StoreContent/plugins/bxslider/plugins/jquery.bxslider.min.js"));
+                      "~/Content/StoreContent/plugins/bxslider/jquery.bxslider.min.js"));
 
             bundles.Add(new ScriptBundle("~/StoreContent/icheck/script").Include(
                       "~/Content/StoreContent/plugins/icheck-1.x/icheck.min.js"));
@@ -136,7 +136,7 @@ namespace Project.MVC
                       "~/Content/StoreContent/plugins/magnific/jquery.magnific-popup.min.js"));
 
             bundles.Add(new StyleBundle("~/StoreContent/magnific/css").Include(
-                      "~/Content/StoreContent/plugins/magnific/jquery.magnific-popup.css"));
+                      "~/Content/StoreContent/plugins/magnific/magnific-popup.css"));
 
             bundles.Add(new ScriptBundle("~/StoreContent/bootstrap-rating/script").Include(
                       "~/Content/StoreContent/plugins/rating/bootstrap-rating.min.js"));
@@ -157,6 +157,9 @@ namespace Project.MVC
 
             bundles.Add(new StyleBundle("~/StoreContent/file-input/css").Include(
                       "~/Content/StoreContent/css/fileinput.min.css"));
+
+            bundles.Add(new StyleBundle("~/StoreContent/product-details/css").Include(
+                      "~/Content/StoreContent/css/product-details-5.css"));
         }
     }
 }

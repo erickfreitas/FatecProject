@@ -1,8 +1,13 @@
-﻿using Project.Application.AppServices;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Project.Application.AppServices;
 using Project.Application.Interfaces;
 using Project.Domain.Interfaces.Repositories;
 using Project.Domain.Interfaces.Services;
 using Project.Domain.Services;
+using Project.Infra.CrossCutting.Identity.Configuration;
+using Project.Infra.CrossCutting.Identity.Context;
+using Project.Infra.CrossCutting.Identity.Model;
 using Project.Infra.Data.Repositories;
 using SimpleInjector;
 
@@ -15,6 +20,16 @@ namespace Project.Infra.CrossCutting.IoC
             // Lifestyle.Transient => Uma instancia para cada solicitacao;
             // Lifestyle.Singleton => Uma instancia unica para a classe
             // Lifestyle.Scoped => Uma instancia unica para o request
+
+            #region IdentityDependences
+            //Identity
+            container.Register<IdentityContext>(Lifestyle.Scoped);
+            container.Register<IUserStore<ApplicationUser>>(() => new UserStore<ApplicationUser>(new IdentityContext()), Lifestyle.Scoped);
+            container.Register<IRoleStore<IdentityRole, string>>(() => new RoleStore<IdentityRole>(new IdentityContext()), Lifestyle.Scoped);
+            container.Register<ApplicationRoleManager>(Lifestyle.Scoped);
+            container.Register<ApplicationUserManager>(Lifestyle.Scoped);
+            container.Register<ApplicationSignInManager>(Lifestyle.Scoped);
+            #endregion
 
             #region AppDependences
             container.Register(typeof(IAppServiceBase<>), typeof(AppServiceBase<>), Lifestyle.Scoped);

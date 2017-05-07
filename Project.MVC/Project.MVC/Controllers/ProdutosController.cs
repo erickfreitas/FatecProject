@@ -97,7 +97,16 @@ namespace Project.MVC.Controllers
                 return RedirectToAction("Editar", new { @Controller = "Produtos", @Id = produtoViewModel.ProdutoId });
             }
             return View(produtoViewModel);
-        }        
+        }
+
+        [HttpGet]
+        public ActionResult Detalhes(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var produtoViewModel = _produtoAppService.GetById(id.Value);
+            return View(produtoViewModel);
+        }
 
         public ActionResult BuscarSubCategorias(int? categoriaId)
         {

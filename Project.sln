@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{2C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Infra.CrossCutting.IoC", "Project.Infra.CrossCutting.IoC\Project.Infra.CrossCutting.IoC\Project.Infra.CrossCutting.IoC.csproj", "{7B4BCBDC-E2DD-4EE8-BD45-7BDE0578B448}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Infra.CrossCutting.Identity", "Project.CrossCutting.Identity\Project.Infra.CrossCutting.Identity.csproj", "{3C57D682-AD3A-46BC-B7E0-1CC6BEBFEA6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{7B4BCBDC-E2DD-4EE8-BD45-7BDE0578B448}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B4BCBDC-E2DD-4EE8-BD45-7BDE0578B448}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B4BCBDC-E2DD-4EE8-BD45-7BDE0578B448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C57D682-AD3A-46BC-B7E0-1CC6BEBFEA6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C57D682-AD3A-46BC-B7E0-1CC6BEBFEA6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C57D682-AD3A-46BC-B7E0-1CC6BEBFEA6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C57D682-AD3A-46BC-B7E0-1CC6BEBFEA6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +77,6 @@ Global
 		{7AF73BD0-76EF-405D-84A8-1CF4CFE0F4A3} = {A6D701E1-8D63-4FF4-B2EB-57A52019EADD}
 		{2C518AE1-92D7-4758-B845-37763CE61483} = {A6D701E1-8D63-4FF4-B2EB-57A52019EADD}
 		{7B4BCBDC-E2DD-4EE8-BD45-7BDE0578B448} = {7AF73BD0-76EF-405D-84A8-1CF4CFE0F4A3}
+		{3C57D682-AD3A-46BC-B7E0-1CC6BEBFEA6F} = {2C518AE1-92D7-4758-B845-37763CE61483}
 	EndGlobalSection
 EndGlobal

@@ -4,6 +4,8 @@ using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
 using Project.Infra.CrossCutting.IoC;
+using System.Web;
+using Microsoft.Owin;
 
 [assembly: WebActivator.PostApplicationStartMethod(typeof(Project.MVC.App_Start.SimpleInjectorInitializer), "Initialize")]
 
@@ -18,6 +20,16 @@ namespace Project.MVC.App_Start
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
             
             InitializeContainer(container);
+
+            container.Register(() =>
+            {
+                if (HttpContext.Current != null && HttpContext.Current.Items["owin.Environment"] == null && container.IsVerifying)
+                {
+                    return new OwinContext().Authentication;
+                }
+                return HttpContext.Current.GetOwinContext().Authentication;
+
+            }, Lifestyle.Scoped);
 
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
             

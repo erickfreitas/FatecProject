@@ -1,6 +1,6 @@
 ﻿@model Project.Application.ViewModels.ProdutoViewModel
 @{
-    ViewBag.Title = "Cadastrar novo Produto - Quero Trocar!";
+    ViewBag.Title = string.Format("Editar Produto {0}- Quero Trocar!", Model.Nome);
     Layout = "~/Views/Shared/_StoreLayout.cshtml";
 }
 @section Styles {
@@ -106,7 +106,7 @@
                 {
                     var path = imagem.Caminho;
                     @:'@Url.Content(path)',
-                }               
+                }  
             ],
             initialPreviewConfig: [
                 @foreach (var imagem in Model.ProdutoImagemViewModels)
@@ -114,6 +114,9 @@
                     @:{ url: "@Url.Action("RemoverImagem", "Produtos")", key: @imagem.ProdutoImagemId },
                 }
             ],
+        })
+        .on('fileuploaded', function(event, data, previewId, index) {
+            $('div.file-preview-thumbnails #'+previewId).attr('server_id',data.response.server_id)
         });
 
     </script>

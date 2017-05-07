@@ -65,7 +65,7 @@
                                     <span>@produto.SubCategoriaViewModel.Nome</span>
                                 </div>
                                 <div class="action-control">
-                                    <a class="btn btn-primary"> <span> Detalhes </span> </a>
+                                    <a href="@Url.Action("Detalhes", new { @Controller = "Produtos", @id = produto.ProdutoId })" class="btn btn-primary"> <span> Detalhes </span> </a>
                                     <a href="@Url.Action("Editar", new { @Controller = "Produtos", @id = produto.ProdutoId })" class="btn btn-info"> <span> Editar </span> </a>
                                 </div>
                             </div>

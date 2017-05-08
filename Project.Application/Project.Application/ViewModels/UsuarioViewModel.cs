@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace Project.Domain.Entities
+namespace Project.Application.ViewModels
 {
-    public class Usuario
+    public class UsuarioViewModel
     {
+        [Key]
         public string UsuarioId { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }

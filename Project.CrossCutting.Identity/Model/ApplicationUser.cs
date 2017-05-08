@@ -8,6 +8,11 @@ namespace Project.Infra.CrossCutting.Identity.Model
 {
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser()
+        {
+            DataAlteracao = DateTime.Now;
+            DataCriacao = DateTime.Now;
+        }
         //Propriedades do Usuário do Domínio
         public string Nome { get; set; }
         public string Sobrenome { get; set; }

@@ -51,6 +51,7 @@
     <Compile Include="AppServices\ProdutoAppService.cs" />
     <Compile Include="AppServices\ProdutoImagemAppService.cs" />
     <Compile Include="AppServices\SubCategoriaAppService.cs" />
+    <Compile Include="AppServices\UsuarioAppService.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
@@ -59,11 +60,14 @@
     <Compile Include="Interfaces\IProdutoAppService.cs" />
     <Compile Include="Interfaces\IProdutoImagemAppService.cs" />
     <Compile Include="Interfaces\ISubCategoriaAppService.cs" />
+    <Compile Include="Interfaces\IUsuarioAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CategoriaViewModel.cs" />
     <Compile Include="ViewModels\ProdutoImagemViewModel.cs" />
     <Compile Include="ViewModels\ProdutoViewModel.cs" />
+    <Compile Include="ViewModels\RegistrarViewModel.cs" />
     <Compile Include="ViewModels\SubCategoriaViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Project.Domain\Project.Domain\Project.Domain.csproj">

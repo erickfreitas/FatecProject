@@ -31,7 +31,7 @@ namespace Project.Infra.Data.EntityConfig
                 .IsRequired();
 
             Property(u => u.Telefone)
-                .IsRequired();
+                .IsOptional();
 
             Property(u => u.TelefoneConfirmado)
                 .IsRequired();
@@ -49,6 +49,7 @@ namespace Project.Infra.Data.EntityConfig
                 .IsRequired();
 
             Property(u => u.FimDeBloqueio)
+                .HasColumnType("datetime2")
                 .IsOptional();
 
             Property(u => u.DataCriacao)

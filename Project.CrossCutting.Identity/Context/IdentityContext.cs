@@ -2,12 +2,13 @@
 using Project.Infra.CrossCutting.Identity.Model;
 using System;
 using System.Data.Entity;
+using System.Linq;
 
 namespace Project.Infra.CrossCutting.Identity.Context
 {
     public class IdentityContext : IdentityDbContext<ApplicationUser>, IDisposable
     {
-        public IdentityContext(): base("ProjectConnection2", throwIfV1Schema: false)
+        public IdentityContext() : base("ProjectConnection2", throwIfV1Schema: false)
         {
         }
 
@@ -47,6 +48,36 @@ namespace Project.Infra.CrossCutting.Identity.Context
             modelBuilder.Entity<IdentityRole>().ToTable("Roles");
             modelBuilder.Entity<IdentityRole>().Property(i => i.Id).HasColumnName("RoleId");
             modelBuilder.Entity<IdentityRole>().Property(i => i.Name).HasColumnName("Nome");
+        }
+
+        public override int SaveChanges()
+        {
+            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCriacao") != null))
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Property("DataCriacao").CurrentValue = DateTime.Now;
+                }
+
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.Property("DataCriacao").IsModified = false;
+                }
+            }
+
+            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataAlteracao") != null))
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Property("DataAlteracao").CurrentValue = DateTime.Now;
+                }
+
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.Property("DataAlteracao").CurrentValue = DateTime.Now;
+                }
+            }
+            return base.SaveChanges();
         }
     }
 }

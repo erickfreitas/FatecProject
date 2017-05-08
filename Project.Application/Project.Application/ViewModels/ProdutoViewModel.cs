@@ -10,8 +10,8 @@ namespace Project.Application.ViewModels
         public int ProdutoId { get; set; }
 
         [Required(ErrorMessage = "Por favor informe um Nome para o Produto")]
-        [MinLength(2, ErrorMessage = "O nome deve conter no mínimo {1} caracteres")]
-        [MaxLength(50, ErrorMessage = "O nome deve conter no máximo {1} caracteres")]
+        [MinLength(2, ErrorMessage = "O Nome deve conter no mínimo {1} caracteres")]
+        [MaxLength(50, ErrorMessage = "O Nome deve conter no máximo {1} caracteres")]
         [DisplayName("Nome")]
         public string Nome { get; set; }
 

@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Categoria.cs" />
+    <Compile Include="Entities\Claims.cs" />
+    <Compile Include="Entities\ClienteWeb.cs" />
     <Compile Include="Entities\ProdutoImagem.cs" />
     <Compile Include="Entities\Produto.cs" />
     <Compile Include="Entities\SubCategoria.cs" />

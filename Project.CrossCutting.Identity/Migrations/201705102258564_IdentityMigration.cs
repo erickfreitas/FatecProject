@@ -7,28 +7,26 @@ namespace Project.CrossCutting.Identity.Migrations
     {
         public override void Up()
         {
-            CreateTable(
-                "dbo.Roles",
-                c => new
-                    {
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                        Nome = c.String(nullable: false, maxLength: 256),
-                    })
-                .PrimaryKey(t => t.RoleId)
-                .Index(t => t.Nome, unique: true, name: "RoleNameIndex");
+            //CreateTable(
+            //    "dbo.Claims",
+            //    c => new
+            //        {
+            //            ClaimsId = c.Guid(nullable: false),
+            //            Nome = c.String(nullable: false, maxLength: 128),
+            //        })
+            //    .PrimaryKey(t => t.ClaimsId);
             
-            CreateTable(
-                "dbo.UsuarioRoles",
-                c => new
-                    {
-                        UsuarioId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.UsuarioId, t.RoleId })
-                .ForeignKey("dbo.Roles", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("dbo.Usuarios", t => t.UsuarioId, cascadeDelete: true)
-                .Index(t => t.UsuarioId)
-                .Index(t => t.RoleId);
+            //CreateTable(
+            //    "dbo.ClientesWeb",
+            //    c => new
+            //        {
+            //            ClienteWebId = c.Int(nullable: false, identity: true),
+            //            ClientChave = c.String(),
+            //            UsuarioId = c.String(nullable: false, maxLength: 128),
+            //        })
+            //    .PrimaryKey(t => t.ClienteWebId)
+            //    .ForeignKey("dbo.Usuarios", t => t.UsuarioId, cascadeDelete: true)
+            //    .Index(t => t.UsuarioId);
             
             //CreateTable(
             //    "dbo.Usuarios",
@@ -79,25 +77,52 @@ namespace Project.CrossCutting.Identity.Migrations
                 .ForeignKey("dbo.Usuarios", t => t.UsuarioId, cascadeDelete: true)
                 .Index(t => t.UsuarioId);
             
+            CreateTable(
+                "dbo.UsuarioRoles",
+                c => new
+                    {
+                        UsuarioId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UsuarioId, t.RoleId })
+                .ForeignKey("dbo.Usuarios", t => t.UsuarioId, cascadeDelete: true)
+                .ForeignKey("dbo.Roles", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.UsuarioId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.Roles",
+                c => new
+                    {
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                        Nome = c.String(nullable: false, maxLength: 256),
+                    })
+                .PrimaryKey(t => t.RoleId)
+                .Index(t => t.Nome, unique: true, name: "RoleNameIndex");
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.UsuarioRoles", "RoleId", "dbo.Roles");
+            DropForeignKey("dbo.ClientesWeb", "UsuarioId", "dbo.Usuarios");
             DropForeignKey("dbo.UsuarioRoles", "UsuarioId", "dbo.Usuarios");
             DropForeignKey("dbo.UsuarioLogins", "UsuarioId", "dbo.Usuarios");
             DropForeignKey("dbo.UsuarioClaims", "UsuarioId", "dbo.Usuarios");
-            DropForeignKey("dbo.UsuarioRoles", "RoleId", "dbo.Roles");
+            DropIndex("dbo.Roles", "RoleNameIndex");
+            DropIndex("dbo.UsuarioRoles", new[] { "RoleId" });
+            DropIndex("dbo.UsuarioRoles", new[] { "UsuarioId" });
             DropIndex("dbo.UsuarioLogins", new[] { "UsuarioId" });
             DropIndex("dbo.UsuarioClaims", new[] { "UsuarioId" });
             DropIndex("dbo.Usuarios", "UserNameIndex");
-            DropIndex("dbo.UsuarioRoles", new[] { "RoleId" });
-            DropIndex("dbo.UsuarioRoles", new[] { "UsuarioId" });
-            DropIndex("dbo.Roles", "RoleNameIndex");
+            DropIndex("dbo.ClientesWeb", new[] { "UsuarioId" });
+            DropTable("dbo.Roles");
+            DropTable("dbo.UsuarioRoles");
             DropTable("dbo.UsuarioLogins");
             DropTable("dbo.UsuarioClaims");
             DropTable("dbo.Usuarios");
-            DropTable("dbo.UsuarioRoles");
-            DropTable("dbo.Roles");
+            DropTable("dbo.ClientesWeb");
+            DropTable("dbo.Claims");
         }
     }
 }

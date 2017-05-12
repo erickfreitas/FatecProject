@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Project.Domain.Entities
 {
@@ -18,6 +19,7 @@ namespace Project.Domain.Entities
         public DateTime? FimDeBloqueio { get; set; }
         public int ContagemFalhaDeAcesso { get; set; }
         public string UsuarioNome { get; set; }
+        public virtual ICollection<ClienteWeb> ClientesWeb { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataAlteracao { get; set; }
     }

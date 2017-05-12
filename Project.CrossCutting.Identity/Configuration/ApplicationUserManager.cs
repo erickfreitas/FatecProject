@@ -3,6 +3,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.DataProtection;
 using Project.Infra.CrossCutting.Identity.Model;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Project.Infra.CrossCutting.Identity.Configuration
 {
@@ -55,6 +57,44 @@ namespace Project.Infra.CrossCutting.Identity.Configuration
             var dataProtector = provider.Create("ASP.NET Identity");
 
             UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtector);
+        }
+
+        // Metodo para login async que guarda os dados Client conectado
+        public async Task<IdentityResult> SignInClientAsync(ApplicationUser user, string clientChave)
+        {
+            if (string.IsNullOrEmpty(clientChave))
+            {
+                throw new ArgumentNullException("clientKey");
+            }
+
+            var client = user.ClientesWeb.SingleOrDefault(c => c.ClientChave == clientChave);
+            if (client == null)
+            {
+                client = new ClienteWeb() { ClientChave = clientChave };
+                user.ClientesWeb.Add(client);
+            }
+
+            var result = await UpdateAsync(user);
+            user.CurrentClientId = client.ClienteWebId.ToString();
+            return result;
+        }
+
+        // Metodo para login async que remove os dados Client conectado
+        public async Task<IdentityResult> SignOutClientAsync(ApplicationUser user, string clientChave)
+        {
+            if (string.IsNullOrEmpty(clientChave))
+            {
+                throw new ArgumentNullException("clientKey");
+            }
+
+            var client = user.ClientesWeb.SingleOrDefault(c => c.ClientChave == clientChave);
+            if (client != null)
+            {
+                user.ClientesWeb.Remove(client);
+            }
+
+            user.CurrentClientId = null;
+            return await UpdateAsync(user);
         }
     }
 }

@@ -21,6 +21,8 @@ namespace Project.Infra.Data.Context
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<ProdutoImagem> ProdutoImagens { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Claims> Claims { get; set; }
+        public DbSet<ClienteWeb> ClientesWeb { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -42,6 +44,8 @@ namespace Project.Infra.Data.Context
             modelBuilder.Configurations.Add(new ProdutoConfiguration());
             modelBuilder.Configurations.Add(new ProdutoImagemConfiguration());
             modelBuilder.Configurations.Add(new UsuarioConfiguration());
+            modelBuilder.Configurations.Add(new ClaimsConfiguration());
+            modelBuilder.Configurations.Add(new ClienteWebConfiguration());
         }
 
         public override int SaveChanges()

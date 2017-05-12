@@ -93,12 +93,14 @@
     <Compile Include="Configuration\EmailService.cs" />
     <Compile Include="Configuration\SmsService.cs" />
     <Compile Include="Context\IdentityContext.cs" />
-    <Compile Include="Migrations\201705071328567_IdentityMigration.cs" />
-    <Compile Include="Migrations\201705071328567_IdentityMigration.Designer.cs">
-      <DependentUpon>201705071328567_IdentityMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201705102258564_IdentityMigration.cs" />
+    <Compile Include="Migrations\201705102258564_IdentityMigration.Designer.cs">
+      <DependentUpon>201705102258564_IdentityMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ApplicationUser.cs" />
+    <Compile Include="Model\Claims.cs" />
+    <Compile Include="Model\ClienteWeb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,8 +108,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705071328567_IdentityMigration.resx">
-      <DependentUpon>201705071328567_IdentityMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705102258564_IdentityMigration.resx">
+      <DependentUpon>201705102258564_IdentityMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -428,8 +428,10 @@
     <Content Include="Views\Produtos\_ModalProdutoImagens.cshtml" />
     <Content Include="Views\Produtos\Editar.cshtml" />
     <Content Include="Views\Produtos\Detalhes.cshtml" />
-    <Content Include="Views\Conta\Nova.cshtml" />
+    <Content Include="Views\Conta\NovoUsuario.cshtml" />
     <Content Include="Views\Conta\DisplayEmail.cshtml" />
+    <Content Include="Views\Conta\Login.cshtml" />
+    <Content Include="Views\Conta\Teste.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

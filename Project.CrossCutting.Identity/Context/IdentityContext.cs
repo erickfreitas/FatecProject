@@ -12,6 +12,9 @@ namespace Project.Infra.CrossCutting.Identity.Context
         {
         }
 
+        public DbSet<Claims> Claims { get; set; }
+        public DbSet<ClienteWeb> ClientesWeb { get; set; }
+
         public static IdentityContext Create()
         {
             return new IdentityContext();
@@ -48,6 +51,7 @@ namespace Project.Infra.CrossCutting.Identity.Context
             modelBuilder.Entity<IdentityRole>().ToTable("Roles");
             modelBuilder.Entity<IdentityRole>().Property(i => i.Id).HasColumnName("RoleId");
             modelBuilder.Entity<IdentityRole>().Property(i => i.Name).HasColumnName("Nome");
+            modelBuilder.Entity<ClienteWeb>().HasRequired(c => c.ApplicationUser).WithMany(u => u.ClientesWeb).HasForeignKey(c => c.UsuarioId);
         }
 
         public override int SaveChanges()

@@ -24,6 +24,14 @@ namespace Project.Infra.Data.EntityConfig
             Property(u => u.Sobrenome)
                 .IsOptional();
 
+            Property(u => u.Rg)
+                .IsRequired()
+                .HasMaxLength(15);
+
+            Property(u => u.Cpf)
+                .IsRequired()
+                .HasMaxLength(15); ;
+
             Property(u => u.Email)
                 .IsRequired();
 

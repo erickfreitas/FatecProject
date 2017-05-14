@@ -8,7 +8,7 @@ namespace Project.Infra.CrossCutting.Identity.Context
 {
     public class IdentityContext : IdentityDbContext<ApplicationUser>, IDisposable
     {
-        public IdentityContext() : base("ProjectConnection2", throwIfV1Schema: false)
+        public IdentityContext() : base("ProjectConnection", throwIfV1Schema: false)
         {
         }
 
@@ -51,7 +51,7 @@ namespace Project.Infra.CrossCutting.Identity.Context
             modelBuilder.Entity<IdentityRole>().ToTable("Roles");
             modelBuilder.Entity<IdentityRole>().Property(i => i.Id).HasColumnName("RoleId");
             modelBuilder.Entity<IdentityRole>().Property(i => i.Name).HasColumnName("Nome");
-            modelBuilder.Entity<ClienteWeb>().HasRequired(c => c.ApplicationUser).WithMany(u => u.ClientesWeb).HasForeignKey(c => c.UsuarioId);
+            modelBuilder.Entity<ClienteWeb>().HasOptional(c => c.ApplicationUser).WithMany(u => u.ClientesWeb).HasForeignKey(c => c.UsuarioId);
         }
 
         public override int SaveChanges()

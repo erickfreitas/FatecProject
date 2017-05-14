@@ -32,11 +32,20 @@ namespace Project.Infra.Data.EntityConfig
             Property(p => p.DataAlteracao)
                 .IsRequired();
 
+            Property(p => p.UsuarioId)
+                .HasMaxLength(128)
+                .HasColumnType("nvarchar");
+
             //Relacionamentos
             HasRequired(p => p.SubCategoria)
                 .WithMany(s => s.Produtos)
                 .HasForeignKey(p => p.SubCategoriaId)
                 .WillCascadeOnDelete(false);
+
+            HasRequired(p => p.Usuario)
+                .WithMany(u => u.Produtos)
+                .HasForeignKey(p => p.UsuarioId)
+                .WillCascadeOnDelete(true);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Project.Application.Interfaces;
+﻿using Microsoft.AspNet.Identity;
+using Project.Application.Interfaces;
 using Project.Application.ViewModels;
 using System.Net;
 using System.Web;
@@ -6,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Project.MVC.Controllers
 {
+    [Authorize]
     public class ProdutosController : Controller
     {
         private readonly IProdutoAppService _produtoAppService;
@@ -25,13 +27,15 @@ namespace Project.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        [Authorize]
+        public ActionResult MeusProdutos()
         {
-            var produtoViewModels = _produtoAppService.GetAll();
+            var produtoViewModels = _produtoAppService.GetByUsuario(User.Identity.GetUserId());
             return View(produtoViewModels);
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Novo()
         {
             ViewBag.Categorias = new SelectList(_categoriaAppService.GetAll(), "CategoriaId", "Nome");
@@ -40,10 +44,12 @@ namespace Project.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Novo(ProdutoViewModel produtoViewModel)
         {
             if (ModelState.IsValid)
             {
+                produtoViewModel.UsuarioId = User.Identity.GetUserId();
                 var produtoAdicionado = _produtoAppService.Add(produtoViewModel);
                 return Json(produtoAdicionado);
             }
@@ -53,6 +59,7 @@ namespace Project.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult NovaImagem(HttpPostedFileBase imagem, int? produtoId)
         {
             if (imagem == null || produtoId == null)
@@ -64,6 +71,7 @@ namespace Project.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult RemoverImagem(int? key)
         {
             if (key == null)
@@ -78,6 +86,7 @@ namespace Project.MVC.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Editar(int? id)
         {
             if (id == null)
@@ -89,6 +98,7 @@ namespace Project.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Editar(ProdutoViewModel produtoViewModel)
         {
             if (ModelState.IsValid)
@@ -108,6 +118,7 @@ namespace Project.MVC.Controllers
             return View(produtoViewModel);
         }
 
+        [Authorize]
         public ActionResult BuscarSubCategorias(int? categoriaId)
         {
             if (categoriaId == null)

@@ -63,13 +63,14 @@ namespace Project.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { Nome = registerViewModel.Nome, UserName = registerViewModel.Email, Email = registerViewModel.Email };
+                var user = new ApplicationUser { Nome = registerViewModel.Nome, UserName = registerViewModel.Email, Email = registerViewModel.Email, Rg = registerViewModel.Rg, Cpf = registerViewModel.Cpf };
                 var result = await UserManager.CreateAsync(user, registerViewModel.Senha);
                 if (result.Succeeded)
                 {
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmarEmail", "Conta", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'></a>");
+                    await UserManager.SendEmailAsync(user.Id, "Confirme sua Conta", "Por favor confirme sua conta clicando neste link: <a href='" + callbackUrl + "'>Confirmar conta</a>");
+                    ViewBag.NovoUsuario = user;
                     ViewBag.Link = callbackUrl;
                     return View("DisplayEmail");
                 }
@@ -86,7 +87,8 @@ namespace Project.MVC.Controllers
                 return View("Error");
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            ViewBag.Usuario = UserManager.FindById(userId);
+            return View(result.Succeeded ? "ConfirmarEmail" : "Error");
         }
 
         [AllowAnonymous]
@@ -125,13 +127,13 @@ namespace Project.MVC.Controllers
             }
         }
 
-        [Authorize]
-        public ActionResult Teste()
-        {
-            return View();
-        }
 
-        
+        [Authorize]
+        public async Task<ActionResult> Logout()
+        {
+            await SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
 
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
@@ -150,6 +152,14 @@ namespace Project.MVC.Controllers
                     // Criação da instancia do Identity e atribuição dos Claims
                     await user.GenerateUserIdentityAsync(UserManager, ext)
                 );
+        }
+
+        private async Task SignOutAsync()
+        {
+            var clientKey = Request.Browser.Type;
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            await UserManager.SignOutClientAsync(user, clientKey);
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie, DefaultAuthenticationTypes.TwoFactorCookie, DefaultAuthenticationTypes.ApplicationCookie);
         }
 
         private void AddErrors(IdentityResult result)

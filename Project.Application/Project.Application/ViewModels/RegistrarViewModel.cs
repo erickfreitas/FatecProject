@@ -16,6 +16,14 @@ namespace Project.Application.ViewModels
         [DisplayName("Sobrenome")]
         public string Sobrenome { get; set; }
 
+        [DisplayName("RG")]
+        [Required(ErrorMessage = "Por favor informe o campo RG")]
+        public string Rg { get; set; }
+
+        [DisplayName("CPF")]
+        [Required(ErrorMessage = "Por favor informe o campo CPF")]
+        public string Cpf { get; set; }
+
         [Required(ErrorMessage = "Por favor informe um E-mail para o Usuário")]
         [EmailAddress(ErrorMessage = "Informe um E-mail com formato válido")]
         [DisplayName("E-mail")]

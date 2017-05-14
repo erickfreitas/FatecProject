@@ -10,7 +10,7 @@ namespace Project.Infra.Data.Repositories
     {
         public IEnumerable<SubCategoria> GetByCategoria(int categoriaId)
         {
-            return Db.SubCategorias.Where(s => s.CategoriaId == categoriaId).OrderBy(s => s.Nome);
+            return Db.SubCategorias.Where(s => s.CategoriaId == categoriaId).OrderBy(s => s.Nome).ToList();
         }
 
         public override IEnumerable<SubCategoria> GetAll()

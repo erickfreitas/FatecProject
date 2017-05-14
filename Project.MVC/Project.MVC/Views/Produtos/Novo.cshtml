@@ -39,10 +39,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.CategoriaId, new { @class = "col-md-4 control-label" })
+                                        @Html.Label("Categoria", new { @class = "col-md-4 control-label" })
                                         <div class="col-md-4">
                                             @Html.DropDownList("CategoriaId", (IEnumerable<SelectListItem>)ViewBag.Categorias, string.Empty, new { @class = "form-control", @tabindex = "-1", @onchange = "CarregarSubCategorias();" })
-                                            @Html.ValidationMessageFor(model => model.CategoriaId, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -90,7 +89,7 @@
                 $('#CadastrarImagens').modal("hide");
                 $('#Produto-Form button').attr('disabled', 'disabled');
             }, 1500);
-            setTimeout(function () { window.location.replace("/Produtos"); }, 3000);
+            setTimeout(function () { window.location.replace("/Produtos/MeusProdutos"); }, 3000);
         });
 
         function CarregarSubCategorias() {

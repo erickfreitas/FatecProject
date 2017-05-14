@@ -31,7 +31,7 @@ namespace Project.MVC
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login"),
+                LoginPath = new PathString("/Conta/Login"),
                 ExpireTimeSpan = TimeSpan.FromMinutes(20),
                 Provider = new CookieAuthenticationProvider
                 {

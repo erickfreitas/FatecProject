@@ -11,7 +11,7 @@ namespace Project.Infra.Data.Context
     public class ProjectContext : DbContext
     {
         public ProjectContext()
-            :base("ProjectConnection2")
+            :base("ProjectConnection")
         {
 
         }
@@ -23,6 +23,7 @@ namespace Project.Infra.Data.Context
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Claims> Claims { get; set; }
         public DbSet<ClienteWeb> ClientesWeb { get; set; }
+        public DbSet<Endereco> Enderecos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -46,6 +47,7 @@ namespace Project.Infra.Data.Context
             modelBuilder.Configurations.Add(new UsuarioConfiguration());
             modelBuilder.Configurations.Add(new ClaimsConfiguration());
             modelBuilder.Configurations.Add(new ClienteWebConfiguration());
+            modelBuilder.Configurations.Add(new EnderecoConfiguration());
         }
 
         public override int SaveChanges()

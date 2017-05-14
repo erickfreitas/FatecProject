@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Project.Domain.Entities;
 using Project.Domain.Interfaces.Repositories;
 using Project.Domain.Interfaces.Services;
@@ -18,6 +19,11 @@ namespace Project.Domain.Services
         public new Produto Add(Produto produto)
         {
             return _produtoRepository.Add(produto);
+        }
+
+        public IEnumerable<Produto> GetByUsuario(string usuarioId)
+        {
+            return _produtoRepository.GetByUsuario(usuarioId);
         }
     }
 }

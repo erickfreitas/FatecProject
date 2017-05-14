@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project.Application.ViewModels
 {
@@ -13,6 +14,9 @@ namespace Project.Application.ViewModels
         public string Nome { get; set; }
 
         [Required]
+        [DisplayName("Categoria")]
         public int CategoriaId { get; set; }
+
+        public CategoriaViewModel CategoriaViewModel { get; set; }
     }
 }

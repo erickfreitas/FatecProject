@@ -53,6 +53,7 @@
     <Compile Include="EntityConfig\CategoriaConfiguration.cs" />
     <Compile Include="EntityConfig\ClaimsConfiguration.cs" />
     <Compile Include="EntityConfig\ClienteWebConfiguration.cs" />
+    <Compile Include="EntityConfig\EnderecoConfiguration.cs" />
     <Compile Include="EntityConfig\ProdutoImagemConfiguration.cs" />
     <Compile Include="EntityConfig\ProdutoConfiguration.cs" />
     <Compile Include="EntityConfig\SubCategoriaConfiguration.cs" />

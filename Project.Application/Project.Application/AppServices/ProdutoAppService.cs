@@ -34,6 +34,11 @@ namespace Project.Application.AppServices
             return Mapper.Map<Produto, ProdutoViewModel>(_produtoService.GetById(produtoId));
         }
 
+        public IEnumerable<ProdutoViewModel> GetByUsuario(string usuarioId)
+        {
+            return Mapper.Map<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoService.GetByUsuario(usuarioId));
+        }
+
         public void Remove(ProdutoViewModel produtoViewModel)
         {
             _produtoService.Remove(Mapper.Map<ProdutoViewModel, Produto>(produtoViewModel));

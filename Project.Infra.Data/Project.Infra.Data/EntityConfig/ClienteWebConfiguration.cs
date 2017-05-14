@@ -22,7 +22,7 @@ namespace Project.Infra.Data.EntityConfig
                 .HasColumnType("nvarchar");
 
             //Relationships
-            HasRequired(c => c.Usuario)
+            HasOptional(c => c.Usuario)
                 .WithMany(u => u.ClientesWeb)
                 .HasForeignKey(c => c.UsuarioId)
                 .WillCascadeOnDelete(true);

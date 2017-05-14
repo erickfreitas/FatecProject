@@ -15,19 +15,19 @@ namespace Project.CrossCutting.Identity.Migrations
             //            Nome = c.String(nullable: false, maxLength: 128),
             //        })
             //    .PrimaryKey(t => t.ClaimsId);
-            
+
             //CreateTable(
             //    "dbo.ClientesWeb",
             //    c => new
             //        {
             //            ClienteWebId = c.Int(nullable: false, identity: true),
             //            ClientChave = c.String(),
-            //            UsuarioId = c.String(nullable: false, maxLength: 128),
+            //            UsuarioId = c.String(maxLength: 128),
             //        })
             //    .PrimaryKey(t => t.ClienteWebId)
-            //    .ForeignKey("dbo.Usuarios", t => t.UsuarioId, cascadeDelete: true)
+            //    .ForeignKey("dbo.Usuarios", t => t.UsuarioId)
             //    .Index(t => t.UsuarioId);
-            
+
             //CreateTable(
             //    "dbo.Usuarios",
             //    c => new
@@ -35,6 +35,8 @@ namespace Project.CrossCutting.Identity.Migrations
             //            UsuarioId = c.String(nullable: false, maxLength: 128),
             //            Nome = c.String(),
             //            Sobrenome = c.String(),
+            //            Rg = c.String(),
+            //            Cpf = c.String(),
             //            DataCriacao = c.DateTime(nullable: false),
             //            DataAlteracao = c.DateTime(nullable: false),
             //            Email = c.String(maxLength: 256),
@@ -51,20 +53,20 @@ namespace Project.CrossCutting.Identity.Migrations
             //        })
             //    .PrimaryKey(t => t.UsuarioId)
             //    .Index(t => t.UsuarioNome, unique: true, name: "UserNameIndex");
-            
+
             CreateTable(
                 "dbo.UsuarioClaims",
                 c => new
-                    {
-                        UsuarioClaimId = c.Int(nullable: false, identity: true),
-                        UsuarioId = c.String(nullable: false, maxLength: 128),
-                        Tipo = c.String(),
-                        Valor = c.String(),
-                    })
+                {
+                    UsuarioClaimId = c.Int(nullable: false, identity: true),
+                    UsuarioId = c.String(nullable: false, maxLength: 128),
+                    Tipo = c.String(),
+                    Valor = c.String(),
+                })
                 .PrimaryKey(t => t.UsuarioClaimId)
                 .ForeignKey("dbo.Usuarios", t => t.UsuarioId, cascadeDelete: true)
                 .Index(t => t.UsuarioId);
-            
+
             CreateTable(
                 "dbo.UsuarioLogins",
                 c => new

@@ -20,5 +20,10 @@ namespace Project.Infra.Data.Repositories
             Db.Entry(produto).GetDatabaseValues();
             return produto;
         }
+
+        public IEnumerable<Produto> GetByUsuario(string usuarioId)
+        {
+            return Db.Produtos.Where(p => p.UsuarioId == usuarioId).ToList();
+        }
     }
 }

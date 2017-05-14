@@ -9,6 +9,8 @@ namespace Project.Domain.Entities
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
         public string Email { get; set; }
+        public string Rg { get; set; }
+        public string Cpf { get; set; }
         public bool EmailConfirmado { get; set; }
         public string Telefone { get; set; }
         public bool TelefoneConfirmado { get; set; }
@@ -20,6 +22,8 @@ namespace Project.Domain.Entities
         public int ContagemFalhaDeAcesso { get; set; }
         public string UsuarioNome { get; set; }
         public virtual ICollection<ClienteWeb> ClientesWeb { get; set; }
+        public virtual Endereco Endereco { get; set; }
+        public virtual ICollection<Produto> Produtos { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataAlteracao { get; set; }
     }

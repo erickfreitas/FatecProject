@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Verificar E-mail - Quero Trocar!";
+    ViewBag.Title = "E-mail Confirmado - Quero Trocar!";
     Layout = "~/Views/Shared/_StoreLayout.cshtml";
 }
 <div class="container main-container headerOffset" style="min-height:0;">
@@ -10,23 +10,25 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" href="#collapse4" class="collapseWill">
-                                Confirme sua conta do QueroTrocar!
+                                Conta confirmada com sucesso!
                                 <span class="pull-left"> <i class="fa fa-caret-right"></i></span>
                             </a>
                         </h4>
                     </div>
                     <div id="collapse4" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <div class="alert alert-warning" role="alert">
-                                <strong>Atenção!</strong> Por favor @ViewBag.NovoUsuario.Nome, acesse o seu e-mail @ViewBag.NovoUsuario.Email e confirme a sua conta.
+                            <div class="alert alert-success text-center" role="alert">
+                                Parabéns @ViewBag.Usuario.Nome, sua conta foi confirmada com sucesso.                           
                             </div>
-                            <div class="alert alert-info" role="alert">
-                                <strong>Info!</strong>  Feature Demonstrativa: Caso o e-mail não chegue clique neste link: <a href="@ViewBag.Link">link</a>
+                            <div class="alert alert-info text-center" role="alert">
+                                <a href="@Url.Action("Login", "Conta")">Acesse sua conta e comece a trocar!</a>
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+

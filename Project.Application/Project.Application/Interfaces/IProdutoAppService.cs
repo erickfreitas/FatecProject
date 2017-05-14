@@ -15,5 +15,7 @@ namespace Project.Application.Interfaces
         void Remove(ProdutoViewModel produtoViewModel);
 
         void Update(ProdutoViewModel produtoViewModel);
+
+        IEnumerable<ProdutoViewModel> GetByUsuario(string usuarioId);
     }
 }

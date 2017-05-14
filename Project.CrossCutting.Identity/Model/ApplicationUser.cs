@@ -21,6 +21,8 @@ namespace Project.Infra.CrossCutting.Identity.Model
         //Propriedades do Usuário do Domínio
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
+        public string Rg { get; set; }
+        public string Cpf { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataAlteracao { get; set; }
 

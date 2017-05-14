@@ -1,31 +1,380 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    Layout = "~/Views/Shared/_StoreLayout.cshtml";
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="banner">
+    <div class="full-container">
+        <div class="slider-content">
+            <ul id="pager2" class="container"></ul>
+            <span class="prevControl sliderControl"> <i class="fa fa-angle-left fa-3x "></i></span> <span class="nextControl sliderControl"> <i class="fa fa-angle-right fa-3x "></i></span>
+            <div class="slider slider-v1" data-cycle-swipe=true data-cycle-prev=".prevControl" data-cycle-next=".nextControl" data-cycle-loader="wait">
+                <div class="slider-item slider-item-img1">
+                    <div class="sliderInfo">
+                        <div class="container">
+                            <div class="col-lg-12 col-md-12 col-sm-12 sliderTextFull ">
+                                <div class="inner text-center">
+                                    <div class="topAnima animated">
+                                        <h1 class="uppercase xlarge">Quero Trocar!</h1>
+                                        <h3 class="hidden-xs"> A maior e mais completa plataforma de trocas de produtos usados da web!</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="@Url.Content("~/Images/Slider/slider-0.jpg")" class="img-responsive parallaximg sliderImg" alt="img" style=" filter: brightness(30%);">
+                </div>
+                <div class="slider-item slider-item-img2 ">
+                    <div class="sliderInfo">
+                        <div class="container">
+                            <div class="col-lg-12 col-md-12 col-sm-12 sliderTextFull  ">
+                                <div class="inner dark maxwidth500 text-center animated topAnima">
+                                    <div>
+                                        <h1 class="uppercase xlarge"> Venha negociar </h1>
+                                        <h3 class="hidden-xs"> Faça parte dessa comunidade</h3>
+                                    </div>
+                                    <a class="btn btn-danger btn-lg">
+                                        CADASTRAR-SE AGORA
+                                        <span class="arrowUnicode">►</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="@Url.Content("~/Images/Slider/slider-1.jpg")" class="img-responsive parallaximg sliderImg" alt="img">
+                </div>
+                <div class="slider-item slider-item-img1">
+                    <div class="sliderInfo">
+                        <div class="container">
+                            <div class="col-lg-12 col-md-12 col-sm-12 sliderTextFull ">
+                                <div class="inner text-center">
+                                    <div class="topAnima animated">
+                                        <h1 class="uppercase xlarge">Mais de 10 Mil produtos</h1>
+                                        <h3 class="hidden-xs"> Na comunidade Quero Trocar, você pode encontrar milhares de produtos dos mais variados tipos. </h3>
+                                    </div>
+                                    <a class="btn btn-danger btn-lg bottomAnima animated opacity0">
+                                        Entenda como Funciona
+                                        <span class="arrowUnicode">►</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="@Url.Content("~/Images/Slider/slider-2.png")" class="img-responsive parallaximg sliderImg" alt="img" style=" filter: brightness(30%);">
+                </div>
+                <div class="slider-item slider-item-img3 ">
+                    <div class="sliderInfo">
+                        <div class="container">
+                            <div class="col-lg-5 col-md-4 col-sm-6 col-xs-8   pull-left sliderText white hidden-xs">
+                                <div class="inner">
+                                    <h1>Ecomonize!</h1>
+                                    <h3 class="price ">Não compre, troque!</h3>
+                                    <p class="hidden-xs">Quero Trocar! é uma plataforma simples e eficiente que te ajuda a conseguir tudo o que procura sem ter que gastar o seu dinheiro.</p>
+                                    <a href="category.html" class="btn btn-primary">
+                                        COMEÇE A TROCAR
+                                        <span class="arrowUnicode">►</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="@Url.Content("~/Images/Slider/slider-3.png")" class="img-responsive parallaximg sliderImg" alt="img">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<div class="container main-container">
+    <div class="morePost row featuredPostContainer style2 globalPaddingTop ">
+        <h3 class="section-title style2 text-center"><span>PRODUTOS EM DESTAQUE</span></h3>
+        <div class="container">
+            <div class="row xsResponse">
+                <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <div class="product">
+                        <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </a>
+                        <div class="image">
+                            <div class="quickview">
+                                <a data-toggle="modal" class="btn btn-xs btn-quickview" href="ajax/product.html" data-target="#productSetailsModalAjax">Visualizar </a>
+                            </div>
+                            <a href="product-details.html">
+                                <img src="~/Images/Products/30.jpg" alt="img" class="img-responsive">
+                            </a>
+                            <div class="promotion">
+                                <span class="new-product">Recente</span>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <h4><a href="product-details.html">Home Theater Philips</a></h4>
+                            <p>Leve a emoção do cinema para a sua casa! Este Sistema de Home Theather Philip</p>
+                            <span class="size">Eletroeletrônicos</span>
+                        </div>
+                        <div class="price"><span>Áudio</span></div>
+                        <div class="action-control">
+                            <a class="btn btn-primary">
+                                <span class="add2cart">Detalhes</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <div class="product">
+                        <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </a>
+                        <div class="image">
+                            <div class="quickview">
+                                <a data-toggle="modal" class="btn btn-xs btn-quickview" href="ajax/product.html" data-target="#productSetailsModalAjax">Visualizar </a>
+                            </div>
+                            <a href="product-details.html">
+                                <img src="~/Images/Products/30.jpg" alt="img" class="img-responsive">
+                            </a>
+                            <div class="promotion">
+                                <span class="new-product">Recente</span>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <h4><a href="product-details.html">Home Theater Philips</a></h4>
+                            <p>Leve a emoção do cinema para a sua casa! Este Sistema de Home Theather Philip</p>
+                            <span class="size">Eletroeletrônicos</span>
+                        </div>
+                        <div class="price"><span>Áudio</span></div>
+                        <div class="action-control">
+                            <a class="btn btn-primary">
+                                <span class="add2cart">Detalhes</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <div class="product">
+                        <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </a>
+                        <div class="image">
+                            <div class="quickview">
+                                <a data-toggle="modal" class="btn btn-xs btn-quickview" href="ajax/product.html" data-target="#productSetailsModalAjax">Visualizar </a>
+                            </div>
+                            <a href="product-details.html">
+                                <img src="~/Images/Products/30.jpg" alt="img" class="img-responsive">
+                            </a>
+                            <div class="promotion">
+                                <span class="new-product">Recente</span>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <h4><a href="product-details.html">Home Theater Philips</a></h4>
+                            <p>Leve a emoção do cinema para a sua casa! Este Sistema de Home Theather Philip</p>
+                            <span class="size">Eletroeletrônicos</span>
+                        </div>
+                        <div class="price"><span>Áudio</span></div>
+                        <div class="action-control">
+                            <a class="btn btn-primary">
+                                <span class="add2cart">Detalhes</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <div class="product">
+                        <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </a>
+                        <div class="image">
+                            <div class="quickview">
+                                <a data-toggle="modal" class="btn btn-xs btn-quickview" href="ajax/product.html" data-target="#productSetailsModalAjax">Visualizar </a>
+                            </div>
+                            <a href="product-details.html">
+                                <img src="~/Images/Products/30.jpg" alt="img" class="img-responsive">
+                            </a>
+                            <div class="promotion">
+                                <span class="new-product">Recente</span>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <h4><a href="product-details.html">Home Theater Philips</a></h4>
+                            <p>Leve a emoção do cinema para a sua casa! Este Sistema de Home Theather Philip</p>
+                            <span class="size">Eletroeletrônicos</span>
+                        </div>
+                        <div class="price"><span>Áudio</span></div>
+                        <div class="action-control">
+                            <a class="btn btn-primary">
+                                <span class="add2cart">Detalhes</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <div class="product">
+                        <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </a>
+                        <div class="image">
+                            <div class="quickview">
+                                <a data-toggle="modal" class="btn btn-xs btn-quickview" href="ajax/product.html" data-target="#productSetailsModalAjax">Visualizar </a>
+                            </div>
+                            <a href="product-details.html">
+                                <img src="~/Images/Products/30.jpg" alt="img" class="img-responsive">
+                            </a>
+                            <div class="promotion">
+                                <span class="new-product">Recente</span>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <h4><a href="product-details.html">Home Theater Philips</a></h4>
+                            <p>Leve a emoção do cinema para a sua casa! Este Sistema de Home Theather Philip</p>
+                            <span class="size">Eletroeletrônicos</span>
+                        </div>
+                        <div class="price"><span>Áudio</span></div>
+                        <div class="action-control">
+                            <a class="btn btn-primary">
+                                <span class="add2cart">Detalhes</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <div class="product">
+                        <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </a>
+                        <div class="image">
+                            <div class="quickview">
+                                <a data-toggle="modal" class="btn btn-xs btn-quickview" href="ajax/product.html" data-target="#productSetailsModalAjax">Visualizar </a>
+                            </div>
+                            <a href="product-details.html">
+                                <img src="~/Images/Products/30.jpg" alt="img" class="img-responsive">
+                            </a>
+                            <div class="promotion">
+                                <span class="new-product">Recente</span>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <h4><a href="product-details.html">Home Theater Philips</a></h4>
+                            <p>Leve a emoção do cinema para a sua casa! Este Sistema de Home Theather Philip</p>
+                            <span class="size">Eletroeletrônicos</span>
+                        </div>
+                        <div class="price"><span>Áudio</span></div>
+                        <div class="action-control">
+                            <a class="btn btn-primary">
+                                <span class="add2cart">Detalhes</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <div class="product">
+                        <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </a>
+                        <div class="image">
+                            <div class="quickview">
+                                <a data-toggle="modal" class="btn btn-xs btn-quickview" href="ajax/product.html" data-target="#productSetailsModalAjax">Visualizar </a>
+                            </div>
+                            <a href="product-details.html">
+                                <img src="~/Images/Products/30.jpg" alt="img" class="img-responsive">
+                            </a>
+                            <div class="promotion">
+                                <span class="new-product">Recente</span>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <h4><a href="product-details.html">Home Theater Philips</a></h4>
+                            <p>Leve a emoção do cinema para a sua casa! Este Sistema de Home Theather Philip</p>
+                            <span class="size">Eletroeletrônicos</span>
+                        </div>
+                        <div class="price"><span>Áudio</span></div>
+                        <div class="action-control">
+                            <a class="btn btn-primary">
+                                <span class="add2cart">Detalhes</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <div class="product">
+                        <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </a>
+                        <div class="image">
+                            <div class="quickview">
+                                <a data-toggle="modal" class="btn btn-xs btn-quickview" href="ajax/product.html" data-target="#productSetailsModalAjax">Visualizar </a>
+                            </div>
+                            <a href="product-details.html">
+                                <img src="~/Images/Products/30.jpg" alt="img" class="img-responsive">
+                            </a>
+                            <div class="promotion">
+                                <span class="new-product">Recente</span>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <h4><a href="product-details.html">Home Theater Philips</a></h4>
+                            <p>Leve a emoção do cinema para a sua casa! Este Sistema de Home Theather Philip</p>
+                            <span class="size">Eletroeletrônicos</span>
+                        </div>
+                        <div class="price"><span>Áudio</span></div>
+                        <div class="action-control">
+                            <a class="btn btn-primary">
+                                <span class="add2cart">Detalhes</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <div class="product">
+                        <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </a>
+                        <div class="image">
+                            <div class="quickview">
+                                <a data-toggle="modal" class="btn btn-xs btn-quickview" href="ajax/product.html" data-target="#productSetailsModalAjax">Visualizar </a>
+                            </div>
+                            <a href="product-details.html">
+                                <img src="~/Images/Products/30.jpg" alt="img" class="img-responsive">
+                            </a>
+                            <div class="promotion">
+                                <span class="new-product">Recente</span>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <h4><a href="product-details.html">Home Theater Philips</a></h4>
+                            <p>Leve a emoção do cinema para a sua casa! Este Sistema de Home Theather Philip</p>
+                            <span class="size">Eletroeletrônicos</span>
+                        </div>
+                        <div class="price"><span>Áudio</span></div>
+                        <div class="action-control">
+                            <a class="btn btn-primary">
+                                <span class="add2cart">Detalhes</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="load-more-block text-center">
+                    <a class="btn btn-thin" href="#"> <i class="fa fa-plus-sign">+</i> carregar mais produtos</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</div>
+<div class="parallax-section parallax-image-2">
+    <div class="w100 parallax-section-overley">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="parallax-content clearfix">
+                        <h1 class="xlarge"> 5983 produtos trocados até agora. </h1>
+                        <h5 class="parallaxSubtitle">Venha você também fazer parte dessa comunidade de trocas.</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</div>
+<div class="modal fade" id="productSetailsModalAjax" tabindex="-1" role="dialog" aria-labelledby="productSetailsModalAjaxLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
     </div>
 </div>

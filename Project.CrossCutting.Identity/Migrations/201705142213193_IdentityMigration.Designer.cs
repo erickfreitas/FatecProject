@@ -13,7 +13,7 @@ namespace Project.CrossCutting.Identity.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201705102258564_IdentityMigration"; }
+            get { return "201705142213193_IdentityMigration"; }
         }
         
         string IMigrationMetadata.Source

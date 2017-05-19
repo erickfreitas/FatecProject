@@ -13,7 +13,7 @@
                 <div class="panel panel-default ">
                     <div id="collapse1" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            @using (Ajax.BeginForm("Novo", "Produtos", new AjaxOptions { OnBegin = "DesabilitarForm()", OnFailure = "console.log(data)", OnSuccess = "CarregarModal(data)", UpdateTargetId = "collapse1", InsertionMode = InsertionMode.InsertAfter, HttpMethod = "Post" }, new { @class = "form-horizontal", @id = "Produto-Form" }))
+                            @using (Ajax.BeginForm("Novo", "Produtos", new AjaxOptions { OnBegin = "DesabilitarForm()", OnFailure = "console.log(data)", OnSuccess = "CarregarModal(data), console.log(data);", UpdateTargetId = "collapse1", InsertionMode = InsertionMode.InsertAfter, HttpMethod = "Post" }, new { @class = "form-horizontal", @id = "Produto-Form" }))
                             {
                                 <fieldset>
                                     <legend style="text-align:center;">Cadastrar novo produto</legend>
@@ -41,7 +41,8 @@
                                     <div class="form-group">
                                         @Html.Label("Categoria", new { @class = "col-md-4 control-label" })
                                         <div class="col-md-4">
-                                            @Html.DropDownList("CategoriaId", (IEnumerable<SelectListItem>)ViewBag.Categorias, string.Empty, new { @class = "form-control", @tabindex = "-1", @onchange = "CarregarSubCategorias();" })
+                                            @Html.DropDownListFor(model => model.CategoriaId, (IEnumerable<SelectListItem>)ViewBag.Categorias, string.Empty, new { @class = "form-control", @tabindex = "-1", @onchange = "CarregarSubCategorias();" })
+                                            @Html.ValidationMessageFor(model => model.CategoriaId, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -85,10 +86,12 @@
         });
 
         $('#imagem').on('filebatchuploadcomplete', function (event, files, extra) {
+            console.log("teste");
             setTimeout(function () {
                 $('#CadastrarImagens').modal("hide");
                 $('#Produto-Form button').attr('disabled', 'disabled');
             }, 1500);
+            console.log("teste 2");
             setTimeout(function () { window.location.replace("/Produtos/MeusProdutos"); }, 3000);
         });
 

@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ContaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -418,8 +419,6 @@
     <Content Include="Views\Categorias\Edit.cshtml" />
     <Content Include="Views\Categorias\Index.cshtml" />
     <Content Include="Views\Shared\_StoreLayout.cshtml" />
-    <Content Include="Views\Teste\Index.cshtml" />
-    <Content Include="Views\Teste\Vitrine.cshtml" />
     <Content Include="Views\Produtos\Novo.cshtml" />
     <Content Include="Views\Produtos\MeusProdutos.cshtml" />
     <Content Include="Views\Produtos\_ModalProdutoImagens.cshtml" />
@@ -429,6 +428,7 @@
     <Content Include="Views\Conta\DisplayEmail.cshtml" />
     <Content Include="Views\Conta\Login.cshtml" />
     <Content Include="Views\Conta\ConfirmarEmail.cshtml" />
+    <Content Include="Views\Usuarios\MeuPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

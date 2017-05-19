@@ -9,6 +9,7 @@ namespace Project.Domain.Entities
         public string Nome { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataAlteracao { get; set; }
+        public virtual ICollection<Produto> Produtos { get; set; }
         public virtual ICollection<SubCategoria> SubCategorias { get; set; }
     }
 }

@@ -12,7 +12,6 @@ namespace Project.Domain.Entities
         public virtual Produto Produto { get; set; }
         public string UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
-        public int RespostaId { get; set; }
         public virtual ICollection<Resposta> Respostas { get; set; }
         public string Descricao { get; set; }
 

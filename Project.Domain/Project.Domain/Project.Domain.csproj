@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,26 +45,34 @@
     <Compile Include="Entities\Claims.cs" />
     <Compile Include="Entities\ClienteWeb.cs" />
     <Compile Include="Entities\Endereco.cs" />
+    <Compile Include="Entities\Pergunta.cs" />
     <Compile Include="Entities\ProdutoImagem.cs" />
     <Compile Include="Entities\Produto.cs" />
+    <Compile Include="Entities\Resposta.cs" />
     <Compile Include="Entities\SubCategoria.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPerguntaRepository.cs" />
     <Compile Include="Interfaces\Repositories\IProdutoImagemRepository.cs" />
     <Compile Include="Interfaces\Repositories\IProdutoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\Repositories\IRespostaRepository.cs" />
     <Compile Include="Interfaces\Repositories\ISubCategoriaRepository.cs" />
     <Compile Include="Interfaces\Repositories\IUsuarioRepository.cs" />
     <Compile Include="Interfaces\Services\ICategoriaService.cs" />
+    <Compile Include="Interfaces\Services\IPerguntaService.cs" />
     <Compile Include="Interfaces\Services\IProdutoImagemService.cs" />
     <Compile Include="Interfaces\Services\IProdutoService.cs" />
+    <Compile Include="Interfaces\Services\IRespostaService.cs" />
     <Compile Include="Interfaces\Services\IServiceBase.cs" />
     <Compile Include="Interfaces\Services\ISubCategoriaService.cs" />
     <Compile Include="Interfaces\Services\IUsuarioService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoriaService.cs" />
+    <Compile Include="Services\PerguntaService.cs" />
     <Compile Include="Services\ProdutoImagemService.cs" />
     <Compile Include="Services\ProdutoService.cs" />
+    <Compile Include="Services\RespostaService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Services\SubCategoriaService.cs" />
     <Compile Include="Services\UsuarioService.cs" />

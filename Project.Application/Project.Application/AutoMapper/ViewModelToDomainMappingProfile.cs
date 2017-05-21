@@ -12,6 +12,8 @@ namespace Project.Application.AutoMapper
             CreateMap<SubCategoriaViewModel, SubCategoria>();
             CreateMap<ProdutoViewModel, Produto>();
             CreateMap<ProdutoImagemViewModel, ProdutoImagem>();
+            CreateMap<PerguntaViewModel, Pergunta>();
+            CreateMap<RespostaViewModel, Resposta>();
         }
     }
 }

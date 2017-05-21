@@ -23,8 +23,12 @@ namespace Project.Domain.Entities
         public string UsuarioNome { get; set; }
         public virtual ICollection<ClienteWeb> ClientesWeb { get; set; }
         public virtual Endereco Endereco { get; set; }
-        public virtual ICollection<Produto> Produtos { get; set; }
+        public virtual ICollection<Produto> Produtos { get; set; }  
+        public virtual  ICollection<Pergunta> Perguntas { get; set; }
+        public virtual ICollection<Resposta> Respostas { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataAlteracao { get; set; }
+
+
     }
 }

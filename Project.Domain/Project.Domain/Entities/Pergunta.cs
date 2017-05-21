@@ -6,7 +6,7 @@ namespace Project.Domain.Entities
     {
 
 
-        public int PerguntaId { get; set; }
+        public string PerguntaId { get; set; }
 
         public int ProdutoId { get; set; }
         public virtual Produto Produto { get; set; }

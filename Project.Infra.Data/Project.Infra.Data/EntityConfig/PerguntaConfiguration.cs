@@ -13,6 +13,11 @@ namespace Project.Infra.Data.EntityConfig
             //Chave Primária
             HasKey(p => p.PerguntaId);
 
+
+            Property(p => p.PerguntaId)
+                .HasMaxLength(128)
+                .HasColumnType("nvarchar");
+
             //Propriedades
             Property(p => p.UsuarioId)
                 .HasMaxLength(128)

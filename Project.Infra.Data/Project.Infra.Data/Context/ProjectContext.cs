@@ -52,6 +52,8 @@ namespace Project.Infra.Data.Context
             modelBuilder.Configurations.Add(new ClaimsConfiguration());
             modelBuilder.Configurations.Add(new ClienteWebConfiguration());
             modelBuilder.Configurations.Add(new EnderecoConfiguration());
+            modelBuilder.Configurations.Add(new PerguntaConfiguration());
+            modelBuilder.Configurations.Add(new RespostaConfiguration());
         }
 
         public override int SaveChanges()

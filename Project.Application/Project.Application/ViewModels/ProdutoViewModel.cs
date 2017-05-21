@@ -25,13 +25,19 @@ namespace Project.Application.ViewModels
         [MinLength(2, ErrorMessage = "Os Detalhes devem conter no mínimo {1} caracteres")]
         [MaxLength(1500, ErrorMessage = "Os Detalhes devem conter no máximo {1} caracteres")]
         [DisplayName("Detalhes")]
-        public string Detalhes { get; set; }        
+        public string Detalhes { get; set; }                
+
+        public string UsuarioId { get; set; }
+
+        [Required]
+        [DisplayName("Categoria")]
+        public int CategoriaId { get; set; }
+
+        public CategoriaViewModel CategoriaViewModel { get; set; }
 
         [Required]
         [DisplayName("Sub-Categoria")]
         public int SubCategoriaId { get; set; }
-
-        public string UsuarioId { get; set; }
 
         public SubCategoriaViewModel SubCategoriaViewModel { get; set; }
 

@@ -103,6 +103,7 @@ namespace Project.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                produtoViewModel.UsuarioId = User.Identity.GetUserId();
                 _produtoAppService.Update(produtoViewModel);
                 return RedirectToAction("Editar", new { @Controller = "Produtos", @Id = produtoViewModel.ProdutoId });
             }

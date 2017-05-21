@@ -216,6 +216,10 @@
                     }                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="@Url.Action("MeusProdutos", "Produtos")"> Meus Produtos </a></li>
+                    } 
                     <li class="hide-xs"><a class="btn btn-nobg  search-trigger"><i class="fa fa-search"> </i></a></li>
                     @if (!User.Identity.IsAuthenticated)
                     {

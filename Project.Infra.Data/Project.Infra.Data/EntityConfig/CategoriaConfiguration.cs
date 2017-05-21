@@ -23,6 +23,11 @@ namespace Project.Infra.Data.EntityConfig
 
             Property(c => c.DataAlteracao)
                 .IsRequired();
+
+            //Relacionamentos
+            HasMany(c => c.Produtos)
+                .WithRequired(p => p.Categoria)
+                .HasForeignKey(p => p.CategoriaId);
         }
     }
 }

@@ -40,9 +40,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        @Html.Label("Categoria", new { @class = "col-md-4 control-label", @name = "CategoriaId", @id = "CategoriaId" })
+                                        @Html.Label("Categoria", new { @class = "col-md-4 control-label", @name = "CategoriaId" })
                                         <div class="col-md-4">
-                                            @Html.DropDownList("CategoriaId", (IEnumerable<SelectListItem>)ViewBag.Categorias, string.Empty, new { @class = "form-control", @tabindex = "-1", @onchange = "CarregarSubCategorias();" })
+                                            @Html.DropDownListFor(model => model.CategoriaId, (IEnumerable<SelectListItem>)ViewBag.Categorias, string.Empty, new { @class = "form-control", @tabindex = "-1", @onchange = "CarregarSubCategorias();" })
+                                            @Html.ValidationMessageFor(model => model.CategoriaId, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="form-group">

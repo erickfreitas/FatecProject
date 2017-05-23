@@ -25,6 +25,10 @@ namespace Project.Infra.Data.Context
         public DbSet<ClienteWeb> ClientesWeb { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
 
+        public DbSet<Pergunta> Perguntas { get; set; }
+
+        public DbSet<Resposta> Respostas { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -48,6 +52,8 @@ namespace Project.Infra.Data.Context
             modelBuilder.Configurations.Add(new ClaimsConfiguration());
             modelBuilder.Configurations.Add(new ClienteWebConfiguration());
             modelBuilder.Configurations.Add(new EnderecoConfiguration());
+            modelBuilder.Configurations.Add(new PerguntaConfiguration());
+            modelBuilder.Configurations.Add(new RespostaConfiguration());
         }
 
         public override int SaveChanges()

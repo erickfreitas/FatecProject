@@ -19,6 +19,8 @@ namespace Project.Application.AutoMapper
                 .ForMember(dest => dest.ProdutoImagemViewModels, opt => opt.MapFrom(src => src.ProdutoImagens));
 
             CreateMap<ProdutoImagem, ProdutoImagemViewModel>();
+
+            CreateMap<Usuario, UsuarioViewModel>();
         }
 
     }

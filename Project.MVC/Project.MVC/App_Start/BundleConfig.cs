@@ -160,6 +160,10 @@ namespace Project.MVC
 
             bundles.Add(new StyleBundle("~/StoreContent/product-details/css").Include(
                       "~/Content/StoreContent/css/product-details-5.css"));
+
+            bundles.Add(new ScriptBundle("~/StoreContent/necessary/script").Include(
+                      "~/Content/StoreContent/jquery.min.js",
+                      "~/Content/StoreContent/bootstrap.min.js"));
         }
     }
 }

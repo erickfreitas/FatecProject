@@ -71,8 +71,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/unobstrusive")
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    @Scripts.Render("~/StoreContent/necessary/script")
     @Scripts.Render("~/StoreContent/file-input/script")
 }
 @section InternalScripts{
@@ -82,16 +81,14 @@
             allowedFileExtensions: ['jpg', 'png', 'jpeg'],
             showCancel : false,
             fileActionSettings: { showUpload: false },
-            maxFileCount: 4,
+            maxFileCount: 1,
         });
 
         $('#imagem').on('filebatchuploadcomplete', function (event, files, extra) {
-            console.log("teste");
             setTimeout(function () {
                 $('#CadastrarImagens').modal("hide");
                 $('#Produto-Form button').attr('disabled', 'disabled');
             }, 1500);
-            console.log("teste 2");
             setTimeout(function () { window.location.replace("/Produtos/MeusProdutos"); }, 3000);
         });
 

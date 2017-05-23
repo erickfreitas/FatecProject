@@ -196,6 +196,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\StoreContent\bootstrap.min.js" />
     <Content Include="Content\StoreContent\bootstrap\css\bootstrap.css" />
     <Content Include="Content\StoreContent\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\StoreContent\bootstrap\js\bootstrap.min.js" />
@@ -236,6 +237,7 @@
     <Content Include="Content\StoreContent\img\loading-sm.gif" />
     <Content Include="Content\StoreContent\img\loading.gif" />
     <Content Include="Content\StoreContent\img\sem-imagem.jpg" />
+    <Content Include="Content\StoreContent\jquery.min.js" />
     <Content Include="Content\StoreContent\js\bootstrap.touchspin.js" />
     <Content Include="Content\StoreContent\js\footable.js" />
     <Content Include="Content\StoreContent\js\footable.sortable.js" />
@@ -429,6 +431,7 @@
     <Content Include="Views\Conta\Login.cshtml" />
     <Content Include="Views\Conta\ConfirmarEmail.cshtml" />
     <Content Include="Views\Usuarios\MeuPerfil.cshtml" />
+    <Content Include="Views\Usuarios\_ModalPerfilImagem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

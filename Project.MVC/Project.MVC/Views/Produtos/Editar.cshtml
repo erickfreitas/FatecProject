@@ -1,6 +1,6 @@
 ﻿@model Project.Application.ViewModels.ProdutoViewModel
 @{
-    ViewBag.Title = string.Format("Editar Produto {0}- Quero Trocar!", Model.Nome);
+    ViewBag.Title = string.Format("Editar Produto {0} - Quero Trocar!", Model.Nome);
     Layout = "~/Views/Shared/_StoreLayout.cshtml";
 }
 @section Styles {
@@ -74,8 +74,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/unobstrusive")
-    @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>*@
+    @Scripts.Render("~/StoreContent/necessary/script")
     @Scripts.Render("~/StoreContent/file-input/script")
 }
 @section InternalScripts{

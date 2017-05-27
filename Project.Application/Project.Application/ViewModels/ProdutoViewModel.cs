@@ -42,5 +42,7 @@ namespace Project.Application.ViewModels
         public SubCategoriaViewModel SubCategoriaViewModel { get; set; }
 
         public IEnumerable<ProdutoImagemViewModel> ProdutoImagemViewModels { get; set; }
+
+        public IEnumerable<PerguntaViewModel> PerguntasViewModels { get; set; }
     }
 }

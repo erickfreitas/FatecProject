@@ -14,16 +14,22 @@ namespace Project.MVC.Controllers
         private readonly ICategoriaAppService _categoriaAppService;
         private readonly ISubCategoriaAppService _subCategoriaAppService;
         private readonly IProdutoImagemAppService _produtoImagemAppService;
+        private readonly IPerguntaAppService _perguntasAppService;
+        private readonly IRespostaAppService _respostaAppServie;
 
         public ProdutosController(IProdutoAppService produtoAppService, 
                                         ICategoriaAppService categoriaAppService,
                                                 ISubCategoriaAppService subCategoriaAppService,
-                                                    IProdutoImagemAppService produtoImagemAppService)
+                                                    IProdutoImagemAppService produtoImagemAppService,
+                                                    IPerguntaAppService perguntaAppService,
+                                                    IRespostaAppService respostaAppService)
         {
             _produtoAppService = produtoAppService;
             _categoriaAppService = categoriaAppService;
             _subCategoriaAppService = subCategoriaAppService;
             _produtoImagemAppService = produtoImagemAppService;
+            _perguntasAppService = perguntaAppService;
+            _respostaAppServie = respostaAppService;
         }
 
         [HttpGet]
@@ -117,6 +123,17 @@ namespace Project.MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var produtoViewModel = _produtoAppService.GetById(id.Value);
             return View(produtoViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Duvidas(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                
+                return View();
+            
         }
 
         [Authorize]

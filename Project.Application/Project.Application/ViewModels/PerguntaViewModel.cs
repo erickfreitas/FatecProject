@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project.Application.ViewModels
 {
@@ -8,6 +9,8 @@ namespace Project.Application.ViewModels
         public int PerguntaId { get; set; }
 
         public string Descricao { get; set; }
+
+        public IEnumerable<RespostaViewModel> RespostasViewModels { get; set; }
 
     }
 }

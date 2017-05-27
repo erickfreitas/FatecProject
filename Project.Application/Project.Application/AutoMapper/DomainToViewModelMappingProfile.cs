@@ -16,11 +16,15 @@ namespace Project.Application.AutoMapper
             CreateMap<Produto, ProdutoViewModel>()
                 .ForMember(dest => dest.CategoriaViewModel, opt => opt.MapFrom(src => src.Categoria))
                 .ForMember(dest => dest.SubCategoriaViewModel, opt => opt.MapFrom(src => src.SubCategoria))
-                .ForMember(dest => dest.ProdutoImagemViewModels, opt => opt.MapFrom(src => src.ProdutoImagens));
+                .ForMember(dest => dest.ProdutoImagemViewModels, opt => opt.MapFrom(src => src.ProdutoImagens))
+                .ForMember(dest => dest.PerguntasViewModels, opt => opt.MapFrom(src => src.Perguntas));
 
             CreateMap<ProdutoImagem, ProdutoImagemViewModel>();
 
             CreateMap<Usuario, UsuarioViewModel>();
+
+            CreateMap<Pergunta, PerguntaViewModel>()
+                .ForMember(dest => dest.RespostasViewModels, opt => opt.MapFrom(src => src.Respostas));
         }
 
     }

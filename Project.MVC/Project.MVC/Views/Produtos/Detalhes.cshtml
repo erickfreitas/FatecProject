@@ -8,6 +8,10 @@
     @Styles.Render("~/StoreContent/magnific/css")
     @Styles.Render("~/StoreContent/jquery-bxslider/css")
 }
+
+
+
+
 <section class="section-product-info">
     <div class="container-1400 container main-container product-details-container ">
         <div class="row">
@@ -240,6 +244,7 @@
                         <h3 class="hero-section-title"><i class="fa fa-2x  fa-comments-o"></i>Perguntas</h3>
                     </div>
                     <div class="all-review-wrapper ">
+                       
                         @foreach (var pergunta in Model.PerguntasViewModels)
                         {
                         <div class="panel panel-default">
@@ -250,10 +255,11 @@
                                     </a>
                                 </div>
                                 <h4><a href="#" style="text-decoration:none;"><strong>John Doe</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minutes ago</i></a></small></small></h4>
+
                                 <div class="post-content">
-                                    @pergunta.RespostasViewModels
+                                    @pergunta.Descricao
                                 </div>
-                                <span>
+                                
                                     <div class="navbar-right">
                                         <div class="dropdown">
                                             <button class="btn btn-link btn-xs dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -261,6 +267,7 @@
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dd1" style="float: right;">
+                                                
                                                 <li><a href="#"><i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i> Report</a></li>
                                                 <li><a href="#"><i class="fa fa-fw fa-ban" aria-hidden="true"></i> Ignore</a></li>
                                                 <li><a href="#"><i class="fa fa-fw fa-bell" aria-hidden="true"></i> Enable notifications for this post</a></li>
@@ -268,9 +275,10 @@
                                                 <li role="separator" class="divider"></li>
                                                 <li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
                                             </ul>
+                                            <a href="@Url.Action("EditarPergunta", new { @Controller = "Produtos", @id = pergunta.PerguntaId })" data-target="#edPerguntaModal" data-toggle="modal" class="btn btn-info"> <span> Editar Pergunta </span> </a>
                                         </div>
                                     </div>
-                                </span>
+                                
                                 <hr>
                                 <div class="post-content">
                                     <div class="panel panel-default">
@@ -283,7 +291,7 @@
                                             <h4><a href="#" style="text-decoration:none;"><strong>✪ SтeғOғғιcιel ✪ ツ</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> about 15 hours ago</i></a></small></small></h4>
                                             <hr>
                                             <div class="post-content">
-                                                @pergunta.RespostasViewModels
+                                                @pergunta.RespostasViewModels.FirstOrDefault().Descricao
                                             </div>
                                         </div>
                                     </div>
@@ -294,6 +302,7 @@
                                         <a class="btn btn-default btn-xs"><i class="fa fa-heart" aria-hidden="true"></i> Like</a>
                                         <a class="btn btn-default btn-xs"><i class="fa fa-retweet" aria-hidden="true"></i> Reshare</a>
                                         <a class="btn btn-default btn-xs"><i class="fa fa-comment" aria-hidden="true"></i> Comment</a>
+                                        <a href="@Url.Action("EditarResposta", new { @Controller = "Produtos", @id = pergunta.RespostasViewModels.FirstOrDefault().RespostaId })" data-target="#edRespostaModal" data-toggle="modal" class="btn btn-info"> <span> Editar Resposta </span> </a>
                                     </div>
                                     <div class="pull-left">
                                         <p class="text-muted" style="margin-left:5px;"><i class="fa fa-globe" aria-hidden="true"></i> Public</p>
@@ -307,9 +316,12 @@
                                             <img class="media-object img-circle" src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;">
                                         </a>
                                     </div>
+                                    @using (Html.BeginForm("AdicionarResposta", "Produtos", FormMethod.Post, new { @class = "form-horizontal", @id = "Produto-Form" }))
+                                    {
                                     <div class="media-body">
-                                        <textarea class="form-control" rows="1" placeholder="Comment"></textarea>
+                                        @Html.TextAreaFor(model => model.PerguntasViewModels.FirstOrDefault().RespostasViewModels.FirstOrDefault().Descricao, new { @class = "form-control", @placeholder = "Escreva sua Resposta", @style = "max-witdh: 450px;", @rows = "2" })
                                     </div>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -320,9 +332,86 @@
                                     <a href="#" class="btn  btn-default  ">
                                         <i class="fa fa-plus-sign">+</i> Carregar mais perguntas
                                     </a>
-                                    <a class="btn  btn-success" data-target="#modal-review" data-toggle="modal">
+                                    <a class="btn  btn-success" data-target="#addPerguntaModal" data-toggle="modal">
                                         <i class="fa fa-edit"></i> Escrever pergunta
                                     </a>
+
+                        
+                                    <div class="modal fade" id="addPerguntaModal" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            
+                                         @using (Html.BeginForm("AdicionarPergunta", "Produtos", FormMethod.Post, new { @class = "form-horizontal", @id = "Produto-Form" }))
+                                         {
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Escreva sua Pergunta</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @Html.TextAreaFor(model => model.PerguntasViewModels.FirstOrDefault().Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "2" })
+                                                </div>
+                                                <div class="modal-footer">
+                                                    
+                                                    <button type="submit" >Adicionar Pergunta</button>
+                                                </div>
+                                            </div>
+                                         }
+                                        </div>
+                                    </div>
+
+
+                                    <div class="modal fade" id="edPerguntaModal" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+
+                                            @using (Html.BeginForm("EditarPergunta", "Produtos", FormMethod.Post, new { @class = "form-horizontal", @id = "Produto-Form" }))
+                                            {
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Escreva sua Pergunta</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @Html.TextAreaFor(model => model.PerguntasViewModels.FirstOrDefault().Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "2" })
+                                                    </div>
+                                                    <div class="modal-footer">
+
+                                                        <button type="submit">Editar Pergunta</button>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+
+                                    <div class="modal fade" id="edRespostaModal" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+
+                                            @using (Html.BeginForm("EditarResposta", "Produtos", FormMethod.Post, new { @class = "form-horizontal", @id = "Produto-Form" }))
+                                            {
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Escreva sua Pergunta</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @Html.TextAreaFor(model => model.PerguntasViewModels.FirstOrDefault().RespostasViewModels.FirstOrDefault().Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "2" })
+                                                    </div>
+                                                    <div class="modal-footer">
+
+                                                        <button type="submit">Editar Resposta</button>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -332,10 +421,20 @@
             </section>
         </div>
     </div>
+
+    
 </section>
+
+
+
+    <!-- Modal -->
+
+
+
+
 @section Scripts {
     @Scripts.Render("~/StoreContent/necessary/script")
-    @Scripts.Render("~/StoreContent/bootstrap/script")
+    @*@Scripts.Render("~/StoreContent/bootstrap/script")*@
     @Scripts.Render("~/StoreContent/jquery-fitvids/script")
     @Scripts.Render("~/StoreContent/jquery-bxslider/script")
 }

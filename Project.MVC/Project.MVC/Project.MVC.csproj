@@ -48,6 +48,10 @@
       <HintPath>..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -447,6 +451,10 @@
     <ProjectReference Include="..\..\Project.CrossCutting.Identity\Project.Infra.CrossCutting.Identity.csproj">
       <Project>{3c57d682-ad3a-46bc-b7e0-1cc6bebfea6f}</Project>
       <Name>Project.Infra.CrossCutting.Identity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Project.Domain\Project.Domain\Project.Domain.csproj">
+      <Project>{F2F48700-544E-4DA4-9F61-41435C2260C6}</Project>
+      <Name>Project.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Project.Infra.CrossCutting.IoC\Project.Infra.CrossCutting.IoC\Project.Infra.CrossCutting.IoC.csproj">
       <Project>{7B4BCBDC-E2DD-4EE8-BD45-7BDE0578B448}</Project>

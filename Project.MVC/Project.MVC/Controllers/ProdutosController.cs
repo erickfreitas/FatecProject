@@ -126,15 +126,104 @@ namespace Project.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Duvidas(int? id)
+        public ActionResult AdicionarPergunta(PerguntaViewModel perguntaViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                perguntaViewModel.UsuarioId = User.Identity.GetUserId();
+                var perguntaAdicionada = _perguntasAppService.Add(perguntaViewModel);
+                
+                return Json(perguntaAdicionada);
+            }
+            
+            
+            return View();
+
+        }
+
+
+
+
+
+        [HttpPost]
+        public ActionResult AdicionarResposta(PerguntaViewModel perguntaViewModel, RespostaViewModel respostaViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+               
+                perguntaViewModel.UsuarioId = User.Identity.GetUserId();
+                respostaViewModel.PerguntaViewModel.PerguntaId = perguntaViewModel.PerguntaId;
+                var respostaAdicionada = _respostaAppServie.Add(respostaViewModel);
+                return Json(respostaAdicionada);
+            }
+
+
+            return View();
+
+        }
+
+
+        [HttpGet]
+        public ActionResult EditarPergunta(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            
+            var perguntaViewModel = _perguntasAppService.GetById(id.Value);
+            
+
+            return View(perguntaViewModel);
+        }
+
+
+        [HttpPost]
+        public ActionResult EditarPergunta(PerguntaViewModel perguntaViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                perguntaViewModel.UsuarioId = User.Identity.GetUserId();
+                _perguntasAppService.Update(perguntaViewModel);
+
+                return Json(perguntaViewModel);
+            }
+
+
+            return View();
+
+        }
+
+
+        [HttpGet]
+        public ActionResult EditarResposta(int? id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-                
-                return View();
-            
+            var respostaViewModel = _respostaAppServie.GetById(id.Value);
+
+
+            return View(respostaViewModel);
         }
+
+        [HttpPost]
+        public ActionResult EditarResposta(RespostaViewModel respostaViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                respostaViewModel.UsuarioId = User.Identity.GetUserId();
+                _respostaAppServie.Update(respostaViewModel);
+
+                return Json(respostaViewModel);
+            }
+
+
+            return View();
+
+        }
+
+
+
+
 
         [Authorize]
         public ActionResult BuscarSubCategorias(int? categoriaId)

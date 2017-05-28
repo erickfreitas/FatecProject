@@ -1,6 +1,7 @@
 ﻿@model Project.Application.ViewModels.ProdutoViewModel
 @{
     ViewBag.Title = string.Format("Produto {0}- Quero Trocar!", Model.Nome);
+    ViewBag.ProdutoId = Model.ProdutoId;
     Layout = "~/Views/Shared/_StoreLayout.cshtml";
 }
 @section Styles {
@@ -344,6 +345,7 @@
                                             
                                          @using (Html.BeginForm("AdicionarPergunta", "Produtos", FormMethod.Post, new { @class = "form-horizontal", @id = "Produto-Form" }))
                                          {
+                                            @Html.HiddenFor(m => m.ProdutoId)  
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>

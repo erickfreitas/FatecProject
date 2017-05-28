@@ -130,13 +130,13 @@ namespace Project.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 perguntaViewModel.UsuarioId = User.Identity.GetUserId();
-                perguntaViewModel.ProdutoId = 1;
                 var perguntaAdicionada = _perguntasAppService.Add(perguntaViewModel);
                 
                 return Json(perguntaAdicionada);
             }
-            
+
             
             return View();
 

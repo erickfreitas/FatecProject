@@ -23,8 +23,12 @@ namespace Project.Application.AutoMapper
 
             CreateMap<Usuario, UsuarioViewModel>();
 
-            CreateMap<Pergunta, PerguntaViewModel>()
-                .ForMember(dest => dest.RespostasViewModels, opt => opt.MapFrom(src => src.Respostas));
+            CreateMap<Pergunta, PerguntaViewModel>();
+
+
+            CreateMap<Resposta, RespostaViewModel>()
+                .ForMember(dest => dest.PerguntaViewModel, opt => opt.MapFrom(src => src.Pergunta)); 
+
         }
 
     }

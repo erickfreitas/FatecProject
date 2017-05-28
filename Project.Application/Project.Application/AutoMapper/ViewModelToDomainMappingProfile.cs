@@ -13,6 +13,8 @@ namespace Project.Application.AutoMapper
             CreateMap<ProdutoViewModel, Produto>();
             CreateMap<ProdutoImagemViewModel, ProdutoImagem>();
             CreateMap<UsuarioViewModel, Usuario>();
+            CreateMap<PerguntaViewModel, Pergunta>();
+            CreateMap<RespostaViewModel, Resposta>();
         }
     }
 }

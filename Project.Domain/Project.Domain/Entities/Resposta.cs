@@ -4,7 +4,7 @@
     {
         public int RespostaId { get; set; }
 
-        public string PerguntaId { get; set; }
+        public int PerguntaId { get; set; }
 
         public virtual Pergunta Pergunta { get; set; }
 

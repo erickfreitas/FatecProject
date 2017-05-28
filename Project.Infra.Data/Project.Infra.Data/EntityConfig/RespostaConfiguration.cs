@@ -15,8 +15,7 @@ namespace Project.Infra.Data.EntityConfig
 
             //Propriedades
             Property(r => r.PerguntaId)
-                .HasMaxLength(128)
-                .HasColumnType("nvarchar");
+                .HasColumnType("int");
 
             Property(r => r.Descricao)
                 .IsRequired()

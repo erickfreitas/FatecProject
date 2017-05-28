@@ -12,7 +12,8 @@ namespace Project.Application.ViewModels
 
         public IEnumerable<RespostaViewModel> RespostasViewModels { get; set; }
 
-
         public string UsuarioId { get; set; }
+
+        public int ProdutoId { get; set; }
     }
 }

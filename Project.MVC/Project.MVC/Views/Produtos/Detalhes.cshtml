@@ -291,8 +291,11 @@
                                             </div>
                                             <h4><a href="#" style="text-decoration:none;"><strong>✪ SтeғOғғιcιel ✪ ツ</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> about 15 hours ago</i></a></small></small></h4>
                                             <hr>
+                                           
                                             <div class="post-content">
+                                               @if (Model.PerguntasViewModels.FirstOrDefault().RespostasViewModels != null){
                                                 @pergunta.RespostasViewModels.FirstOrDefault().Descricao
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -326,6 +329,7 @@
                                 </div>
                             </div>
                         </div>
+                            count++;
                         }
                         <div class="row">
                             <div class="col-lg-12 review-load-more">

@@ -16,10 +16,6 @@ namespace Project.Domain.Services
             _respostaRepository = respostaRepository;
         }
 
-        public IEnumerable<Resposta> GetByUsuario(string usuarioId)
-        {
-            return _respostaRepository.GetByUsuario(usuarioId);
-        }
 
         Resposta IRespostaService.Add(Resposta pergunta)
         {

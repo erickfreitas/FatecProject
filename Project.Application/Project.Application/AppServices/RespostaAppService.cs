@@ -34,10 +34,6 @@ namespace Project.Application.AppServices
             return Mapper.Map<Resposta, RespostaViewModel>(_respostaService.GetById(respostaId));
         }
 
-        public IEnumerable<RespostaViewModel> GetByUsuario(string usuarioId)
-        {
-            return Mapper.Map<IEnumerable<Resposta>, IEnumerable<RespostaViewModel>>(_respostaService.GetByUsuario(usuarioId));
-        }
 
         public void Remove(RespostaViewModel respostaViewModel)
         {

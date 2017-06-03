@@ -14,8 +14,6 @@ namespace Project.Infra.Data.EntityConfig
             HasKey(r => r.RespostaId);
 
             //Propriedades
-            Property(r => r.PerguntaId)
-                .HasColumnType("int");
 
             Property(r => r.Descricao)
                 .IsRequired()
@@ -23,21 +21,9 @@ namespace Project.Infra.Data.EntityConfig
                 .HasMaxLength(1500);
 
 
-            Property(r => r.UsuarioId)
-                .HasMaxLength(128)
-                .HasColumnType("nvarchar");
-
             HasRequired(r => r.Pergunta)
-                .WithMany(p => p.Respostas)
-                .HasForeignKey(r => r.PerguntaId);
-
-            HasRequired(r => r.Usuario)
-                .WithMany(u => u.Respostas)
-                .HasForeignKey(pg => pg.UsuarioId);
-
-            HasRequired(pg => pg.Produto)
-                .WithMany(r => r.Respostas)
-                .HasForeignKey(pg => pg.ProdutoId);
+                .WithOptional(p => p.Resposta);
+                
 
             
                

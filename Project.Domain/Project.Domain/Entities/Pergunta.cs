@@ -12,7 +12,7 @@ namespace Project.Domain.Entities
         public virtual Produto Produto { get; set; }
         public string UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
-        public virtual ICollection<Resposta> Respostas { get; set; }
+        public virtual Resposta Resposta { get; set; }
         public string Descricao { get; set; }
 
 

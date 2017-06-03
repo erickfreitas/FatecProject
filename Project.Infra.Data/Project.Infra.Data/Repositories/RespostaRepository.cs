@@ -15,10 +15,5 @@ namespace Project.Infra.Data.Repositories
             Db.Entry(resposta).GetDatabaseValues();
             return resposta;
         }
-
-        public IEnumerable<Resposta> GetByUsuario(string usuarioId)
-        {
-            return Db.Respostas.Where(p => p.UsuarioId == usuarioId).ToList();
-        }
     }
 }

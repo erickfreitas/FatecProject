@@ -7,6 +7,5 @@ namespace Project.Domain.Interfaces.Repositories
     {
         new Resposta Add(Resposta produto);
 
-        IEnumerable<Resposta> GetByUsuario(string usuarioId);
     }
 }

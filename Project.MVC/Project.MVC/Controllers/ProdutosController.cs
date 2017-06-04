@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Project.Application.Interfaces;
 using Project.Application.ViewModels;
+using Project.Domain.Entities;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -147,14 +148,17 @@ namespace Project.MVC.Controllers
 
 
         [HttpPost]
-        public ActionResult AdicionarResposta(PerguntaViewModel perguntaViewModel, RespostaViewModel respostaViewModel)
+        public ActionResult AdicionarResposta(PerguntaViewModel perguntaViewModel)
         {
             if (ModelState.IsValid)
             {
-               
-                perguntaViewModel.UsuarioId = User.Identity.GetUserId();
-                respostaViewModel.PerguntaViewModel.PerguntaId = perguntaViewModel.PerguntaId;
-                var respostaAdicionada = _respostaAppServie.Add(respostaViewModel);
+                var pergunta = _perguntasAppService.GetById(perguntaViewModel.PerguntaId);
+                pergunta.RespostaViewModels.UsuarioId = User.Identity.GetUserId();
+                pergunta.RespostaViewModels.RespostaId = pergunta.PerguntaId;
+                pergunta.RespostaViewModels.Descricao = perguntaViewModel.RespostaViewModels.Descricao;
+                
+                
+                var respostaAdicionada = _respostaAppServie.Add(pergunta.RespostaViewModels);
                 return Json(respostaAdicionada);
             }
 

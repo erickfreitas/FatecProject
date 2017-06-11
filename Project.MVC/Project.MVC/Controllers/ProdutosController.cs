@@ -153,10 +153,18 @@ namespace Project.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var pergunta = _perguntasAppService.GetById(perguntaViewModel.PerguntaId);
-                pergunta.RespostaViewModels.UsuarioId = User.Identity.GetUserId();
-                pergunta.RespostaViewModels.RespostaId = pergunta.PerguntaId;
+
+                perguntaViewModel.PerguntaId = pergunta.PerguntaId;
+                perguntaViewModel.Descricao = pergunta.Descricao;
+                perguntaViewModel.ProdutoId = pergunta.ProdutoId;
+                perguntaViewModel.UsuarioId = pergunta.UsuarioId;
+               
+                perguntaViewModel.RespostaViewModels.UsuarioId = User.Identity.GetUserId();
+                perguntaViewModel.RespostaViewModels.RespostaId = pergunta.PerguntaId;
+
+                pergunta.RespostaViewModels.UsuarioId = perguntaViewModel.RespostaViewModels.UsuarioId;
+                pergunta.RespostaViewModels.RespostaId = perguntaViewModel.RespostaViewModels.RespostaId;
                 pergunta.RespostaViewModels.Descricao = perguntaViewModel.RespostaViewModels.Descricao;
-                
                 
                 var respostaAdicionada = _respostaAppServie.Add(pergunta.RespostaViewModels);
                 return Json(respostaAdicionada);

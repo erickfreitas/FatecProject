@@ -7,5 +7,9 @@
         public virtual Pergunta Pergunta { get; set; }
 
         public string Descricao { get; set; }
+
+        public string UsuarioId { get; set; }
+
+        public Usuario Usuario { get; set; }
     }
 }

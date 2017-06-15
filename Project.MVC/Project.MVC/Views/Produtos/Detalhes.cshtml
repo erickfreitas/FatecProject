@@ -330,14 +330,14 @@
                                             <img class="media-object img-circle" src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;">
                                         </a>
                                     </div>
-                                    @using (Html.BeginForm("AdicionarResposta", "Produtos", FormMethod.Post, new { @class = "form-horizontal", @id = "Produto-Form" }))
-                                    {
-                                    <div class="media-body">
-                                        @Html.HiddenFor(m => m.PerguntasViewModels.FirstOrDefault().PerguntaId)
-                                        @Html.TextAreaFor(model => model.PerguntasViewModels.FirstOrDefault().RespostaViewModels.Descricao, new { @class = "form-control", @placeholder = "Escreva sua Resposta", @style = "max-witdh: 450px;", @rows = "2" })
-                                    </div>
-                                    <button type="submit">Responder</button>
-                                    }
+                                    <form id="frmAdicionarResposta">
+                                        <div class="media-body">
+                                            @Html.HiddenFor(m => m.PerguntasViewModels.FirstOrDefault().PerguntaId)
+                                            @Html.TextAreaFor(model => model.PerguntasViewModels.FirstOrDefault().RespostaViewModels.Descricao, new { @class = "form-control", @placeholder = "Escreva sua Resposta", @style = "max-witdh: 450px;", @rows = "2" })
+                                        </div>
+                                        <br />
+                                        <button class="btn btn-success" type="submit">Responder</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -360,23 +360,22 @@
                                             <!-- Modal content-->
 
 
-                                         @using (Html.BeginForm("AdicionarPergunta", "Produtos", FormMethod.Post, new { @class = "form-horizontal", @id = "Produto-Form" }))
-                                         {
-                                            @Html.HiddenFor(m => m.ProdutoId)  
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">Escreva sua Pergunta</h4>
+                                            <form id="frmAdicionarPergunta">
+                                                @Html.HiddenFor(m => m.ProdutoId)
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Escreva sua Pergunta</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @Html.TextAreaFor(model => model.PerguntasViewModels.FirstOrDefault().Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "2" })
+                                                    </div>
+                                                    <div class="modal-footer">
+
+                                                        <input id="btnAdicionar" class="btn btn-success" type="submit" value="Adicionar Pergunta" />
+                                                    </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                    @Html.TextAreaFor(model => model.PerguntasViewModels.FirstOrDefault().Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "2" })
-                                                </div>
-                                                <div class="modal-footer">
-                                                    
-                                                    <button type="submit" >Adicionar Pergunta</button>
-                                                </div>
-                                            </div>
-                                         }
+                                            </form>
                                         </div>
                                     </div>
 
@@ -505,4 +504,45 @@
 
         });
     </script>    
+
+
+    <script>
+        $(function () {
+            $("#frmAdicionarPergunta").on('submit', function (e) {
+
+                e.preventDefault() // prevent the form's normal submission
+
+                var dataToPost = $(this).serialize()
+
+                $.post("/Produtos/AdicionarPergunta/", dataToPost)
+                    .done(function (response, status, jqxhr) {
+                        window.location.href = '@Url.Action("Detalhes", "Produtos")';
+                    })
+                    .fail(function (jqxhr, status, error) {
+                        alert("Erro.");
+                    })
+            })
+        });
+
+
+        $(function () {
+            $("#frmAdicionarResposta").on('submit', function (e) {
+
+                e.preventDefault() // prevent the form's normal submission
+
+                var dataToPost = $(this).serialize()
+
+                $.post("/Produtos/AdicionarResposta/", dataToPost)
+                    .done(function (response, status, jqxhr) {
+                        window.location.href = '@Url.Action("Detalhes", "Produtos")';
+                    })
+                    .fail(function (jqxhr, status, error) {
+                        alert("Erro.");
+                    })
+            })
+        })
+
+
+
+    </script>
 }

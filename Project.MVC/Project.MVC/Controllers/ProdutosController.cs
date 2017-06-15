@@ -123,25 +123,24 @@ namespace Project.MVC.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var produtoViewModel = _produtoAppService.GetById(id.Value);
+            
+
             return View(produtoViewModel);
         }
 
         [HttpPost]
         public ActionResult AdicionarPergunta(PerguntaViewModel perguntaViewModel)
         {
-            if (ModelState.IsValid)
-            {
+            
                 
                 perguntaViewModel.UsuarioId = User.Identity.GetUserId();
                 var perguntaAdicionada = _perguntasAppService.Add(perguntaViewModel);
-                
-                return Json(perguntaAdicionada);
-            }
 
-            
-            return View();
+                  
+           
+            return Json(perguntaAdicionada, JsonRequestBehavior.AllowGet);
 
-        }
+    }
 
 
 
@@ -150,8 +149,7 @@ namespace Project.MVC.Controllers
         [HttpPost]
         public ActionResult AdicionarResposta(PerguntaViewModel perguntaViewModel)
         {
-            if (ModelState.IsValid)
-            {
+            
                 var pergunta = _perguntasAppService.GetById(perguntaViewModel.PerguntaId);
 
                 perguntaViewModel.PerguntaId = pergunta.PerguntaId;
@@ -167,11 +165,11 @@ namespace Project.MVC.Controllers
                 pergunta.RespostaViewModels.Descricao = perguntaViewModel.RespostaViewModels.Descricao;
                 
                 var respostaAdicionada = _respostaAppServie.Add(pergunta.RespostaViewModels);
-                return Json(respostaAdicionada);
-            }
+                
+            
 
 
-            return View();
+            return Json(respostaAdicionada, JsonRequestBehavior.AllowGet);
 
         }
 

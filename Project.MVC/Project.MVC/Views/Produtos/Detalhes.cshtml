@@ -287,7 +287,7 @@
                                     <hr>
 
                                
-                                    @if (pergunta.RespostaViewModels != null)
+                                    @if (ViewBag.RespostaDescricao != null)
                                 {
                                         <div class="post-content">
 
@@ -304,7 +304,8 @@
                                                     <hr>
                                            
                                                     <div class="post-content">
-                                                       @pergunta.RespostaViewModels.Descricao
+                                                       
+                                                        @ViewBag.RespostaDescricao
                                                     </div>
                                                 </div>
                                             </div>

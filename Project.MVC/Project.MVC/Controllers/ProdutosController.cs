@@ -123,8 +123,18 @@ namespace Project.MVC.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var produtoViewModel = _produtoAppService.GetById(id.Value);
-            
+            var perguntaViewModel = _perguntasAppService.GetById(produtoViewModel.ProdutoId);
+            var respostaViewModel = _respostaAppServie.GetById(perguntaViewModel.PerguntaId);
 
+
+           if(perguntaViewModel.PerguntaId == respostaViewModel.RespostaId)
+            {
+                ViewBag.RespostaDescricao = _respostaAppServie.GetById(respostaViewModel.RespostaId).Descricao;
+            }
+            
+            
+            
+            
             return View(produtoViewModel);
         }
 
@@ -152,20 +162,21 @@ namespace Project.MVC.Controllers
             
                 var pergunta = _perguntasAppService.GetById(perguntaViewModel.PerguntaId);
 
-                perguntaViewModel.PerguntaId = pergunta.PerguntaId;
-                perguntaViewModel.Descricao = pergunta.Descricao;
-                perguntaViewModel.ProdutoId = pergunta.ProdutoId;
-                perguntaViewModel.UsuarioId = pergunta.UsuarioId;
-               
+                    perguntaViewModel.PerguntaId = pergunta.PerguntaId;
+                    perguntaViewModel.Descricao = pergunta.Descricao;
+                    perguntaViewModel.ProdutoId = pergunta.ProdutoId;
+                    perguntaViewModel.UsuarioId = pergunta.UsuarioId;
+
                 perguntaViewModel.RespostaViewModels.UsuarioId = User.Identity.GetUserId();
                 perguntaViewModel.RespostaViewModels.RespostaId = pergunta.PerguntaId;
 
-                pergunta.RespostaViewModels.UsuarioId = perguntaViewModel.RespostaViewModels.UsuarioId;
-                pergunta.RespostaViewModels.RespostaId = perguntaViewModel.RespostaViewModels.RespostaId;
-                pergunta.RespostaViewModels.Descricao = perguntaViewModel.RespostaViewModels.Descricao;
-                
-                var respostaAdicionada = _respostaAppServie.Add(pergunta.RespostaViewModels);
-                
+            pergunta.RespostaViewModels.UsuarioId = perguntaViewModel.RespostaViewModels.UsuarioId;
+            pergunta.RespostaViewModels.RespostaId = perguntaViewModel.RespostaViewModels.RespostaId;
+            pergunta.RespostaViewModels.Descricao = perguntaViewModel.RespostaViewModels.Descricao;
+
+            var respostaAdicionada = _respostaAppServie.Add(pergunta.RespostaViewModels);
+
+
             
 
 

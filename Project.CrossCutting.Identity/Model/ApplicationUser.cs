@@ -23,6 +23,7 @@ namespace Project.Infra.CrossCutting.Identity.Model
         public string Sobrenome { get; set; }
         public string Rg { get; set; }
         public string Cpf { get; set; }
+        public string ImagemCaminho { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataAlteracao { get; set; }
 

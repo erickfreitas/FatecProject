@@ -11,6 +11,7 @@ namespace Project.Domain.Entities
         public string Email { get; set; }
         public string Rg { get; set; }
         public string Cpf { get; set; }
+        public string ImagemCaminho { get; set; }
         public bool EmailConfirmado { get; set; }
         public string Telefone { get; set; }
         public bool TelefoneConfirmado { get; set; }

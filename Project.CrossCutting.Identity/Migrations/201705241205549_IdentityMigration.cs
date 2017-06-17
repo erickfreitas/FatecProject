@@ -37,6 +37,7 @@ namespace Project.CrossCutting.Identity.Migrations
             //            Sobrenome = c.String(),
             //            Rg = c.String(),
             //            Cpf = c.String(),
+            //            ImagemCaminho = c.String(),
             //            DataCriacao = c.DateTime(nullable: false),
             //            DataAlteracao = c.DateTime(nullable: false),
             //            Email = c.String(maxLength: 256),
@@ -70,40 +71,40 @@ namespace Project.CrossCutting.Identity.Migrations
             CreateTable(
                 "dbo.UsuarioLogins",
                 c => new
-                    {
-                        Provedor = c.String(nullable: false, maxLength: 128),
-                        Chave = c.String(nullable: false, maxLength: 128),
-                        UsuarioId = c.String(nullable: false, maxLength: 128),
-                    })
+                {
+                    Provedor = c.String(nullable: false, maxLength: 128),
+                    Chave = c.String(nullable: false, maxLength: 128),
+                    UsuarioId = c.String(nullable: false, maxLength: 128),
+                })
                 .PrimaryKey(t => new { t.Provedor, t.Chave, t.UsuarioId })
                 .ForeignKey("dbo.Usuarios", t => t.UsuarioId, cascadeDelete: true)
                 .Index(t => t.UsuarioId);
-            
+
             CreateTable(
                 "dbo.UsuarioRoles",
                 c => new
-                    {
-                        UsuarioId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                    })
+                {
+                    UsuarioId = c.String(nullable: false, maxLength: 128),
+                    RoleId = c.String(nullable: false, maxLength: 128),
+                })
                 .PrimaryKey(t => new { t.UsuarioId, t.RoleId })
                 .ForeignKey("dbo.Usuarios", t => t.UsuarioId, cascadeDelete: true)
                 .ForeignKey("dbo.Roles", t => t.RoleId, cascadeDelete: true)
                 .Index(t => t.UsuarioId)
                 .Index(t => t.RoleId);
-            
+
             CreateTable(
                 "dbo.Roles",
                 c => new
-                    {
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                        Nome = c.String(nullable: false, maxLength: 256),
-                    })
+                {
+                    RoleId = c.String(nullable: false, maxLength: 128),
+                    Nome = c.String(nullable: false, maxLength: 256),
+                })
                 .PrimaryKey(t => t.RoleId)
                 .Index(t => t.Nome, unique: true, name: "RoleNameIndex");
-            
+
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.UsuarioRoles", "RoleId", "dbo.Roles");

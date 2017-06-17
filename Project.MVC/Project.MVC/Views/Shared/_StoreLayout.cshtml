@@ -208,8 +208,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="#"> Sobre </a></li>
-                    <li><a href="#"> Como funciona? </a></li>
+                    <li><a href="@Url.Action("QuemSomos", "Home")"> Quem Somos? </a></li>
+                    <li><a href="@Url.Action("PerguntasFrequentes", "Home")"> Como funciona? </a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li><a href="@Url.Action("MeusProdutos", "Produtos")"> Meus Produtos </a></li>

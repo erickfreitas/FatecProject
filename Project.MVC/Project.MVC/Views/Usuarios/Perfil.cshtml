@@ -2,7 +2,7 @@
 @model UsuarioPerfilViewModel
 @using System.Globalization;
 @{
-    ViewBag.Title = "Meu Perfil - Quero Trocar!";
+    ViewBag.Title = $"Perfil {Model.UsuarioViewModel.Nome} - Quero Trocar!";
     Layout = "~/Views/Shared/_StoreLayout.cshtml";
 }
 @section Styles {
@@ -91,8 +91,8 @@
             <div class="col-lg-3 col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div class="media"/>                
-                            <div align="center">                                
+                        <div class="media"/>
+                            <div class="text-center">
                                 @if (Model.UsuarioViewModel.ImagemCaminho != null)
                                 {
                                     <img class="thumbnail img-responsive" src="@Url.Content(Model.UsuarioViewModel.ImagemCaminho)" width="300px" height="300px" onclick="$('#CadastrarImagem').modal('show');">
@@ -119,7 +119,7 @@
                 </div>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                @Html.Partial("_EditarInformacao", Model.UsuarioInformacaoViewModel)
+                @Html.Partial("_Informacao", Model.UsuarioInformacaoViewModel)
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <span>
@@ -134,7 +134,7 @@
                                     <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
                                         <i class="glyphicon glyphicon-heart"></i>
                                     </a>
-                                    <div class="image">                                        
+                                    <div class="image">
                                         @if (produto.ProdutoImagemViewModels.Any())
                                         {
                                             <a href="@Url.Action("Detalhes", "Produtos", new { @id = produto.ProdutoId })">
@@ -168,7 +168,7 @@
     </div>
 </div>
 @section modals{
-    @Html.Partial("_ModalPerfilImagem")
+    
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -178,73 +178,7 @@
 }
 @section InternalScripts{
     <script>
-        $('#imagem').fileinput({
-            language: 'pt-BR',
-            allowedFileExtensions: ['jpg', 'png', 'jpeg'],
-            showCancel: false,
-            maxFileCount: 1,
-            validateInitialCount: true,
-            overwriteInitial: false,
-            initialPreviewAsData: true,
-            uploadExtraData: { usuarioId: '@Model.UsuarioViewModel.UsuarioId' },
-            @if (!string.IsNullOrEmpty(Model.UsuarioViewModel.ImagemCaminho))
-            {
-                @:initialPreview: [
-                var path = Model.UsuarioViewModel.ImagemCaminho;
-                    @:'@Url.Content(path)'
-                @:],
-                                        @:initialPreviewConfig: [
-                                            @:{ url: "@Url.Action("RemoverImagem", "Usuarios")", key: '@Model.UsuarioViewModel.UsuarioId' },
-                                        @:]
-                                    }
-        });
-
-        $('#imagem').on('filebatchuploadcomplete', function (event, files, extra) {
-            $('#CadastrarImagem').modal('hide');
-            setTimeout(function () { location.reload(); }, 300);
-        });
-
-        $('#imagem').on('fileuploaded', function (event, files, extra) {
-            $('#CadastrarImagem').modal('hide');
-            setTimeout(function () { location.reload(); }, 300);
-        });
-
-        function buscarEndereco() {
-            $("#Cep").blur(function () {
-                var cep = $("#Cep").val();
-                if (cep != "") {
-                    cep = cep.replace("-", "");
-                    var validaCep = /^[0-9]{8}$/;
-                    //Validando formato do cep
-                    if (validaCep.test(cep)) {
-                        //Consultando Webservice
-                        $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
-                            if (!("erro" in dados)) {
-                                //Atualiza os campos com os valores da consulta.
-                                $("#Cep")[0].value = dados["cep"];
-                                $("#Logradouro")[0].value = dados["logradouro"];
-                                $("#Bairro")[0].value = dados["bairro"];
-                                $("#Cidade")[0].value = dados["localidade"];
-                                $("#Estado")[0].value = dados["uf"];
-                            }
-                            else {
-                                //CEP pesquisado não foi encontrado.
-                                $("#Logradouro")[0].value = "";
-                                $("#Bairro")[0].value = "";
-                                $("#Cidade")[0].value = "";
-                                $("#Estado")[0].value = "";
-                            }
-                        });
-                    }
-                }
-            })
-        }
-
-        $("#Cep").blur(buscarEndereco());
-
-        $(document).ready(function () {
-            $("#Cep").mask("00000-000");
-        });
+        
 
     </script>
 }

@@ -1,0 +1,110 @@
+﻿@model Project.Application.ViewModels.UsuarioInformacaoViewModel
+<div class="panel panel-default">
+    <div class="panel-body">
+        <span>
+            <h1 class="panel-title pull-left" style="font-size:30px;">@Model.Nome @Model.Sobrenome | <small>@Model.Email</small></h1>
+        </span>
+        <br><br>
+        @using (Html.BeginForm("EditarInformacao", "Usuarios", FormMethod.Post, new { @class = "form-horizontal", @id = "Informacao-Form" }))
+        {
+        <div class="col-sm-6" id="information-basic">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.UsuarioId)
+            <div class="profile-user-details clearfix">
+                <div class="profile-user-details-label">
+                    Nome
+                </div>
+                <div class="profile-user-details-value">
+                    @Html.TextBoxFor(model => model.Nome, new { @class = "form-control label-text-box text-box single-line valid" })
+                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+            <div class="profile-user-details clearfix">
+                <div class="profile-user-details-label">
+                    Sobrenome
+                </div>
+                <div class="profile-user-details-value">
+                    @Html.TextBoxFor(model => model.Sobrenome, new { @class = "form-control label-text-box text-box single-line valid" })
+                    @Html.ValidationMessageFor(model => model.Sobrenome, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+            <div class="profile-user-details clearfix">
+                <div class="profile-user-details-label">
+                    E-mail
+                </div>
+                <div class="profile-user-details-value">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control label-text-box text-box single-line valid", @readonly = "" })
+                </div>
+            </div>
+            <div class="profile-user-details clearfix">
+                <div class="profile-user-details-label">
+                    CEP
+                </div>
+                <div class="profile-user-details-value">
+                    @Html.TextBoxFor(model => model.Cep, new { @class = "form-control label-text-box text-box single-line valid" })
+                    @Html.ValidationMessageFor(model => model.Cep, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+            <div class="profile-user-details clearfix">
+                <div class="profile-user-details-label">
+                    Número
+                </div>
+                <div class="profile-user-details-value">
+                    @Html.TextBoxFor(model => model.Numero, new { @class = "form-control label-text-box text-box single-line valid" })
+                    @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">            
+            <div class="profile-user-details clearfix">
+                <div class="profile-user-details-label">
+                    Estado
+                </div>
+                <div class="profile-user-details-value">
+                    @Html.TextBoxFor(model => model.Estado, new { @class = "form-control label-text-box text-box single-line valid" })
+                    @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+            <div class="profile-user-details clearfix">
+                <div class="profile-user-details-label">
+                    Cidade
+                </div>
+                <div class="profile-user-details-value">
+                    @Html.TextBoxFor(model => model.Cidade, new { @class = "form-control label-text-box text-box single-line valid" })
+                    @Html.ValidationMessageFor(model => model.Cidade, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+            <div class="profile-user-details clearfix">
+                <div class="profile-user-details-label">
+                    Bairro
+                </div>
+                <div class="profile-user-details-value">
+                    @Html.TextBoxFor(model => model.Bairro, new { @class = "form-control label-text-box text-box single-line valid" })
+                    @Html.ValidationMessageFor(model => model.Bairro, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+            <div class="profile-user-details clearfix">
+                <div class="profile-user-details-label">
+                    Logradouro
+                </div>
+                <div class="profile-user-details-value">
+                    @Html.TextBoxFor(model => model.Logradouro, new { @class = "form-control label-text-box text-box single-line valid" })
+                    @Html.ValidationMessageFor(model => model.Logradouro, "", new { @class = "text-danger" } )
+                </div>
+            </div>
+            <div class="profile-user-details clearfix">
+                <div class="profile-user-details-label">
+                    Complemento
+                </div>
+                <div class="profile-user-details-value">
+                    @Html.TextBoxFor(model => model.Complemento, new { @class = "form-control label-text-box text-box single-line valid" })
+                    @Html.ValidationMessageFor(model => model.Complemento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div> 
+            <button class="btn btn-success pull-right" type="submit">
+                Salvar
+            </button>
+        }        
+    </div>
+</div>

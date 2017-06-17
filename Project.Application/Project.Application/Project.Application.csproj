@@ -74,6 +74,9 @@
     <Compile Include="ViewModels\RegistrarViewModel.cs" />
     <Compile Include="ViewModels\RespostaViewModel.cs" />
     <Compile Include="ViewModels\SubCategoriaViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioImagemViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioInformacaoViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioPerfilViewModel.cs" />
     <Compile Include="ViewModels\UsuarioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

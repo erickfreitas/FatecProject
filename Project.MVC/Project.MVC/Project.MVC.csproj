@@ -387,6 +387,7 @@
     <Content Include="Images\Slider\slider-1.jpg" />
     <Content Include="Images\Slider\slider-2.png" />
     <Content Include="Images\Slider\slider-3.png" />
+    <Content Include="Images\Users\Default.PNG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -432,11 +433,15 @@
     <Content Include="Views\Conta\ConfirmarEmail.cshtml" />
     <Content Include="Views\Usuarios\MeuPerfil.cshtml" />
     <Content Include="Views\Usuarios\_ModalPerfilImagem.cshtml" />
+    <Content Include="Views\Usuarios\_EditarInformacao.cshtml" />
+    <Content Include="Views\Usuarios\Perfil.cshtml" />
+    <Content Include="Views\Usuarios\_Informacao.cshtml" />
+    <Content Include="Views\Home\QuemSomos.cshtml" />
+    <Content Include="Views\Home\PerguntasFrequentes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\PanelContent\" />
-    <Folder Include="Images\Users\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

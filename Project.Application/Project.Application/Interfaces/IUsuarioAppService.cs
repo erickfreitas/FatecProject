@@ -15,5 +15,13 @@ namespace Project.Application.Interfaces
         void Remove(int usuarioId);
 
         void Update(UsuarioViewModel usuarioViewModel);
+
+        void RemoverImagem(string usuarioId);
+
+        void AdicionarImagem(UsuarioImagemViewModel usuarioViewModel);
+
+        UsuarioPerfilViewModel GetPerfilById(string usuarioId);
+
+        void UpdadeInformacao(UsuarioInformacaoViewModel usuarioViewModel);
     }
 }

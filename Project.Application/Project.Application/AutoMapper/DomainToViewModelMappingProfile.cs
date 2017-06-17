@@ -21,6 +21,14 @@ namespace Project.Application.AutoMapper
             CreateMap<ProdutoImagem, ProdutoImagemViewModel>();
 
             CreateMap<Usuario, UsuarioViewModel>();
+            CreateMap<Usuario, UsuarioInformacaoViewModel>()
+                .ForMember(dest => dest.Cep, opt => opt.MapFrom(src => src.Endereco.Cep))
+                .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Endereco.Estado))
+                .ForMember(dest => dest.Cidade, opt => opt.MapFrom(src => src.Endereco.Cidade))
+                .ForMember(dest => dest.Bairro, opt => opt.MapFrom(src => src.Endereco.Bairro))
+                .ForMember(dest => dest.Logradouro, opt => opt.MapFrom(src => src.Endereco.Logradouro))
+                .ForMember(dest => dest.Complemento, opt => opt.MapFrom(src => src.Endereco.Complemento))
+                .ForMember(dest => dest.Numero, opt => opt.MapFrom(src => src.Endereco.Numero));
         }
 
     }

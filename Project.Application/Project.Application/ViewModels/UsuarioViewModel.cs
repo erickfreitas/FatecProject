@@ -10,6 +10,7 @@ namespace Project.Application.ViewModels
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
         public string Email { get; set; }
+        public string ImagemCaminho { get; set; }
         public bool EmailConfirmado { get; set; }
         public string Telefone { get; set; }
         public bool TelefoneConfirmado { get; set; }

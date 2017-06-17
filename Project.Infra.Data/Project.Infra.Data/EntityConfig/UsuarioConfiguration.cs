@@ -30,7 +30,10 @@ namespace Project.Infra.Data.EntityConfig
 
             Property(u => u.Cpf)
                 .IsRequired()
-                .HasMaxLength(15); ;
+                .HasMaxLength(15);
+
+            Property(u => u.ImagemCaminho)
+                .IsOptional();
 
             Property(u => u.Email)
                 .IsRequired();

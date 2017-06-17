@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Project.Application.ViewModels;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Project.Application.ViewModels
 {
@@ -43,6 +45,7 @@ namespace Project.Application.ViewModels
 
         public IEnumerable<ProdutoImagemViewModel> ProdutoImagemViewModels { get; set; }
 
-        public IEnumerable<PerguntaViewModel> PerguntasViewModels { get; set; }
+        public IEnumerable<PerguntaViewModel> PerguntaViewModels { get; set; }
+
     }
 }

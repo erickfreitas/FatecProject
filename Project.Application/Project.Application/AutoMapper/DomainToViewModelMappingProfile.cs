@@ -16,7 +16,9 @@ namespace Project.Application.AutoMapper
             CreateMap<Produto, ProdutoViewModel>()
                 .ForMember(dest => dest.CategoriaViewModel, opt => opt.MapFrom(src => src.Categoria))
                 .ForMember(dest => dest.SubCategoriaViewModel, opt => opt.MapFrom(src => src.SubCategoria))
-                .ForMember(dest => dest.ProdutoImagemViewModels, opt => opt.MapFrom(src => src.ProdutoImagens));
+                .ForMember(dest => dest.ProdutoImagemViewModels, opt => opt.MapFrom(src => src.ProdutoImagens))
+                .ForMember(dest => dest.PerguntaViewModels, opt => opt.MapFrom(src => src.Perguntas));
+                
 
             CreateMap<ProdutoImagem, ProdutoImagemViewModel>();
 
@@ -29,6 +31,18 @@ namespace Project.Application.AutoMapper
                 .ForMember(dest => dest.Logradouro, opt => opt.MapFrom(src => src.Endereco.Logradouro))
                 .ForMember(dest => dest.Complemento, opt => opt.MapFrom(src => src.Endereco.Complemento))
                 .ForMember(dest => dest.Numero, opt => opt.MapFrom(src => src.Endereco.Numero));
+
+
+            
+            CreateMap<Pergunta, PerguntaViewModel>()
+               .ForMember(dest => dest.RespostaViewModels, n => n.NullSubstitute(new Resposta()))
+               .ForMember(dest => dest.RespostaViewModels, opt => opt.MapFrom(src => src.Resposta));
+               
+                    
+            
+
+            CreateMap<Resposta, RespostaViewModel>();
+
         }
 
     }

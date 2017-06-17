@@ -249,9 +249,9 @@
 
                     <div class="all-review-wrapper ">
                        
-                        @foreach (var pergunta in Model.PerguntasViewModels)
-                                    {
-                                       
+                        @foreach (var pergunta in Model.PerguntaViewModels)
+                        {
+
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="pull-left">
@@ -280,14 +280,14 @@
                                                 <li role="separator" class="divider"></li>
                                                 <li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
                                             </ul>
-                                            <a href="@Url.Action("EditarPergunta", new { @Controller = "Produtos", @id = pergunta.PerguntaId })" data-target="#edPerguntaModal" data-toggle="modal" class="btn btn-info"> <span> Editar Pergunta </span> </a>
+                                            @*<a href="@Url.Action("EditarPergunta", new { @Controller = "Produtos", @id = pergunta.PerguntaId })" data-target="#edPerguntaModal" data-toggle="modal" class="btn btn-info"> <span> Editar Pergunta </span> </a>*@
                                         </div>
                                     </div>
                                 
                                     <hr>
 
                                
-                                    @if (ViewBag.RespostaDescricao != null)
+                                    @if (pergunta.RespostaViewModels.RespostaId != 0)
                                 {
                                         <div class="post-content">
 
@@ -305,14 +305,14 @@
                                            
                                                     <div class="post-content">
                                                        
-                                                        @ViewBag.RespostaDescricao
+                                                        @pergunta.RespostaViewModels.Descricao
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     }
                                 <hr>
-                                <div>
+                                @*<div>
                                     <div class="pull-right btn-group-xs">
                                         <a class="btn btn-default btn-xs"><i class="fa fa-heart" aria-hidden="true"></i> Like</a>
                                         <a class="btn btn-default btn-xs"><i class="fa fa-retweet" aria-hidden="true"></i> Reshare</a>
@@ -323,7 +323,7 @@
                                         <p class="text-muted" style="margin-left:5px;"><i class="fa fa-globe" aria-hidden="true"></i> Public</p>
                                     </div>
                                     <br>
-                                </div>
+                                </div>*@
                                 <hr>
                                 <div class="media">
                                     <div class="pull-left">
@@ -333,8 +333,8 @@
                                     </div>
                                     <form id="frmAdicionarResposta">
                                         <div class="media-body">
-                                            @Html.HiddenFor(m => m.PerguntasViewModels.FirstOrDefault().PerguntaId)
-                                            @Html.TextAreaFor(model => model.PerguntasViewModels.FirstOrDefault().RespostaViewModels.Descricao, new { @class = "form-control", @placeholder = "Escreva sua Resposta", @style = "max-witdh: 450px;", @rows = "2" })
+                                            @Html.HiddenFor(m => m.PerguntaViewModels.FirstOrDefault().PerguntaId)
+                                            @Html.TextAreaFor(model => model.PerguntaViewModels.FirstOrDefault().RespostaViewModels.Descricao, new { @class = "form-control", @placeholder = "Escreva sua Resposta", @style = "max-witdh: 450px;", @rows = "2" })
                                         </div>
                                         <br />
                                         <button class="btn btn-success" type="submit">Responder</button>
@@ -369,7 +369,7 @@
                                                         <h4 class="modal-title">Escreva sua Pergunta</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        @Html.TextAreaFor(model => model.PerguntasViewModels.FirstOrDefault().Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "2" })
+                                                        @Html.TextAreaFor(model => model.PerguntaViewModels.FirstOrDefault().Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "2" })
                                                     </div>
                                                     <div class="modal-footer">
 
@@ -394,7 +394,7 @@
                                                         <h4 class="modal-title">Escreva sua Pergunta</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        @Html.TextAreaFor(model => model.PerguntasViewModels.FirstOrDefault().Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "2" })
+                                                        @Html.TextAreaFor(model => model.PerguntaViewModels.FirstOrDefault().Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "2" })
                                                     </div>
                                                     <div class="modal-footer">
 
@@ -419,7 +419,7 @@
                                                         <h4 class="modal-title">Responda a pergunta</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        @Html.TextAreaFor(model => model.PerguntasViewModels.FirstOrDefault().RespostaViewModels.Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "2" })
+                                                        @Html.TextAreaFor(model => model.PerguntaViewModels.FirstOrDefault().RespostaViewModels.Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "2" })
                                                     </div>
                                                     <div class="modal-footer">
 

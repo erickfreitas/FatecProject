@@ -123,17 +123,7 @@ namespace Project.MVC.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var produtoViewModel = _produtoAppService.GetById(id.Value);
-            var perguntaViewModel = _perguntasAppService.GetById(produtoViewModel.ProdutoId);
-            var respostaViewModel = _respostaAppServie.GetById(perguntaViewModel.PerguntaId);
 
-
-           if(perguntaViewModel.PerguntaId == respostaViewModel.RespostaId)
-            {
-                ViewBag.RespostaDescricao = _respostaAppServie.GetById(respostaViewModel.RespostaId).Descricao;
-            }
-            
-            
-            
             
             return View(produtoViewModel);
         }

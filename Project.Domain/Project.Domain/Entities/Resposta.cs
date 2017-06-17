@@ -2,6 +2,8 @@
 {
     public class Resposta
     {
+
+
         public int RespostaId { get; set; }
 
         public virtual Pergunta Pergunta { get; set; }

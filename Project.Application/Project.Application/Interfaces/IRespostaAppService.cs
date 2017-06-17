@@ -16,6 +16,6 @@ namespace Project.Application.Interfaces
 
         void Update(RespostaViewModel respostaViewModel);
 
-        IEnumerable<RespostaViewModel> GetByUsuario(string usuarioId);
+        
     }
 }

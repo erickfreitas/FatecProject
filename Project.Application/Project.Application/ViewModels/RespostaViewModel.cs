@@ -7,5 +7,7 @@
         public string Descricao { get; set; }
 
         public PerguntaViewModel PerguntaViewModel { get; set; }
+
+        public string UsuarioId{ get; set; }
     }
 }

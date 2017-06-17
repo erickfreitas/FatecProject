@@ -38,6 +38,8 @@ namespace Project.Infra.CrossCutting.IoC
             container.Register<IProdutoAppService, ProdutoAppService>(Lifestyle.Scoped);
             container.Register<IProdutoImagemAppService, ProdutoImagemAppService>(Lifestyle.Scoped);
             container.Register<IUsuarioAppService, UsuarioAppService>(Lifestyle.Scoped);
+            container.Register<IPerguntaAppService, PerguntaAppService>(Lifestyle.Scoped);
+            container.Register<IRespostaAppService, RespostaAppService>(Lifestyle.Scoped);
             #endregion
 
             #region DomainDependences
@@ -47,6 +49,8 @@ namespace Project.Infra.CrossCutting.IoC
             container.Register<IProdutoService, ProdutoService>(Lifestyle.Scoped);
             container.Register<IProdutoImagemService, ProdutoImagemService>(Lifestyle.Scoped);
             container.Register<IUsuarioService, UsuarioService>(Lifestyle.Scoped);
+            container.Register<IPerguntaService, PerguntaService>(Lifestyle.Scoped);
+            container.Register<IRespostaService, RespostaService>(Lifestyle.Scoped);
             #endregion
 
             #region DataDependences
@@ -56,6 +60,8 @@ namespace Project.Infra.CrossCutting.IoC
             container.Register<IProdutoRepository, ProdutoRepository>(Lifestyle.Scoped);
             container.Register<IProdutoImagemRepository, ProdutoImagemRepository>(Lifestyle.Scoped);
             container.Register<IUsuarioRepository, UsuarioRepository>(Lifestyle.Scoped);
+            container.Register<IPerguntaRepository, PerguntaRepository>(Lifestyle.Scoped);
+            container.Register<IRespostaRepository, RespostaRepository>(Lifestyle.Scoped);
             #endregion
         }
     }

@@ -2,6 +2,7 @@
 using Project.Application.Interfaces;
 using Project.Application.ViewModels;
 using Project.Domain.Entities;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -17,13 +18,15 @@ namespace Project.MVC.Controllers
         private readonly IProdutoImagemAppService _produtoImagemAppService;
         private readonly IPerguntaAppService _perguntasAppService;
         private readonly IRespostaAppService _respostaAppServie;
+        private readonly IUsuarioAppService _usuarioAppService;
 
         public ProdutosController(IProdutoAppService produtoAppService, 
                                         ICategoriaAppService categoriaAppService,
                                                 ISubCategoriaAppService subCategoriaAppService,
                                                     IProdutoImagemAppService produtoImagemAppService,
                                                     IPerguntaAppService perguntaAppService,
-                                                    IRespostaAppService respostaAppService)
+                                                    IRespostaAppService respostaAppService,
+                                                    IUsuarioAppService usuarioAppService)
         {
             _produtoAppService = produtoAppService;
             _categoriaAppService = categoriaAppService;
@@ -31,6 +34,7 @@ namespace Project.MVC.Controllers
             _produtoImagemAppService = produtoImagemAppService;
             _perguntasAppService = perguntaAppService;
             _respostaAppServie = respostaAppService;
+            _usuarioAppService = usuarioAppService;
         }
 
         [HttpGet]
@@ -124,7 +128,19 @@ namespace Project.MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var produtoViewModel = _produtoAppService.GetById(id.Value);
 
-            
+            var pergunta = _perguntasAppService.GetAll();
+            if (produtoViewModel.PerguntaViewModels.Count() != 0) {
+                
+                ViewBag.NomeUsuarioPergunta = _usuarioAppService.GetAll().Where(c => c.UsuarioId == pergunta.FirstOrDefault().UsuarioId).FirstOrDefault().Nome;
+                ViewBag.SobrenomeUsuarioPergunta = _usuarioAppService.GetAll().Where(c => c.UsuarioId == pergunta.FirstOrDefault().UsuarioId).FirstOrDefault().Sobrenome;
+
+                if (produtoViewModel.PerguntaViewModels.FirstOrDefault().RespostaViewModels.RespostaId != 0)
+                {
+                    ViewBag.NomeUsuarioResposta = _usuarioAppService.GetAll().Where(c => c.UsuarioId == produtoViewModel.UsuarioId).FirstOrDefault().Nome;
+                    ViewBag.SobrenomeUsuarioResposta = _usuarioAppService.GetAll().Where(c => c.UsuarioId == produtoViewModel.UsuarioId).FirstOrDefault().Sobrenome;
+                }
+            }
+
             return View(produtoViewModel);
         }
 

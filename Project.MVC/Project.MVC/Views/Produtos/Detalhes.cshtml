@@ -331,6 +331,8 @@
                                             <img class="media-object img-circle" src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;">
                                         </a>
                                     </div>
+                                    @if (pergunta.RespostaViewModels.RespostaId == 0)
+                                    {
                                     <form id="frmAdicionarResposta">
                                         <div class="media-body">
                                             @Html.HiddenFor(m => m.PerguntaViewModels.FirstOrDefault().PerguntaId)
@@ -339,6 +341,7 @@
                                         <br />
                                         <button class="btn btn-success" type="submit">Responder</button>
                                     </form>
+                                    }
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Project.Application.ViewModels
 {
@@ -7,7 +8,10 @@ namespace Project.Application.ViewModels
     {
         public PerguntaViewModel()
         {
-            RespostaViewModels = new RespostaViewModel();
+            
+            
+                RespostaViewModels = new RespostaViewModel();
+            
         }
 
         [Key]
@@ -15,10 +19,13 @@ namespace Project.Application.ViewModels
 
         public string Descricao { get; set; }
 
+        
         public RespostaViewModel RespostaViewModels { get; set; }
 
         public string UsuarioId { get; set; }
 
         public int ProdutoId { get; set; }
+
+
     }
 }

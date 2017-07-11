@@ -5,6 +5,9 @@ namespace Project.Domain.Entities
     public class Pergunta
     {
 
+        
+
+
 
         public int PerguntaId { get; set; }
 
@@ -14,6 +17,8 @@ namespace Project.Domain.Entities
         public Usuario Usuario { get; set; }
         public virtual Resposta Resposta { get; set; }
         public string Descricao { get; set; }
+
+        
 
 
 

@@ -124,62 +124,41 @@ namespace Project.MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var produtoViewModel = _produtoAppService.GetById(id.Value);
             var perguntaViewModel = _perguntasAppService.GetById(produtoViewModel.ProdutoId);
-            var respostaViewModel = _respostaAppServie.GetById(perguntaViewModel.PerguntaId);
-
-
-           if(perguntaViewModel.PerguntaId == respostaViewModel.RespostaId)
+            var respostaViewModel = new RespostaViewModel();
+            if (perguntaViewModel != null)
+            {
+                respostaViewModel = _respostaAppServie.GetById(perguntaViewModel.PerguntaId);
+            }            
+            if(respostaViewModel.UsuarioId != null)
             {
                 ViewBag.RespostaDescricao = _respostaAppServie.GetById(respostaViewModel.RespostaId).Descricao;
-            }
-            
-            
-            
-            
+            }                                              
             return View(produtoViewModel);
         }
 
         [HttpPost]
         public ActionResult AdicionarPergunta(PerguntaViewModel perguntaViewModel)
-        {
-            
-                
-                perguntaViewModel.UsuarioId = User.Identity.GetUserId();
-                var perguntaAdicionada = _perguntasAppService.Add(perguntaViewModel);
-
-                  
-           
+        {                            
+            perguntaViewModel.UsuarioId = User.Identity.GetUserId();
+            var perguntaAdicionada = _perguntasAppService.Add(perguntaViewModel);                             
             return Json(perguntaAdicionada, JsonRequestBehavior.AllowGet);
 
-    }
-
-
-
-
+        }
 
         [HttpPost]
         public ActionResult AdicionarResposta(PerguntaViewModel perguntaViewModel)
-        {
-            
-                var pergunta = _perguntasAppService.GetById(perguntaViewModel.PerguntaId);
-
-                    perguntaViewModel.PerguntaId = pergunta.PerguntaId;
-                    perguntaViewModel.Descricao = pergunta.Descricao;
-                    perguntaViewModel.ProdutoId = pergunta.ProdutoId;
-                    perguntaViewModel.UsuarioId = pergunta.UsuarioId;
-
-                perguntaViewModel.RespostaViewModels.UsuarioId = User.Identity.GetUserId();
-                perguntaViewModel.RespostaViewModels.RespostaId = pergunta.PerguntaId;
-
+        {            
+            var pergunta = _perguntasAppService.GetById(perguntaViewModel.PerguntaId);
+            perguntaViewModel.PerguntaId = pergunta.PerguntaId;
+            perguntaViewModel.Descricao = pergunta.Descricao;
+            perguntaViewModel.ProdutoId = pergunta.ProdutoId;
+            perguntaViewModel.UsuarioId = pergunta.UsuarioId;
+            perguntaViewModel.RespostaViewModels.UsuarioId = User.Identity.GetUserId();
+            perguntaViewModel.RespostaViewModels.RespostaId = pergunta.PerguntaId;
             pergunta.RespostaViewModels.UsuarioId = perguntaViewModel.RespostaViewModels.UsuarioId;
             pergunta.RespostaViewModels.RespostaId = perguntaViewModel.RespostaViewModels.RespostaId;
             pergunta.RespostaViewModels.Descricao = perguntaViewModel.RespostaViewModels.Descricao;
-
-            var respostaAdicionada = _respostaAppServie.Add(pergunta.RespostaViewModels);
-
-
-            
-
-
+            var respostaAdicionada = _respostaAppServie.Add(pergunta.RespostaViewModels);          
             return Json(respostaAdicionada, JsonRequestBehavior.AllowGet);
 
         }
@@ -189,11 +168,8 @@ namespace Project.MVC.Controllers
         public ActionResult EditarPergunta(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            
-            var perguntaViewModel = _perguntasAppService.GetById(id.Value);
-            
-
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);            
+            var perguntaViewModel = _perguntasAppService.GetById(id.Value);            
             return View(perguntaViewModel);
         }
 
@@ -208,10 +184,7 @@ namespace Project.MVC.Controllers
 
                 return Json(perguntaViewModel);
             }
-
-
             return View();
-
         }
 
 
@@ -220,10 +193,7 @@ namespace Project.MVC.Controllers
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
             var respostaViewModel = _respostaAppServie.GetById(id.Value);
-
-
             return View(respostaViewModel);
         }
 
@@ -237,15 +207,8 @@ namespace Project.MVC.Controllers
 
                 return Json(respostaViewModel);
             }
-
-
             return View();
-
         }
-
-
-
-
 
         [Authorize]
         public ActionResult BuscarSubCategorias(int? categoriaId)

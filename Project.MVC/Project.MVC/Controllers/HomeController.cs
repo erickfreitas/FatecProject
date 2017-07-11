@@ -15,7 +15,7 @@ namespace Project.MVC.Controllers
 
         public ActionResult Index()
         {
-            var produtos = _produtoAppService.GetAll();
+            ViewBag.Produtos = _produtoAppService.GetAll();
             return View();
         }
 

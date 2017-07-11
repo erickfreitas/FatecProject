@@ -13,7 +13,7 @@
                             @using (Html.BeginForm("NovoUsuario", "Conta", FormMethod.Post, new { @id = "NovoUsuarioForm" }))
                             {
                                 <fieldset>
-                                    <legend style="text-align:center;">Cadastra-se e comece a trocar</legend>
+                                    <legend style="text-align:center;">Cadastre-se e comece a trocar</legend>
                                     @Html.AntiForgeryToken()
                                     <div class="form-group col-md-12">
                                         @Html.LabelFor(model => model.Nome, new { @class = "col-md-4 control-label text-right" })
@@ -57,7 +57,6 @@
                                             @Html.ValidationMessageFor(model => model.ConfirmarSenha, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    @Html.ValidationSummary(false)
                                     <div class="col-md-12 text-center">
                                         <button type="submit" class="btn btn-primary">Efetuar cadastro</button>
                                     </div>
@@ -76,4 +75,9 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
     @Scripts.Render("~/StoreContent/file-input/script")
+    <script>
+        //$(document).ready(function () {
+        //    $('#Rg').mask("##.###.###-#");
+        //});
+    </script>
 }

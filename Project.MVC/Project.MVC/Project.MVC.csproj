@@ -386,6 +386,7 @@
     <Content Include="Content\StoreContent\fonts\fontawesome-webfont.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\Products\30.jpg" />
+    <Content Include="Images\quero-trocar.png" />
     <Content Include="Images\Slider\banner-footer.jpg" />
     <Content Include="Images\Slider\slider-0.jpg" />
     <Content Include="Images\Slider\slider-1.jpg" />

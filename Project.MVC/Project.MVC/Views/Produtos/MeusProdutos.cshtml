@@ -38,7 +38,7 @@
                         <div class="item col-sm-4 col-lg-4 col-md-4 col-xs-6 list-view">
                             <div class="product">
                                 <div class="image">
-                                    <a href="product-details.html">
+                                    <a href="@Url.Action("Detalhes", "Produtos", new { @id = produto.ProdutoId })">
                                         @if (produto.ProdutoImagemViewModels.Count() > 0)
                                         {
                                             <img src="@Url.Content(produto.ProdutoImagemViewModels.FirstOrDefault().Caminho)" alt="@produto.Nome" class="img-responsive">

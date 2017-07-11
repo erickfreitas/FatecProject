@@ -29,6 +29,9 @@ namespace Project.Application.AutoMapper
                 .ForMember(dest => dest.Logradouro, opt => opt.MapFrom(src => src.Endereco.Logradouro))
                 .ForMember(dest => dest.Complemento, opt => opt.MapFrom(src => src.Endereco.Complemento))
                 .ForMember(dest => dest.Numero, opt => opt.MapFrom(src => src.Endereco.Numero));
+
+            CreateMap<Pergunta, PerguntaViewModel>();
+            CreateMap<Resposta, RespostaViewModel>();
         }
 
     }

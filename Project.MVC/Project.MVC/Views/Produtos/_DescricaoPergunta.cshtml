@@ -1,0 +1,44 @@
+﻿@model Project.Application.ViewModels.PerguntaUsuarioViewModel
+<div class="all-review-wrapper ">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-left">
+                <a href="@Url.Action("Perfil", "Usuarios", new { @id = Model.UsuarioId })">
+                    <img class="media-object img-circle" src="@Url.Content(Model.ImagemCaminho)" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;">
+                </a>
+            </div>
+            <h4>
+                <a href="#" style="text-decoration:none;">
+                    <strong>@Model.Nome @Model.Sobrenome</strong></a> – 
+                    <small>
+                        <small>
+                            <i><i class="fa fa-clock-o" aria-hidden="true"></i> @Model.DataCriacao.ToString("dd-MM-yyyy")</i>
+                        </small>
+                    </small>
+            </h4>
+            <div class="post-content">
+                @Model.Descricao
+            </div>
+            @*@Html.Partial("_DescricaoResposta")*@            
+            <hr>
+            @*@if (Model.RespostaViewModels == null)
+            {
+                <div class="media">
+                    <div class="pull-left">
+                        <a href="#">
+                            <img class="media-object img-circle" src="@Url.Content(ViewBag.Usuario.ImagemCaminho)" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;">
+                        </a>
+                    </div>
+                    <form id="frmAdicionarResposta">
+                        <div class="media-body">
+                            @Html.Hidden("PerguntaId")
+                            @Html.TextArea("Descricao", new { @class = "form-control", @placeholder = "Escreva sua Resposta", @style = "max-witdh: 450px;", @rows = "2" })
+                        </div>
+                        <br />
+                        <button class="btn btn-success" type="submit">Responder</button>
+                    </form>
+                </div>
+            }*@            
+        </div>
+    </div>    
+</div>

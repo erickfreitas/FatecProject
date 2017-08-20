@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNet.Identity;
 using Project.Application.Interfaces;
 using Project.Application.ViewModels;
-using Project.Domain.Entities;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
 namespace Project.MVC.Controllers
 {
-    [Authorize]
     public class ProdutosController : Controller
     {
         private readonly IProdutoAppService _produtoAppService;
@@ -17,13 +15,15 @@ namespace Project.MVC.Controllers
         private readonly IProdutoImagemAppService _produtoImagemAppService;
         private readonly IPerguntaAppService _perguntasAppService;
         private readonly IRespostaAppService _respostaAppServie;
+        private readonly IUsuarioAppService _usuarioAppService;
 
         public ProdutosController(IProdutoAppService produtoAppService, 
-                                        ICategoriaAppService categoriaAppService,
-                                                ISubCategoriaAppService subCategoriaAppService,
-                                                    IProdutoImagemAppService produtoImagemAppService,
-                                                    IPerguntaAppService perguntaAppService,
-                                                    IRespostaAppService respostaAppService)
+                                    ICategoriaAppService categoriaAppService,
+                                        ISubCategoriaAppService subCategoriaAppService,
+                                            IProdutoImagemAppService produtoImagemAppService,
+                                                IPerguntaAppService perguntaAppService,
+                                                    IRespostaAppService respostaAppService,
+                                                        IUsuarioAppService usuarioAppService)
         {
             _produtoAppService = produtoAppService;
             _categoriaAppService = categoriaAppService;
@@ -31,6 +31,7 @@ namespace Project.MVC.Controllers
             _produtoImagemAppService = produtoImagemAppService;
             _perguntasAppService = perguntaAppService;
             _respostaAppServie = respostaAppService;
+            _usuarioAppService = usuarioAppService;
         }
 
         [HttpGet]
@@ -123,91 +124,31 @@ namespace Project.MVC.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var produtoViewModel = _produtoAppService.GetById(id.Value);
-            var perguntaViewModel = _perguntasAppService.GetById(produtoViewModel.ProdutoId);
-            var respostaViewModel = new RespostaViewModel();
-            if (perguntaViewModel != null)
-            {
-                respostaViewModel = _respostaAppServie.GetById(perguntaViewModel.PerguntaId);
-            }            
-            if(respostaViewModel.UsuarioId != null)
-            {
-                ViewBag.RespostaDescricao = _respostaAppServie.GetById(respostaViewModel.RespostaId).Descricao;
-            }                                              
+            produtoViewModel.PerguntaUsuarioViewModels = _perguntasAppService.GetByProduto(id.Value);
+            ViewBag.Usuario = _usuarioAppService.GetById(produtoViewModel.UsuarioId);
             return View(produtoViewModel);
         }
 
         [HttpPost]
-        public ActionResult AdicionarPergunta(PerguntaViewModel perguntaViewModel)
-        {                            
-            perguntaViewModel.UsuarioId = User.Identity.GetUserId();
-            var perguntaAdicionada = _perguntasAppService.Add(perguntaViewModel);                             
-            return Json(perguntaAdicionada, JsonRequestBehavior.AllowGet);
-
-        }
-
-        [HttpPost]
-        public ActionResult AdicionarResposta(PerguntaViewModel perguntaViewModel)
-        {            
-            var pergunta = _perguntasAppService.GetById(perguntaViewModel.PerguntaId);
-            perguntaViewModel.PerguntaId = pergunta.PerguntaId;
-            perguntaViewModel.Descricao = pergunta.Descricao;
-            perguntaViewModel.ProdutoId = pergunta.ProdutoId;
-            perguntaViewModel.UsuarioId = pergunta.UsuarioId;
-            perguntaViewModel.RespostaViewModels.UsuarioId = User.Identity.GetUserId();
-            perguntaViewModel.RespostaViewModels.RespostaId = pergunta.PerguntaId;
-            pergunta.RespostaViewModels.UsuarioId = perguntaViewModel.RespostaViewModels.UsuarioId;
-            pergunta.RespostaViewModels.RespostaId = perguntaViewModel.RespostaViewModels.RespostaId;
-            pergunta.RespostaViewModels.Descricao = perguntaViewModel.RespostaViewModels.Descricao;
-            var respostaAdicionada = _respostaAppServie.Add(pergunta.RespostaViewModels);          
-            return Json(respostaAdicionada, JsonRequestBehavior.AllowGet);
-
-        }
-
-
-        [HttpGet]
-        public ActionResult EditarPergunta(int? id)
+        [Authorize]
+        public ActionResult ModalCriarPergunta(int produtoId)
         {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);            
-            var perguntaViewModel = _perguntasAppService.GetById(id.Value);            
-            return View(perguntaViewModel);
+            var produto = _produtoAppService.GetById(produtoId);
+            ViewBag.Produto = produto;
+            return PartialView("_CriacaoPergunta", new PerguntaViewModel { ProdutoId = produtoId });
         }
 
-
         [HttpPost]
-        public ActionResult EditarPergunta(PerguntaViewModel perguntaViewModel)
+        [Authorize]
+        public ActionResult CriarPergunta(PerguntaViewModel perguntaViewModel)
         {
             if (ModelState.IsValid)
             {
                 perguntaViewModel.UsuarioId = User.Identity.GetUserId();
-                _perguntasAppService.Update(perguntaViewModel);
-
-                return Json(perguntaViewModel);
+                var perguntaAdicionado = _perguntasAppService.Add(perguntaViewModel);
+                return PartialView("_DescricaoPergunta", perguntaAdicionado);
             }
-            return View();
-        }
-
-
-        [HttpGet]
-        public ActionResult EditarResposta(int? id)
-        {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            var respostaViewModel = _respostaAppServie.GetById(id.Value);
-            return View(respostaViewModel);
-        }
-
-        [HttpPost]
-        public ActionResult EditarResposta(RespostaViewModel respostaViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                respostaViewModel.UsuarioId = User.Identity.GetUserId();
-                _respostaAppServie.Update(respostaViewModel);
-
-                return Json(respostaViewModel);
-            }
-            return View();
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [Authorize]

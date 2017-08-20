@@ -443,6 +443,9 @@
     <Content Include="Views\Usuarios\_Informacao.cshtml" />
     <Content Include="Views\Home\QuemSomos.cshtml" />
     <Content Include="Views\Home\PerguntasFrequentes.cshtml" />
+    <Content Include="Views\Produtos\_DescricaoPergunta.cshtml" />
+    <Content Include="Views\Produtos\_DescricaoResposta.cshtml" />
+    <Content Include="Views\Produtos\_CriacaoPergunta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

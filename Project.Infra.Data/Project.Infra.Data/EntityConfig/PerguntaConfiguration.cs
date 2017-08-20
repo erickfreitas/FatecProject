@@ -23,7 +23,10 @@ namespace Project.Infra.Data.EntityConfig
                 .HasColumnType("nvarchar")
                 .HasMaxLength(1500);
 
+            Property(p => p.DataCriacao)
+                .IsRequired();
 
+            //Relacionamentos
             HasRequired(p => p.Usuario)
                 .WithMany(u => u.Perguntas)
                 .HasForeignKey(p => p.UsuarioId);

@@ -6,6 +6,9 @@ namespace Project.Domain.Interfaces.Services
     public interface IPerguntaService : IServiceBase<Pergunta>
     {
         new Pergunta Add(Pergunta pergunta);
+
+        IEnumerable<Pergunta> GetByProduto(int produtoId);
+
         IEnumerable<Pergunta> GetByUsuario(string usuarioId);
     }
 }

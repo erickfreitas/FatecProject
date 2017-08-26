@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Project.Domain.Entities;
+﻿using Project.Domain.Entities;
 using Project.Domain.Interfaces.Repositories;
 using Project.Domain.Interfaces.Services;
+using System.Collections.Generic;
+using System;
 
 namespace Project.Domain.Services
 {
@@ -27,5 +27,9 @@ namespace Project.Domain.Services
             return _perguntaRepository.Add(pergunta);
         }
 
+        public IEnumerable<Pergunta> GetByProduto(int produtoId)
+        {
+            return _perguntaRepository.GetByProduto(produtoId);
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace Project.Application.Interfaces
 {
     public interface IPerguntaAppService : IAppServiceBase<Pergunta>
     {
-        PerguntaViewModel Add(PerguntaViewModel perguntaViewModel);
+        PerguntaUsuarioViewModel Add(PerguntaViewModel perguntaViewModel);
 
         IEnumerable<PerguntaViewModel> GetAll();
 
@@ -17,5 +17,9 @@ namespace Project.Application.Interfaces
         void Update(PerguntaViewModel perguntaViewModel);
 
         IEnumerable<PerguntaViewModel> GetByUsuario(string usuarioId);
+
+        IEnumerable<PerguntaUsuarioViewModel> GetByProduto(int produtoId);
+
+        PerguntaUsuarioViewModel GetPerguntaUsuarioById(int perguntaId);
     }
 }

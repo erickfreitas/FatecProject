@@ -1,13 +1,13 @@
-﻿namespace Project.Application.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Project.Application.ViewModels
 {
     public class RespostaViewModel
     {
-
+        [Required]
         public int RespostaId { get; set; }
 
+        [Required]
         public string Descricao { get; set; }
-
-        public string UsuarioId{ get; set; }
-        public PerguntaViewModel PerguntaViewModel { get; set; }
     }
 }

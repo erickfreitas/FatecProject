@@ -1,0 +1,30 @@
+﻿@model Project.Application.ViewModels.PerguntaViewModel
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+            <h3 class="modal-title-site text-center"> Escreva sua Pergunta </h3>
+        </div>
+        <div class="modal-body">
+            <div class="form-group login-username">
+                <div>
+                    @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "4", @form = "CriarPerguntaForm" })
+                </div>
+            </div>
+            <div>
+                <div>
+                    <input name="submit" class="btn  btn-block btn-lg btn-primary" value="Adicionar Pergunta" type="submit" form="CriarPerguntaForm">
+                </div>
+            </div>
+            @using (Ajax.BeginForm("CriarPergunta", "Produtos", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "DuvidasTitle", OnSuccess = "$('#ModalPergunta').modal('show')" }, new { @class = "col-md-12", @id = "CriarPerguntaForm" }))
+            {
+                @Html.Hidden("ProdutoId", Model.ProdutoId)                                
+            }                        
+        </div>
+        <div class="modal-footer">
+            <p class="text-center">
+                Escreva sua dúvida sobre o produto @ViewBag.Produto.Nome
+            </p>
+        </div>
+    </div>
+</div>

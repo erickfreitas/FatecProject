@@ -20,20 +20,15 @@ namespace Project.Infra.Data.EntityConfig
                 .HasColumnType("nvarchar")
                 .HasMaxLength(1500);
 
-            Property(r => r.UsuarioId)
-                .IsRequired()
-                .HasMaxLength(128)
-                .HasColumnType("nvarchar");
+            Property(r => r.DataCriacao)
+                .IsRequired();
 
+            Property(r => r.DataAlteracao)
+                .IsOptional();
+
+            //Relacionamentos
             HasRequired(r => r.Pergunta)
                 .WithOptional(p => p.Resposta);
-
-            HasRequired(r => r.Usuario)
-            .WithMany(u => u.Respostas)
-            .HasForeignKey(r => r.UsuarioId);
-
-
-
         }
     }
 }

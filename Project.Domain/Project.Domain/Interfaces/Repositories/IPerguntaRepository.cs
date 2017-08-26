@@ -9,5 +9,6 @@ namespace Project.Domain.Interfaces.Repositories
 
         IEnumerable<Pergunta> GetByUsuario(string usuarioId);
 
+        IEnumerable<Pergunta> GetByProduto(int produtoId);
     }
 }

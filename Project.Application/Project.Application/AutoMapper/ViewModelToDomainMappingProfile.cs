@@ -8,12 +8,26 @@ namespace Project.Application.AutoMapper
     {
         public ViewModelToDomainMappingProfile()
         {
+
+            #region CategoriaMaps
             CreateMap<CategoriaViewModel, Categoria>();
+            #endregion
+
+            #region SubCategoriaMaps
             CreateMap<SubCategoriaViewModel, SubCategoria>();
+            #endregion
+
+            #region ProdutoMaps
             CreateMap<ProdutoViewModel, Produto>();
+            #endregion
+
+            #region ProdutoImagemMaps
             CreateMap<ProdutoImagemViewModel, ProdutoImagem>();
+            #endregion
+
+            #region UsuarioMaps
             CreateMap<UsuarioViewModel, Usuario>();
-            CreateMap<UsuarioInformacaoViewModel, Usuario>();                
+            CreateMap<UsuarioInformacaoViewModel, Usuario>();
             CreateMap<UsuarioInformacaoViewModel, Endereco>()
                 .ForMember(dest => dest.Cep, opt => opt.MapFrom(src => src.Cep))
                 .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Estado))
@@ -21,12 +35,15 @@ namespace Project.Application.AutoMapper
                 .ForMember(dest => dest.Bairro, opt => opt.MapFrom(src => src.Bairro))
                 .ForMember(dest => dest.Logradouro, opt => opt.MapFrom(src => src.Logradouro))
                 .ForMember(dest => dest.Complemento, opt => opt.MapFrom(src => src.Complemento))
-                .ForMember(dest => dest.Numero, opt => opt.MapFrom(src => src.Numero)); ;
-            CreateMap<PerguntaViewModel, Pergunta>();
+                .ForMember(dest => dest.Numero, opt => opt.MapFrom(src => src.Numero));
+            #endregion
+
+            #region PerguntaMaps
+            CreateMap<PerguntaViewModel, Pergunta>(); ;
+            #endregion
+
+            #region RespostaMaps
             CreateMap<RespostaViewModel, Resposta>();
-
-
-            CreateMap<TrocaViewModel, Troca>();
         }
     }
 }

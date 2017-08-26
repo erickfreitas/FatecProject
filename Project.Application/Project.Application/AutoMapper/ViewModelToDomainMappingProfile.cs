@@ -24,6 +24,9 @@ namespace Project.Application.AutoMapper
                 .ForMember(dest => dest.Numero, opt => opt.MapFrom(src => src.Numero)); ;
             CreateMap<PerguntaViewModel, Pergunta>();
             CreateMap<RespostaViewModel, Resposta>();
+
+
+            CreateMap<TrocaViewModel, Troca>();
         }
     }
 }

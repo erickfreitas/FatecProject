@@ -32,6 +32,9 @@ namespace Project.Application.AutoMapper
 
             CreateMap<Pergunta, PerguntaViewModel>();
             CreateMap<Resposta, RespostaViewModel>();
+
+
+            CreateMap<Troca, TrocaViewModel>();
         }
 
     }

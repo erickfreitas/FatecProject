@@ -17,13 +17,15 @@ namespace Project.MVC.Controllers
         private readonly IProdutoImagemAppService _produtoImagemAppService;
         private readonly IPerguntaAppService _perguntasAppService;
         private readonly IRespostaAppService _respostaAppServie;
+        private readonly ITrocaAppService _trocaAppService;
 
         public ProdutosController(IProdutoAppService produtoAppService, 
                                         ICategoriaAppService categoriaAppService,
                                                 ISubCategoriaAppService subCategoriaAppService,
                                                     IProdutoImagemAppService produtoImagemAppService,
                                                     IPerguntaAppService perguntaAppService,
-                                                    IRespostaAppService respostaAppService)
+                                                    IRespostaAppService respostaAppService,
+                                                    ITrocaAppService trocaAppService)
         {
             _produtoAppService = produtoAppService;
             _categoriaAppService = categoriaAppService;
@@ -31,6 +33,7 @@ namespace Project.MVC.Controllers
             _produtoImagemAppService = produtoImagemAppService;
             _perguntasAppService = perguntaAppService;
             _respostaAppServie = respostaAppService;
+            _trocaAppService = trocaAppService;
         }
 
         [HttpGet]
@@ -218,5 +221,6 @@ namespace Project.MVC.Controllers
             var subCategorias = _subCategoriaAppService.GetByCategoria(categoriaId.Value);
             return Json(subCategorias, JsonRequestBehavior.AllowGet);
         }
+
     }
 }

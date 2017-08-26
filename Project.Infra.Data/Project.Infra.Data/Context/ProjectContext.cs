@@ -29,6 +29,8 @@ namespace Project.Infra.Data.Context
 
         public DbSet<Resposta> Respostas { get; set; }
 
+        public DbSet<Troca> Trocas { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -54,6 +56,7 @@ namespace Project.Infra.Data.Context
             modelBuilder.Configurations.Add(new EnderecoConfiguration());
             modelBuilder.Configurations.Add(new PerguntaConfiguration());
             modelBuilder.Configurations.Add(new RespostaConfiguration());
+            modelBuilder.Configurations.Add(new TrocaConfiguration());
         }
 
         public override int SaveChanges()

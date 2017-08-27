@@ -39,8 +39,6 @@ namespace Project.Infra.Data.EntityConfig
                 .WithMany(p => p.Trocas)
                 .HasForeignKey(t => t.IdProdutoSujeito)
                 .WillCascadeOnDelete(false);
-
-
         }
 
     }

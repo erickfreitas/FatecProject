@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project.Application.ViewModels
 {
@@ -7,7 +9,12 @@ namespace Project.Application.ViewModels
         [Required]
         public int RespostaId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        [DisplayName("Descrição da Resposta")]
         public string Descricao { get; set; }
+
+        public DateTime DataCriacao { get; set; }
+
+        public DateTime? DataAlteracao { get; set; }
     }
 }

@@ -19,8 +19,7 @@ namespace Project.Domain.Entities
         public DateTime DataAlteracao { get; set; }
         public virtual ICollection<ProdutoImagem> ProdutoImagens { get; set; }
         public virtual ICollection<Pergunta> Perguntas { get; set; }
-        public virtual ICollection<Troca> Trocas { get; set; }
 
-
+       
     }
 }

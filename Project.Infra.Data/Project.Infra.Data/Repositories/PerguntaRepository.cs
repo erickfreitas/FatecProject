@@ -13,12 +13,12 @@ namespace Project.Infra.Data.Repositories
             Db.Perguntas.Add(pergunta);
             Db.SaveChanges();
             Db.Entry(pergunta).GetDatabaseValues();
-            return Db.Perguntas.Include("Usuario").FirstOrDefault(p => p.PerguntaId == pergunta.PerguntaId);
+            return Db.Perguntas.Include("Usuario").Include("Resposta").FirstOrDefault(p => p.PerguntaId == pergunta.PerguntaId);
         }
 
         public IEnumerable<Pergunta> GetByProduto(int produtoId)
         {
-            return Db.Perguntas.AsNoTracking().Include("Usuario").Where(p => p.ProdutoId == produtoId).OrderByDescending(p => p.PerguntaId);
+            return Db.Perguntas.AsNoTracking().Include("Usuario").Include("Resposta").Where(p => p.ProdutoId == produtoId).OrderByDescending(p => p.PerguntaId);
         }
 
         public IEnumerable<Pergunta> GetByUsuario(string usuarioId)

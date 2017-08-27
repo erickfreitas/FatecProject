@@ -1,4 +1,6 @@
-﻿@model Project.Application.ViewModels.PerguntaUsuarioViewModel
+﻿@using Microsoft.AspNet.Identity
+@using Project.Application.ViewModels
+@model PerguntaUsuarioViewModel
 <div class="all-review-wrapper ">
     <div class="panel panel-default">
         <div class="panel-body">
@@ -8,7 +10,7 @@
                 </a>
             </div>
             <h4>
-                <a href="#" style="text-decoration:none;">
+                <a href="@Url.Action("Perfil", "Usuarios", new { @id = Model.UsuarioId })" style="text-decoration:none;">
                     <strong>@Model.Nome @Model.Sobrenome</strong></a> – 
                     <small>
                         <small>
@@ -18,27 +20,16 @@
             </h4>
             <div class="post-content">
                 @Model.Descricao
-            </div>
-            @*@Html.Partial("_DescricaoResposta")*@            
+            </div>                     
             <hr>
-            @*@if (Model.RespostaViewModels == null)
+            @if (Model.RespostaViewModels == null && ViewBag.Produto.UsuarioId == User.Identity.GetUserId())
             {
-                <div class="media">
-                    <div class="pull-left">
-                        <a href="#">
-                            <img class="media-object img-circle" src="@Url.Content(ViewBag.Usuario.ImagemCaminho)" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;">
-                        </a>
-                    </div>
-                    <form id="frmAdicionarResposta">
-                        <div class="media-body">
-                            @Html.Hidden("PerguntaId")
-                            @Html.TextArea("Descricao", new { @class = "form-control", @placeholder = "Escreva sua Resposta", @style = "max-witdh: 450px;", @rows = "2" })
-                        </div>
-                        <br />
-                        <button class="btn btn-success" type="submit">Responder</button>
-                    </form>
-                </div>
-            }*@            
+                @Html.Partial("_CriacaoResposta", new RespostaViewModel { RespostaId = Model.PerguntaId })
+            }
+            else if(Model.RespostaViewModels != null)
+            {
+                @Html.Partial("_DescricaoResposta", Model.RespostaViewModels)
+            }
         </div>
     </div>    
 </div>

@@ -1,0 +1,31 @@
+﻿@model Project.Application.ViewModels.RespostaViewModel
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+            <h3 class="modal-title-site text-center"> Editar resposta </h3>
+        </div>
+        <div class="modal-body">
+            <div class="form-group login-username">
+                <div>
+                    @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control", @placeholder = "Descrição da Resposta", @style = "max-witdh: 450px;", @rows = "4", @form = "EditarRespostaForm" })
+                    @Html.ValidationMessageFor(model => model.Descricao)
+                </div>
+            </div>
+            <div>
+                <div>
+                    <input name="submit" class="btn  btn-block btn-lg btn-primary" value="Salvar" type="submit" form="EditarRespostaForm">
+                </div>
+            </div>
+            @using (Ajax.BeginForm("EditarResposta", "Produtos", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "DetalhesRespostaContent-" + Model.RespostaId, OnSuccess = "$('#ModalResposta').modal('hide');" }, new { @class = "col-md-12", @id = "EditarRespostaForm" }))
+            {
+                @Html.HiddenFor(model => model.RespostaId)
+            }
+        </div>
+        <div class="modal-footer">
+            <p class="text-center">
+                Edite a sua resposta
+            </p>
+        </div>
+    </div>
+</div>

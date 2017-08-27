@@ -15,15 +15,13 @@ namespace Project.MVC.Controllers
         private readonly IProdutoImagemAppService _produtoImagemAppService;
         private readonly IPerguntaAppService _perguntasAppService;
         private readonly IRespostaAppService _respostaAppServie;
-        private readonly IUsuarioAppService _usuarioAppService;
 
         public ProdutosController(IProdutoAppService produtoAppService, 
-                                    ICategoriaAppService categoriaAppService,
-                                        ISubCategoriaAppService subCategoriaAppService,
-                                            IProdutoImagemAppService produtoImagemAppService,
-                                                IPerguntaAppService perguntaAppService,
-                                                    IRespostaAppService respostaAppService,
-                                                        IUsuarioAppService usuarioAppService)
+                                        ICategoriaAppService categoriaAppService,
+                                                ISubCategoriaAppService subCategoriaAppService,
+                                                    IProdutoImagemAppService produtoImagemAppService,
+                                                    IPerguntaAppService perguntaAppService,
+                                                    IRespostaAppService respostaAppService)
         {
             _produtoAppService = produtoAppService;
             _categoriaAppService = categoriaAppService;
@@ -31,7 +29,6 @@ namespace Project.MVC.Controllers
             _produtoImagemAppService = produtoImagemAppService;
             _perguntasAppService = perguntaAppService;
             _respostaAppServie = respostaAppService;
-            _usuarioAppService = usuarioAppService;
         }
 
         [HttpGet]
@@ -202,5 +199,6 @@ namespace Project.MVC.Controllers
             var subCategorias = _subCategoriaAppService.GetByCategoria(categoriaId.Value);
             return Json(subCategorias, JsonRequestBehavior.AllowGet);
         }
+
     }
 }

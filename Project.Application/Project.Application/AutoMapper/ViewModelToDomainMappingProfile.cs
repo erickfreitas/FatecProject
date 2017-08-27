@@ -39,12 +39,15 @@ namespace Project.Application.AutoMapper
             #endregion
 
             #region PerguntaMaps
-            CreateMap<PerguntaViewModel, Pergunta>(); ;
+            CreateMap<PerguntaViewModel, Pergunta>();
+            #endregion
+
+            #region TrocaMaps
+            CreatMap<TrocaViewModel, Troca>();
             #endregion
 
             #region RespostaMaps
             CreateMap<RespostaViewModel, Resposta>();
-            #endregion                                                                          
         }
     }
 }

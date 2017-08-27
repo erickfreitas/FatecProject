@@ -59,6 +59,7 @@
     <Compile Include="EntityConfig\ProdutoConfiguration.cs" />
     <Compile Include="EntityConfig\RespostaConfiguration.cs" />
     <Compile Include="EntityConfig\SubCategoriaConfiguration.cs" />
+    <Compile Include="EntityConfig\TrocaConfiguration.cs" />
     <Compile Include="EntityConfig\UsuarioConfiguration.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\RespostaRepository.cs" />
     <Compile Include="Repositories\SubCategoriaRepository.cs" />
+    <Compile Include="Repositories\TrocaRepository.cs" />
     <Compile Include="Repositories\UsuarioRepository.cs" />
   </ItemGroup>
   <ItemGroup>

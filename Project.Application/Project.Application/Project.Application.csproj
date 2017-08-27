@@ -52,6 +52,7 @@
     <Compile Include="AppServices\ProdutoImagemAppService.cs" />
     <Compile Include="AppServices\RespostaAppService.cs" />
     <Compile Include="AppServices\SubCategoriaAppService.cs" />
+    <Compile Include="AppServices\TrocaAppService.cs" />
     <Compile Include="AppServices\UsuarioAppService.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Interfaces\IProdutoImagemAppService.cs" />
     <Compile Include="Interfaces\IRespostaAppService.cs" />
     <Compile Include="Interfaces\ISubCategoriaAppService.cs" />
+    <Compile Include="Interfaces\ITrocaAppService.cs" />
     <Compile Include="Interfaces\IUsuarioAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CategoriaViewModel.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="ViewModels\RegistrarViewModel.cs" />
     <Compile Include="ViewModels\RespostaViewModel.cs" />
     <Compile Include="ViewModels\SubCategoriaViewModel.cs" />
+    <Compile Include="ViewModels\TrocaViewModel.cs" />
     <Compile Include="ViewModels\UsuarioImagemViewModel.cs" />
     <Compile Include="ViewModels\UsuarioInformacaoViewModel.cs" />
     <Compile Include="ViewModels\UsuarioPerfilViewModel.cs" />

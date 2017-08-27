@@ -9,7 +9,6 @@ using System.Web.Mvc;
 
 namespace Project.MVC.Controllers
 {
-    [Authorize]
     public class UsuariosController : Controller
     {
         private ApplicationUserManager _userManager;
@@ -43,6 +42,7 @@ namespace Project.MVC.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult MeuPerfil()
         {
             var perfil = _usuarioAppService.GetPerfilById(User.Identity.GetUserId());
@@ -60,6 +60,7 @@ namespace Project.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult NovaImagem(HttpPostedFileBase imagem, string usuarioId)
         {
             if (imagem == null || usuarioId == null)
@@ -73,6 +74,7 @@ namespace Project.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult RemoverImagem(string key)
         {
             if (key == null)
@@ -89,6 +91,7 @@ namespace Project.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult EditarInformacao(UsuarioInformacaoViewModel usuarioViewModel)
         {

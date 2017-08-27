@@ -24,11 +24,8 @@ namespace Project.Infra.Data.Context
         public DbSet<Claims> Claims { get; set; }
         public DbSet<ClienteWeb> ClientesWeb { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
-
         public DbSet<Pergunta> Perguntas { get; set; }
-
         public DbSet<Resposta> Respostas { get; set; }
-
         public DbSet<Troca> Trocas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

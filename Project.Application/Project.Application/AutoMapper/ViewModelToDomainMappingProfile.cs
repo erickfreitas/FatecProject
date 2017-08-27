@@ -43,11 +43,12 @@ namespace Project.Application.AutoMapper
             #endregion
 
             #region TrocaMaps
-            CreatMap<TrocaViewModel, Troca>();
+            CreateMap<TrocaViewModel, Troca>();
             #endregion
 
             #region RespostaMaps
             CreateMap<RespostaViewModel, Resposta>();
+            #endregion
         }
     }
 }

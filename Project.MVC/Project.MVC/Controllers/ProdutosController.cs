@@ -15,13 +15,15 @@ namespace Project.MVC.Controllers
         private readonly IProdutoImagemAppService _produtoImagemAppService;
         private readonly IPerguntaAppService _perguntasAppService;
         private readonly IRespostaAppService _respostaAppServie;
+        private readonly IUsuarioAppService _usuarioAppService;
 
         public ProdutosController(IProdutoAppService produtoAppService, 
-                                        ICategoriaAppService categoriaAppService,
-                                                ISubCategoriaAppService subCategoriaAppService,
-                                                    IProdutoImagemAppService produtoImagemAppService,
-                                                    IPerguntaAppService perguntaAppService,
-                                                    IRespostaAppService respostaAppService)
+                                    ICategoriaAppService categoriaAppService,
+                                        ISubCategoriaAppService subCategoriaAppService,
+                                            IProdutoImagemAppService produtoImagemAppService,
+                                                IPerguntaAppService perguntaAppService,
+                                                    IRespostaAppService respostaAppService, 
+                                                        IUsuarioAppService usuarioAppService)
         {
             _produtoAppService = produtoAppService;
             _categoriaAppService = categoriaAppService;
@@ -29,6 +31,7 @@ namespace Project.MVC.Controllers
             _produtoImagemAppService = produtoImagemAppService;
             _perguntasAppService = perguntaAppService;
             _respostaAppServie = respostaAppService;
+            _usuarioAppService = usuarioAppService;
         }
 
         [HttpGet]

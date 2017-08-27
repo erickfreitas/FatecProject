@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Project.Application.AutoMapper;
 using Project.Application.Interfaces;
 using Project.Application.ViewModels;
 using Project.Domain.Entities;

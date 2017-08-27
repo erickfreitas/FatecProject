@@ -10,6 +10,7 @@ namespace Project.Domain.Entities
         public string DsTrocaProposta { get; set; }
         public string DsTrocaSujeito { get; set; }
         public bool FlTrocaProposta { get; set; }
+        public bool FlTrocaAceita { get; set; }
         public bool FlTrocaRealizada { get; set; }
         public virtual Produto Produto{ get; set; }
         

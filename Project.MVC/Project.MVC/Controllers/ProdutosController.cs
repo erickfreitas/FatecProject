@@ -15,13 +15,17 @@ namespace Project.MVC.Controllers
         private readonly IProdutoImagemAppService _produtoImagemAppService;
         private readonly IPerguntaAppService _perguntasAppService;
         private readonly IRespostaAppService _respostaAppServie;
+        private readonly ITrocaAppService _trocaAppService;
+        private readonly IUsuarioAppService _usuarioAppService;
 
         public ProdutosController(IProdutoAppService produtoAppService, 
                                         ICategoriaAppService categoriaAppService,
                                                 ISubCategoriaAppService subCategoriaAppService,
                                                     IProdutoImagemAppService produtoImagemAppService,
                                                     IPerguntaAppService perguntaAppService,
-                                                    IRespostaAppService respostaAppService)
+                                                    IRespostaAppService respostaAppService,
+                                                    ITrocaAppService trocaAppService,
+                                                    IUsuarioAppService usuarioAppService)
         {
             _produtoAppService = produtoAppService;
             _categoriaAppService = categoriaAppService;
@@ -29,6 +33,8 @@ namespace Project.MVC.Controllers
             _produtoImagemAppService = produtoImagemAppService;
             _perguntasAppService = perguntaAppService;
             _respostaAppServie = respostaAppService;
+            _trocaAppService = trocaAppService;
+            _usuarioAppService = usuarioAppService;
         }
 
         [HttpGet]
@@ -157,5 +163,73 @@ namespace Project.MVC.Controllers
             return Json(subCategorias, JsonRequestBehavior.AllowGet);
         }
 
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult ProporTroca(int produtoPropostoId, int produtoSujeitoId, TrocaViewModel trocaViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+                
+                trocaViewModel.IdProdutoProposto = produtoPropostoId;
+                trocaViewModel.IdProdutoSujeito = produtoSujeitoId;
+                trocaViewModel.FlTrocaProposta = true;
+                trocaViewModel.FlTrocaAceita = false;
+                trocaViewModel.FlTrocaRealizada = false;
+                
+                var trocaproposta = _trocaAppService.Add(trocaViewModel);
+                
+
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult AceitarTroca(int produtoPropostoId, int produtoSujeitoId, TrocaViewModel trocaViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+
+                trocaViewModel.IdProdutoProposto = produtoPropostoId;
+                trocaViewModel.IdProdutoSujeito = produtoSujeitoId;
+                trocaViewModel.FlTrocaProposta = true;
+                trocaViewModel.FlTrocaAceita = true;
+                trocaViewModel.FlTrocaRealizada = false;
+                
+                _trocaAppService.Update(trocaViewModel);
+
+
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult ConfirmarTroca(int produtoPropostoId, int produtoSujeitoId, TrocaViewModel trocaViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+
+                trocaViewModel.IdProdutoProposto = produtoPropostoId;
+                trocaViewModel.IdProdutoSujeito = produtoSujeitoId;
+                trocaViewModel.FlTrocaProposta = true;
+                trocaViewModel.FlTrocaAceita = true;
+                trocaViewModel.FlTrocaRealizada = true;
+
+                 _trocaAppService.Update(trocaViewModel);
+
+
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
     }
 }

@@ -9,6 +9,7 @@
         public string DsTrocaSujeito { get; set; }
         public bool FlTrocaProposta { get; set; }
         public bool FlTrocaRealizada { get; set; }
+        public bool FlTrocaAceita { get; set; }
         public virtual ProdutoViewModel Produto { get; set; }
 
     }

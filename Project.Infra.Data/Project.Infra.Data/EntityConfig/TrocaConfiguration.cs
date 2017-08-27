@@ -27,6 +27,9 @@ namespace Project.Infra.Data.EntityConfig
             Property(t => t.FlTrocaRealizada)
                 .IsRequired();
 
+            Property(t => t.FlTrocaAceita)
+                .IsRequired();
+
             HasRequired(t => t.Produto)
                 .WithMany(p => p.Trocas)
                 .HasForeignKey(t => t.IdProdutoProposto)

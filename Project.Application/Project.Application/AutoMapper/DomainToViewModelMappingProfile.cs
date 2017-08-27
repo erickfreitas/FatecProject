@@ -45,7 +45,8 @@ namespace Project.Application.AutoMapper
             CreateMap<Pergunta, PerguntaUsuarioViewModel>()
                 .ForMember(dest => dest.Nome, opt => opt.MapFrom(src => src.Usuario.Nome))
                 .ForMember(dest => dest.Sobrenome, opt => opt.MapFrom(src => src.Usuario.Sobrenome))
-                .ForMember(dest => dest.ImagemCaminho, opt => opt.MapFrom(src => src.Usuario.ImagemCaminho));
+                .ForMember(dest => dest.ImagemCaminho, opt => opt.MapFrom(src => src.Usuario.ImagemCaminho))
+                .ForMember(dest => dest.RespostaViewModels, opt => opt.MapFrom(src => src.Resposta));
             #endregion
 
             #region RespostaMaps

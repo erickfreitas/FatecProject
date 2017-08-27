@@ -1,0 +1,17 @@
+﻿@model Project.Application.ViewModels.RespostaViewModel
+<div class="media" id="CriarRespostaContent-@Model.RespostaId">
+    <div class="pull-left">
+        <a href="@Url.Action("Perfil", new { @controller = "Usuarios", @id = ViewBag.Usuario.UsuarioId })">
+            <img class="media-object img-circle" src="@Url.Content(ViewBag.Usuario.ImagemCaminho)" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;">
+        </a>
+    </div>
+    <form id="CriarRespostaForm" action="/Produtos/CriarResposta" data-ajax="true" data-ajax-method="POST" method="post" data-ajax-mode="replace-with" data-ajax-update="#CriarRespostaContent-@Model.RespostaId">
+        <div class="media-body">
+            @Html.HiddenFor(model => model.RespostaId)
+            @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control", @placeholder = "Escreva sua Resposta", @rows = "2" })
+            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <button class="btn btn-success pull-right" type="submit">Responder</button>
+    </form>
+</div>

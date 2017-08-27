@@ -446,6 +446,8 @@
     <Content Include="Views\Produtos\_DescricaoPergunta.cshtml" />
     <Content Include="Views\Produtos\_DescricaoResposta.cshtml" />
     <Content Include="Views\Produtos\_CriacaoPergunta.cshtml" />
+    <Content Include="Views\Produtos\_CriacaoResposta.cshtml" />
+    <Content Include="Views\Produtos\_EditarResposta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

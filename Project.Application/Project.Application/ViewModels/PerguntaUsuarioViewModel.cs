@@ -6,7 +6,7 @@ namespace Project.Application.ViewModels
     {
         public int PerguntaId { get; set; }
         public string Descricao { get; set; }
-        //public RespostaViewModel RespostaViewModels { get; set; }
+        public RespostaViewModel RespostaViewModels { get; set; }
         public string UsuarioId { get; set; }
         public int ProdutoId { get; set; }
         public DateTime DataCriacao { get; set; }

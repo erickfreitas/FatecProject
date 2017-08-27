@@ -9,6 +9,7 @@
             <div class="form-group login-username">
                 <div>
                     @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control", @placeholder = "Descrição da Pergunta", @style = "max-witdh: 450px;", @rows = "4", @form = "CriarPerguntaForm" })
+                    @Html.ValidationMessageFor(model => model.Descricao)
                 </div>
             </div>
             <div>
@@ -16,7 +17,7 @@
                     <input name="submit" class="btn  btn-block btn-lg btn-primary" value="Adicionar Pergunta" type="submit" form="CriarPerguntaForm">
                 </div>
             </div>
-            @using (Ajax.BeginForm("CriarPergunta", "Produtos", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "DuvidasTitle", OnSuccess = "$('#ModalPergunta').modal('show')" }, new { @class = "col-md-12", @id = "CriarPerguntaForm" }))
+            @using (Ajax.BeginForm("CriarPergunta", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "CriarPerguntaCallBack" }, new { @class = "col-md-12", @id = "CriarPerguntaForm" }))
             {
                 @Html.Hidden("ProdutoId", Model.ProdutoId)                                
             }                        

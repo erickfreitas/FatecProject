@@ -126,6 +126,7 @@ namespace Project.MVC.Controllers
             var produtoViewModel = _produtoAppService.GetById(id.Value);
             produtoViewModel.PerguntaUsuarioViewModels = _perguntasAppService.GetByProduto(id.Value);
             ViewBag.Usuario = _usuarioAppService.GetById(produtoViewModel.UsuarioId);
+            ViewBag.Produto = produtoViewModel;
             return View(produtoViewModel);
         }
 
@@ -146,7 +147,49 @@ namespace Project.MVC.Controllers
             {
                 perguntaViewModel.UsuarioId = User.Identity.GetUserId();
                 var perguntaAdicionado = _perguntasAppService.Add(perguntaViewModel);
+                ViewBag.Produto = _produtoAppService.GetById(perguntaAdicionado.ProdutoId);
                 return PartialView("_DescricaoPergunta", perguntaAdicionado);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult CriarResposta(RespostaViewModel respostaViewModel)
+        {
+            var pergunta = _perguntasAppService.GetById(respostaViewModel.RespostaId);
+            var produto = _produtoAppService.GetById(pergunta.ProdutoId);
+            if (produto.UsuarioId != User.Identity.GetUserId())
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            ViewBag.Usuario = _usuarioAppService.GetById(User.Identity.GetUserId());
+            ViewBag.Produto = produto;
+            var respostaAdicionada = _respostaAppServie.Add(respostaViewModel);
+            return PartialView("_DescricaoResposta", respostaAdicionada);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult ModalEditarResposta(int respostaId)
+        {
+            var resposta = _respostaAppServie.GetById(respostaId);
+            return PartialView("_EditarResposta", resposta);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult EditarResposta(RespostaViewModel respostaViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _respostaAppServie.Update(respostaViewModel);
+                var resposta = _respostaAppServie.GetById(respostaViewModel.RespostaId);
+                var pergunta = _perguntasAppService.GetById(respostaViewModel.RespostaId);
+                var produto = _produtoAppService.GetById(pergunta.ProdutoId);
+                if (produto.UsuarioId != User.Identity.GetUserId())
+                    return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+                ViewBag.Usuario = _usuarioAppService.GetById(User.Identity.GetUserId());
+                ViewBag.Produto = produto;
+                return PartialView("_DescricaoResposta", resposta);
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }

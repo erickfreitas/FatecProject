@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Project.Application.Interfaces;
 using Project.Application.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -15,13 +18,16 @@ namespace Project.MVC.Controllers
         private readonly IProdutoImagemAppService _produtoImagemAppService;
         private readonly IPerguntaAppService _perguntasAppService;
         private readonly IRespostaAppService _respostaAppServie;
-
+        private readonly ITrocaAppService _trocaAppService;
+        private readonly IUsuarioAppService _usuarioAppService;
         public ProdutosController(IProdutoAppService produtoAppService, 
                                         ICategoriaAppService categoriaAppService,
                                                 ISubCategoriaAppService subCategoriaAppService,
                                                     IProdutoImagemAppService produtoImagemAppService,
                                                     IPerguntaAppService perguntaAppService,
-                                                    IRespostaAppService respostaAppService)
+                                                    IRespostaAppService respostaAppService,
+                                                    ITrocaAppService trocaAppService,
+                                                    IUsuarioAppService usuarioAppService)
         {
             _produtoAppService = produtoAppService;
             _categoriaAppService = categoriaAppService;
@@ -29,6 +35,9 @@ namespace Project.MVC.Controllers
             _produtoImagemAppService = produtoImagemAppService;
             _perguntasAppService = perguntaAppService;
             _respostaAppServie = respostaAppService;
+            _trocaAppService = trocaAppService;
+            _usuarioAppService = usuarioAppService;
+
         }
 
         [HttpGet]
@@ -118,12 +127,29 @@ namespace Project.MVC.Controllers
         [HttpGet]
         public ActionResult Detalhes(int? id)
         {
+
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
             var produtoViewModel = _produtoAppService.GetById(id.Value);
             produtoViewModel.PerguntaUsuarioViewModels = _perguntasAppService.GetByProduto(id.Value);
             ViewBag.Usuario = _usuarioAppService.GetById(produtoViewModel.UsuarioId);
             ViewBag.Produto = produtoViewModel;
+
+            var usuario = _usuarioAppService.GetById(User.Identity.GetUserId());
+            if (usuario != null)
+            {
+                var meusProdutos = _produtoAppService.GetByFilter(p => p.UsuarioId == usuario.UsuarioId).ToList();
+
+                var meusProdutosViewModel = Mapper.Map<List<ProdutoViewModel>>(meusProdutos);
+                ViewBag.MeusProdutos = meusProdutosViewModel;
+            }
+            var nomeDonoProduto = _usuarioAppService.GetByFilter(u => u.UsuarioId == produtoViewModel.UsuarioId).FirstOrDefault().Nome;
+            var sobrenomeDonoProduto = _usuarioAppService.GetByFilter(u => u.UsuarioId == produtoViewModel.UsuarioId).FirstOrDefault().Sobrenome;
+
+            var nomeCompletoDonoProduto = nomeDonoProduto + "" + sobrenomeDonoProduto;
+            ViewBag.NomeDonoProduto = nomeCompletoDonoProduto;
+            
             return View(produtoViewModel);
         }
 
@@ -216,11 +242,12 @@ namespace Project.MVC.Controllers
                 trocaViewModel.FlTrocaRealizada = false;
                 
                 var trocaproposta = _trocaAppService.Add(trocaViewModel);
-                
+
+                ViewBag.MensagemTroca = "Troca enviada para o usuário.";
 
             }
 
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
 
@@ -230,8 +257,9 @@ namespace Project.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var idTroca = _trocaAppService.GetByFilter(c => c.IdProdutoProposto == produtoPropostoId).LastOrDefault().IdTroca;
 
-
+                trocaViewModel.IdTroca = idTroca;
                 trocaViewModel.IdProdutoProposto = produtoPropostoId;
                 trocaViewModel.IdProdutoSujeito = produtoSujeitoId;
                 trocaViewModel.FlTrocaProposta = true;
@@ -254,7 +282,9 @@ namespace Project.MVC.Controllers
             if (ModelState.IsValid)
             {
 
+                var idTroca = _trocaAppService.GetByFilter(c => c.IdProdutoProposto == produtoPropostoId).LastOrDefault().IdTroca;
 
+                trocaViewModel.IdTroca = idTroca;
                 trocaViewModel.IdProdutoProposto = produtoPropostoId;
                 trocaViewModel.IdProdutoSujeito = produtoSujeitoId;
                 trocaViewModel.FlTrocaProposta = true;

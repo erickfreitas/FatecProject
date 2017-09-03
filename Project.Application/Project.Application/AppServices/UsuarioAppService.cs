@@ -5,6 +5,8 @@ using Project.Application.ViewModels;
 using Project.Domain.Entities;
 using Project.Domain.Interfaces.Services;
 using AutoMapper;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Project.Application.AppServices
 {
@@ -72,6 +74,11 @@ namespace Project.Application.AppServices
             Mapper.Map(usuarioViewModel, usuario);
             Mapper.Map(usuarioViewModel, usuario.Endereco);
             _usuarioService.Update(usuario);
+        }
+
+        public IQueryable<Usuario> GetByFilter(Expression<Func<Usuario, bool>> filter)
+        {
+            return _usuarioService.GetByFilter(filter);
         }
     }
 }

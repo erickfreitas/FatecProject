@@ -1,6 +1,9 @@
 ﻿using Project.Application.ViewModels;
 using Project.Domain.Entities;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Project.Application.Interfaces
 {
@@ -23,5 +26,7 @@ namespace Project.Application.Interfaces
         UsuarioPerfilViewModel GetPerfilById(string usuarioId);
 
         void UpdadeInformacao(UsuarioInformacaoViewModel usuarioViewModel);
+
+        IQueryable<Usuario> GetByFilter(Expression<Func<Usuario, bool>> filter);
     }
 }

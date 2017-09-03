@@ -2,6 +2,8 @@
 using Project.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Project.Domain.Services
 {
@@ -43,6 +45,11 @@ namespace Project.Domain.Services
         {
             _repository.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        public IQueryable<TEntity> GetByFilter(Expression<Func<TEntity, bool>> filter)
+        {
+            return _repository.GetByFilter(filter);
         }
     }
 }

@@ -8,10 +8,11 @@ namespace Project.Infra.Data.Repositories
     {
         public new Troca Add(Troca troca)
         {
+           
             Db.Trocas.Add(troca);
             Db.SaveChanges();
             Db.Entry(troca).GetDatabaseValues();
-            return Db.Trocas.Include("Troca").FirstOrDefault(t => t.IdTroca == troca.IdTroca);
+            return troca;
         }
     }
 }

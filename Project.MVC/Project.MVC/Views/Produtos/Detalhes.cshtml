@@ -90,7 +90,7 @@
                                     </span>
                                 </p>
                             </div>
-                            <h5 class="reviewUserTitle"><strong>Marcela Lima Alves</strong></h5>
+                            <h5 class="reviewUserTitle"><strong>@ViewBag.NomeDonoProduto</strong></h5>
                             <a href="@Url.Action("Perfil", "Usuarios", new { @id = Model.UsuarioId })" class="btn btn-danger">Visualizar perfil</a>
                         </div>
                     </div>
@@ -98,8 +98,109 @@
                         <div class="col-sm-12 ">
                             @if (Model.UsuarioId != User.Identity.GetUserId())
                             {
-                                <a class="btn btn-block btn-success">Trocar</a>
+                                @*@using (Ajax.BeginForm("ProporTroca", "Produtos", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ModalPergunta", OnSuccess = "$('#ModalPergunta').modal('show');" }, new { @style = "display: inline-block" }))
+                                {
+                                    @Html.Hidden("produtoSujeitoId", Model.ProdutoId)
+                                }*@
+                            if (User.Identity.GetUserId() != null)
+                            {
+                                    <button class="btn btn-block btn-success" type="submit" data-toggle="modal" data-target="#trocaModal">Trocar</button>
+
+
+                                      <!-- Modal -->
+                                    <div class="modal fade" id="trocaModal" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Escolha um produto seu para inicar a troca</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
+                                                    <div class="row xsResponse">
+                                                        @foreach (ProdutoViewModel produto in ViewBag.MeusProdutos)
+                                                        {
+                                                            <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                                                <div class="product">
+                                                                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                                                                        <i class="glyphicon glyphicon-heart"></i>
+                                                                    </a>
+                                                                    <div class="image">
+                                                                        <div class="quickview">
+                                                                            <a data-toggle="modal" class="btn btn-xs btn-quickview" href="@Url.Action("Detalhes", "Produtos", new { @id = produto.ProdutoId })" data-target="#productSetailsModalAjax">Visualizar </a>
+                                                                        </div>
+                                                                        <a href="@Url.Action("Detalhes", "Produtos", new { @id = produto.ProdutoId })">
+                                                                            @if (produto.ProdutoImagemViewModels.Any())
+                                                                            {
+                                                                                <img src="@Url.Content(produto.ProdutoImagemViewModels.FirstOrDefault().Caminho)" alt="@produto.Nome" class="img-responsive">
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <img src="@Url.Content("~/Content/StoreContent/img/sem-imagem.jpg")" alt="@produto.Nome" class="img-responsive">
+                                                                            }
+                                                                        </a>
+                                                                        <div class="promotion">
+                                                                            <span class="new-product">Recente</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="description">
+                                                                        <h4><a href="product-details.html">@produto.Nome</a></h4>
+                                                                        <p>Leve a emoção do cinema para a sua casa! Este Sistema de Home Theather Philip</p>
+                                                                        <span class="size">@produto.SubCategoriaViewModel.Nome</span>
+                                                                    </div>
+                                                                    <div class="price"><span>@produto.SubCategoriaViewModel.CategoriaViewModel.Nome</span></div>
+                                                                    <div class="action-control">
+                                                                        @using (Ajax.BeginForm("ProporTroca", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#trocaEnviadaModal').modal('show'); " }))
+                                                                        {
+                                                                            @Html.Hidden("produtoSujeitoId", Model.ProdutoId)
+                                                                            @Html.Hidden("produtoPropostoId", produto.ProdutoId)
+                                                                            <button class="add2cart" type="submit">Oferecer produto</button>
+
+
+                                                                        }
+                                                                    </div>
+
+                                                                    
+
+
+                                                                </div>
+                                                            </div>
+                                                            }
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="modal fade" id="trocaEnviadaModal" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Troca</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Troca enviado com sucesso.</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar.</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
                                 <a class="btn btn-block btn-info">Adicionar a lista de Desejos</a>
+                                }
                             }                                                        
                         </div>
                     </div>
@@ -323,6 +424,7 @@
             thumbSlider = $('.has-carousel-v .product-view-thumb').bxSlider(settings());
             $(window).resize(tourLandingScript);
         });
+
     </script>  
     
     <script>
@@ -330,5 +432,8 @@
             $(data).insertAfter($("#DuvidasHeader"));
             $('#ModalPergunta').modal('hide');
         }
+
     </script>
+
+
 }

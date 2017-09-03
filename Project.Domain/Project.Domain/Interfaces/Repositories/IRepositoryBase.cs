@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Project.Domain.Interfaces.Repositories
 {
@@ -10,5 +13,7 @@ namespace Project.Domain.Interfaces.Repositories
         void Update(TEntity obj);
         void Remove(TEntity obj);
         void Dispose();
+
+        IQueryable<TEntity> GetByFilter(Expression<Func<TEntity, bool>> filter);
     }
 }

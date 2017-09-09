@@ -151,21 +151,29 @@
                                                                         <span class="size">@produto.SubCategoriaViewModel.Nome</span>
                                                                     </div>
                                                                     <div class="price"><span>@produto.SubCategoriaViewModel.CategoriaViewModel.Nome</span></div>
-                                                                    <div class="action-control">
-                                                                        @using (Ajax.BeginForm("ProporTroca", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#trocaEnviadaModal').modal('show'); " }))
-                                                                        {
-                                                                            @Html.Hidden("produtoSujeitoId", Model.ProdutoId)
-                                                                            @Html.Hidden("produtoPropostoId", produto.ProdutoId)
-                                                                            <button class="add2cart" type="submit">Oferecer produto</button>
+                                                                    @if (ViewBag.ProdutoNegociado != 0 )
+                                                                    {
+                                                                        <div class="action-control">
+                                                                            <a class="btn-dark" >Produto Negociado</a>
+                                                                        </div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                            <div class="action-control">
+                                                                                @using (Ajax.BeginForm("ProporTroca", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#trocaEnviadaModal').modal('show'); " }))
+                                                                                {
+                                                                                    @Html.Hidden("produtoSujeitoId", Model.ProdutoId)
+                                                                                    @Html.Hidden("produtoPropostoId", produto.ProdutoId)
+                                                                                    <button class="add2cart" type="submit">Oferecer produto</button>
 
 
-                                                                        }
-                                                                    </div>
+                                                                                }
+                                                                            </div>
+                                                                    }
 
-                                                                    
 
 
-                                                                </div>
+                                                                        </div>
                                                             </div>
                                                             }
                                                     </div>
@@ -432,6 +440,11 @@
             $(data).insertAfter($("#DuvidasHeader"));
             $('#ModalPergunta').modal('hide');
         }
+
+
+        $('#trocaEnviadaModal').on('hidden.bs.modal', function () {
+            location.reload();
+        })
 
     </script>
 

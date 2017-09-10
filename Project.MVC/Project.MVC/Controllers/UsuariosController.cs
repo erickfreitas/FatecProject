@@ -159,6 +159,7 @@ namespace Project.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditarInformacao(UsuarioInformacaoViewModel usuarioViewModel)
         {
+            usuarioViewModel.Cep = usuarioViewModel.Cep.Replace("-", "");
             _usuarioAppService.UpdadeInformacao(usuarioViewModel);
             return RedirectToAction("Meuperfil");
         }

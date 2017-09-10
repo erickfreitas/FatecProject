@@ -63,6 +63,9 @@ namespace Project.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                registerViewModel.Cpf = registerViewModel.Cpf.Replace(".", "").Replace("-", "");
+                registerViewModel.Rg = registerViewModel.Rg.Replace(".", "").Replace("-", "");
+
                 var user = new ApplicationUser { Nome = registerViewModel.Nome, UserName = registerViewModel.Email, Email = registerViewModel.Email, Rg = registerViewModel.Rg, Cpf = registerViewModel.Cpf };
                 var result = await UserManager.CreateAsync(user, registerViewModel.Senha);
                 if (result.Succeeded)

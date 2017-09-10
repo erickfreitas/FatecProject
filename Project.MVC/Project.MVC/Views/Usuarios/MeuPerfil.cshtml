@@ -506,10 +506,6 @@
 
         $("#Cep").blur(buscarEndereco());
 
-        $(document).ready(function () {
-            $("#Cep").mask("00000-000");
-        });
-
 
         $('#trocaAceitaModal').on('hidden.bs.modal', function () {
             location.reload();
@@ -524,4 +520,14 @@
         })
 
     </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+
+
+<script type="text/javascript">
+        $(function () {
+            $("#Cep").mask("99999-999");
+        });
+</script>
 }

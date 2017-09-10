@@ -46,6 +46,23 @@ namespace Project.MVC.Controllers
         public ActionResult MeusProdutos()
         {
             var produtoViewModels = _produtoAppService.GetByUsuario(User.Identity.GetUserId());
+
+            if (produtoViewModels.Count() != 0)
+            {
+                foreach (var produtoUsuario in produtoViewModels)
+                {
+                    var produtoTrocadoAceito = _trocaAppService.GetByFilter(p => p.IdProdutoSujeito == produtoUsuario.ProdutoId || p.IdProdutoProposto == produtoUsuario.ProdutoId && p.FlTrocaRealizada == true);
+                    var produtoTrocadoOferecido = _trocaAppService.GetByFilter(p => p.IdProdutoSujeito == produtoUsuario.ProdutoId || p.IdProdutoProposto == produtoUsuario.ProdutoId && p.FlTrocaRealizada == true);
+
+
+                    ViewBag.ProdutoTrocadoAceito = produtoTrocadoAceito.Count() != 0 ? produtoTrocadoAceito.FirstOrDefault().IdProdutoSujeito : 0 ;
+
+                    ViewBag.ProdutoTrocadoOferecido = produtoTrocadoOferecido.Count() != 0 ? produtoTrocadoOferecido.FirstOrDefault().IdProdutoProposto : 0;
+                    
+                }
+
+
+            }
             return View(produtoViewModels);
         }
 
@@ -136,6 +153,10 @@ namespace Project.MVC.Controllers
             produtoViewModel.PerguntaUsuarioViewModels = _perguntasAppService.GetByProduto(id.Value);
             ViewBag.Usuario = _usuarioAppService.GetById(produtoViewModel.UsuarioId);
             ViewBag.Produto = produtoViewModel;
+
+            var produtoTrocado = _trocaAppService.GetByFilter(t => t.IdProdutoProposto == id || t.IdProdutoSujeito == id && t.FlTrocaRealizada == true).ToList();
+            var produtoTrocadoViewModel = Mapper.Map<List<TrocaViewModel>>(produtoTrocado);
+            ViewBag.ProdutoTrocado = produtoTrocadoViewModel.Count;
 
             var usuario = _usuarioAppService.GetById(User.Identity.GetUserId());
             if (usuario != null)

@@ -104,8 +104,16 @@
                                 }*@
                             if (User.Identity.GetUserId() != null)
                             {
-                                    <button class="btn btn-block btn-success" type="submit" data-toggle="modal" data-target="#trocaModal">Trocar</button>
 
+                                if (ViewBag.ProdutoTrocado == 0) {
+                                    <button class="btn btn-block btn-success" type="submit" data-toggle="modal" data-target="#trocaModal">Trocar</button>
+                                }
+                                else
+                                {
+                                    <div class="action-control">
+                                        <a class="btn-dark">Produto Trocado</a>
+                                    </div>
+                                }
 
                                       <!-- Modal -->
                                     <div class="modal fade" id="trocaModal" role="dialog">
@@ -147,7 +155,7 @@
                                                                     </div>
                                                                     <div class="description">
                                                                         <h4><a href="product-details.html">@produto.Nome</a></h4>
-                                                                        <p>Leve a emoção do cinema para a sua casa! Este Sistema de Home Theather Philip</p>
+                                                                        <p>@produto.Descricao</p>
                                                                         <span class="size">@produto.SubCategoriaViewModel.Nome</span>
                                                                     </div>
                                                                     <div class="price"><span>@produto.SubCategoriaViewModel.CategoriaViewModel.Nome</span></div>

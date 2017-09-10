@@ -64,10 +64,31 @@
                                 <div class="price">
                                     <span>@produto.SubCategoriaViewModel.Nome</span>
                                 </div>
+
+                                
+
+                                   @*@if (ViewBag.ProdutoTrocadoAceito == 0 && ViewBag.ProdutoTrocadoOferecido == 0)
+                                    {*@
+
                                 <div class="action-control">
                                     <a href="@Url.Action("Detalhes", new { @Controller = "Produtos", @id = produto.ProdutoId })" class="btn btn-primary"> <span> Detalhes </span> </a>
                                     <a href="@Url.Action("Editar", new { @Controller = "Produtos", @id = produto.ProdutoId })" class="btn btn-info"> <span> Editar </span> </a>
                                 </div>
+                                    @*}*@
+
+
+
+                               
+                                     @if (ViewBag.ProdutoTrocadoAceito == produto.ProdutoId || ViewBag.ProdutoTrocadoOferecido == produto.ProdutoId)
+                                        {
+                                    <div class="action-control">
+                                        <a class="btn-dark">Produto Trocado</a>
+                                    </div>
+
+                                        }
+                                    
+                                
+
                             </div>
                         </div>
                     }

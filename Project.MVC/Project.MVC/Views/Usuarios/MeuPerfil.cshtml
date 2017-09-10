@@ -252,7 +252,7 @@
                                         </div>
                                         foreach (TrocaViewModel troca in ViewBag.Trocas)
                                         {
-
+                                            <p>@troca.DtTrocaAceita</p>
                                             if (troca.FlTrocaAceita == false && troca.FlTrocaRejeitada == false)
                                             {
                                                 using (Ajax.BeginForm("AceitarTroca", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#trocaAceitaModal').modal('show'); " }))
@@ -263,6 +263,7 @@
                                             @Html.Hidden("produtoPropostoId", produto.ProdutoId)
                                             @Html.Hidden("produtoSujeitoId", meusProdutos.ProdutoId)
                                         <button class="add2cart" type="submit">Aceitar Troca</button>
+                                        
                                                 }
                                             }
                                             else if(troca.FlTrocaAceita == true && troca.FlTrocaRejeitada == false)
@@ -312,6 +313,41 @@
                                             }
 
 
+
+
+
+                                            <div class="modal fade" id="trocaRealizadaModal" role="dialog">
+                                                <div class="modal-dialog">
+
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">Troca</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                @using (Ajax.BeginForm("ConfirmarTroca", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#trocaRealizadaModal').modal('show'); " }))
+                                                                {
+
+                                                                @Html.Hidden("idTroca", troca.IdTroca)
+
+                                                                @Html.Hidden("produtoPropostoId", produto.ProdutoId)
+                                                                @Html.Hidden("produtoSujeitoId", meusProdutos.ProdutoId)
+                                                                    <div class="col-md-7">
+                                                                        <input type="text" id="dsTroca" name="dsTroca" />
+                                                                    </div>
+                                                                <button class="add2cart" type="submit">Confirmar Troca</button>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar.</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
 
                                         }
                                     }
@@ -378,8 +414,6 @@
 
                                 </div>
                             </div>
-
-
 
 
                             }

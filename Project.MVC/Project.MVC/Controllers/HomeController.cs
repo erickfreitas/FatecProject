@@ -7,15 +7,19 @@ namespace Project.MVC.Controllers
     public class HomeController : Controller
     {
         private readonly IProdutoAppService _produtoAppService;
+        private readonly ITrocaAppService _trocaAppService;
 
-        public HomeController(IProdutoAppService produtoAppService)
+        public HomeController(IProdutoAppService produtoAppService,
+            ITrocaAppService trocaAppService)
         {
             _produtoAppService = produtoAppService;
+            _trocaAppService = trocaAppService;
         }
 
         public ActionResult Index()
         {
             ViewBag.Produtos = _produtoAppService.GetAll();
+            ViewBag.NumeroTrocas = _trocaAppService.GetByFilter(t => t.FlTrocaRealizada == true).Count();
             return View();
         }
 

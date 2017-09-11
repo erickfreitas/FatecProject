@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Project.Domain.Entities;
+﻿using Project.Domain.Entities;
 using Project.Domain.Interfaces.Repositories;
 using Project.Domain.Interfaces.Services;
+using System.Collections.Generic;
 
 namespace Project.Domain.Services
 {

@@ -7,6 +7,7 @@ namespace Project.Domain.Entities
     {
         public int CategoriaId { get; set; }
         public string Nome { get; set; }
+        public bool MostrarNoMenuInicial { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataAlteracao { get; set; }
         public virtual ICollection<Produto> Produtos { get; set; }

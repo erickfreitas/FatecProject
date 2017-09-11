@@ -164,6 +164,105 @@ namespace Project.MVC
             bundles.Add(new ScriptBundle("~/StoreContent/necessary/script").Include(
                       "~/Content/StoreContent/jquery.min.js",
                       "~/Content/StoreContent/bootstrap.min.js"));
+
+            //PanelContent
+
+            bundles.Add(new StyleBundle("~/PanelContent/bootstrap/css").Include(
+                      "~/Content/PanelContent/css/bootstrap.min.css"));
+
+            bundles.Add(new StyleBundle("~/PanelContent/fontawesome/css").Include(
+                      "~/Content/PanelContent/font-awesome/4.5.0/css/font-awesome.min.css"));
+
+            bundles.Add(new StyleBundle("~/PanelContent/googleapis/css").Include(
+                      "~/Content/PanelContent/css/fonts.googleapis.com.css"));
+
+            bundles.Add(new StyleBundle("~/PanelContent/ace-min/css").Include(
+                      "~/Content/PanelContent/css/ace.min.css"));
+
+            bundles.Add(new StyleBundle("~/PanelContent/ace-part2/css").Include(
+                      "~/Content/PanelContent/css/ace-part2.min.css"));
+
+            bundles.Add(new StyleBundle("~/PanelContent/ace-skins/css").Include(
+                      "~/Content/PanelContent/css/ace-skins.min.css"));
+
+            bundles.Add(new StyleBundle("~/PanelContent/ace-rtl/css").Include(
+                      "~/Content/PanelContent/css/ace-rtl.min.css"));
+
+            bundles.Add(new StyleBundle("~/PanelContent/ace-ie/css").Include(
+                      "~/Content/PanelContent/css/ace-ie.min.css"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/ace-extra/script").Include(
+                      "~/Content/PanelContent/js/ace-extra.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/html5shiv/script").Include(
+                      "~/Content/PanelContent/js/html5shiv.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/respond/script").Include(
+                      "~/Content/PanelContent/js/respond.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/jquery-214/script").Include(
+                      "~/Content/PanelContent/js/jquery-2.1.4.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/jquery-1113/script").Include(
+                      "~/Content/PanelContent/js/jquery-1.11.3.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/bootstrap/script").Include(
+                      "~/Content/PanelContent/js/bootstrap.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/excanvas/script").Include(
+                      "~/Content/PanelContent/js/excanvas.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/jquery-ui-custom/script").Include(
+                      "~/Content/PanelContent/js/jquery-ui.custom.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/jquery-ui-touch-punch/script").Include(
+                      "~/Content/PanelContent/js/jquery.ui.touch-punch.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/jquery-easypiechart/script").Include(
+                      "~/Content/PanelContent/js/jquery.easypiechart.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/jquery-sparkline/script").Include(
+                      "~/Content/PanelContent/js/jquery.sparkline.index.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/jquery-float/script").Include(
+                      "~/Content/PanelContent/js/jquery.flot.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/jquery-float-pie/script").Include(
+                      "~/Content/PanelContent/js/jquery.flot.pie.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/jquery-float-resize/script").Include(
+                      "~/Content/PanelContent/js/jquery.flot.resize.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/ace-elements/script").Include(
+                      "~/Content/PanelContent/js/ace-elements.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/ace/script").Include(
+                      "~/Content/PanelContent/js/ace.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/jquery-datatables/script").Include(
+                      "~/Content/PanelContent/js/jquery.dataTables.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/jquery-datatables-bootstrap/script").Include(
+                      "~/Content/PanelContent/js/jquery.dataTables.bootstrap.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/datatables-buttons/script").Include(
+                      "~/Content/PanelContent/js/dataTables.buttons.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/buttons-flash/script").Include(
+                      "~/Content/PanelContent/js/buttons.flash.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/buttons-html5/script").Include(
+                      "~/Content/PanelContent/js/buttons.html5.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/buttons-print/script").Include(
+                      "~/Content/PanelContent/js/buttons.print.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/buttons-colvis/script").Include(
+                      "~/Content/PanelContent/js/buttons.colVis.min.js"));
+
+            bundles.Add(new ScriptBundle("~/PanelContent/datatables-select/script").Include(
+                      "~/Content/PanelContent/js/dataTables.select.min.js"));
+      
         }
     }
 }

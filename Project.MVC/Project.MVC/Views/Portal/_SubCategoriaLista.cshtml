@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Project.Application.ViewModels.SubCategoriaViewModel>
+<div class="row">
+    <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="header smaller lighter blue">Sub-Categorias</h3>
+                <div class="clearfix">
+                    <a href="@Url.Action("NovaSubCategoria", "Portal", new { @id = ViewBag.Categoria.CategoriaId })">
+                        <button class="btn btn-sm btn-info" type="button">
+                            Adicionar
+                        </button>
+                    </a>
+                    <div class="pull-right tableTools-container">
+                    </div>
+                </div>
+                <div class="table-header">
+                    Sub-Categorias da Categoria @ViewBag.Categoria.Nome
+                </div>
+
+                <!-- div.table-responsive -->
+                <!-- div.dataTables_borderWrap -->
+                <div>
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th class="hidden-480 col-md-3 text-center">Mostrar no Menu inicial</th>
+                                <th>Data de Cadastro</th>
+                                <th>Última alteração</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var subCategoria in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("EditarSubCategoria", new { @controller = "Portal", @id = subCategoria.SubCategoriaId })">@subCategoria.Nome</a>
+                                    </td>
+                                    <td class="hidden-480 text-center">
+                                        @if (subCategoria.MostrarNoMenuInicial)
+                                        {
+                                            <span class="label label-lg label-success">Sim</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="label label-lg label-default">Não</span>
+                                        }
+                                    </td>
+                                    <td>@subCategoria.DataCriacao</td>
+                                    <td>@subCategoria.DataAlteracao</td>
+
+                                    <td>
+                                        <div class="hidden-sm hidden-xs action-buttons">
+                                            <a class="green tooltip-success" href="@Url.Action("EditarSubCategoria", new { @controller = "Portal", @id = subCategoria.SubCategoriaId })" data-rel="tooltip" title="Editar">
+                                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                            </a>
+
+                                            <a class="red tooltip-error" href="#" data-rel="tooltip" title="Remover">
+                                                <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                            </a>
+                                        </div>
+
+                                        <div class="hidden-md hidden-lg">
+                                            <div class="inline pos-rel">
+                                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                    <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                                </button>
+
+                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+
+                                                    <li>
+                                                        <a href="@Url.Action("EditarSubCategoria", new { @controller = "Portal", @id = subCategoria.SubCategoriaId })" class="tooltip-success" data-rel="tooltip" title="Editar">
+                                                            <span class="green">
+                                                                <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="#" class="tooltip-error" data-rel="tooltip" title="Remover">
+                                                            <span class="red">
+                                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE CONTENT ENDS -->
+    </div><!-- /.col -->
+</div><!-- /.row -->

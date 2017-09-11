@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Project.Application.ViewModels
@@ -17,6 +20,14 @@ namespace Project.Application.ViewModels
         [DisplayName("Categoria")]
         public int CategoriaId { get; set; }
 
-        public CategoriaViewModel CategoriaViewModel { get; set; }
+        public bool MostrarNoMenuInicial { get; set; }
+
+        [ScaffoldColumn(false)]
+        public DateTime DataCriacao { get; set; }
+
+        [ScaffoldColumn(false)]
+        public DateTime DataAlteracao { get; set; }
+
+        public CategoriaViewModel CategoriaViewModel { get; set; }        
     }
 }

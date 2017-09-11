@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Project.Application.ViewModels.CategoriaViewModel>
+<ul class="dropdown-menu hero-submenu">
+    <li class="megamenu-content">
+        @foreach (var categoria in Model)
+        {
+            <ul class="col-lg-2  col-sm-2 col-md-2  unstyled">
+                <li>
+                    <p class="menu-title"><strong> @categoria.Nome </strong></p>
+                </li>
+                @foreach (var subcategoria in categoria.SubCategoriaViewModels)
+                {
+                    <li><a href="#"> @subcategoria.Nome </a></li>
+                }                              
+            </ul>
+        }        
+    </li>
+</ul>

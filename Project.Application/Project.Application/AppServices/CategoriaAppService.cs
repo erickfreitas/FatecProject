@@ -4,6 +4,7 @@ using Project.Application.ViewModels;
 using Project.Domain.Entities;
 using Project.Domain.Interfaces.Services;
 using System.Collections.Generic;
+using System;
 
 namespace Project.Application.AppServices
 {
@@ -30,6 +31,24 @@ namespace Project.Application.AppServices
         public CategoriaViewModel GetById(int categoriaId)
         {
             return Mapper.Map<Categoria, CategoriaViewModel>(_categoriaService.GetById(categoriaId));
+        }
+
+        public IEnumerable<CategoriaViewModel> GetCategoriasAtivas()
+        {
+            var categorias = new List<CategoriaViewModel>();
+            foreach (var currentCategoria in _categoriaService.GetCategoriasAtivas())
+            {
+                var categoria = Mapper.Map<Categoria, CategoriaViewModel>(currentCategoria);
+                foreach (var subCategoria in currentCategoria.SubCategorias)
+                {
+                    if (subCategoria.MostrarNoMenuInicial)
+                    {
+                        categoria.SubCategoriaViewModels.Add(Mapper.Map<SubCategoria, SubCategoriaViewModel>(subCategoria));
+                    }
+                }                
+                categorias.Add(categoria);
+            }
+            return categorias;
         }
 
         public void Remove(CategoriaViewModel categoriaViewModel)

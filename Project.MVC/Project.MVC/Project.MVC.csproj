@@ -189,6 +189,7 @@
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\ContaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -520,6 +521,8 @@
     <Content Include="Content\PanelContent\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\PanelContent\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\PanelContent\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\PanelContent\fonts\cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff" />
+    <Content Include="Content\PanelContent\fonts\DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\Products\30.jpg" />
     <Content Include="Images\quero-trocar.png" />
@@ -584,6 +587,17 @@
     <Content Include="Views\Produtos\_CriacaoPergunta.cshtml" />
     <Content Include="Views\Produtos\_CriacaoResposta.cshtml" />
     <Content Include="Views\Produtos\_EditarResposta.cshtml" />
+    <Content Include="Views\Portal\Index.cshtml" />
+    <Content Include="Views\Shared\_PanelLayout.cshtml" />
+    <Content Include="Views\Portal\Categorias.cshtml" />
+    <Content Include="Views\Portal\NovaCategoria.cshtml" />
+    <Content Include="Views\Portal\EditarCategoria.cshtml" />
+    <Content Include="Views\Portal\_EditarCategoria.cshtml" />
+    <Content Include="Views\Portal\_SubCategoriaLista.cshtml" />
+    <Content Include="Views\Portal\EditarSubCategoria.cshtml" />
+    <Content Include="Views\Portal\_EditarSubCategoria.cshtml" />
+    <Content Include="Views\Portal\NovaSubCategoria.cshtml" />
+    <Content Include="Views\Home\_MenuCategorias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

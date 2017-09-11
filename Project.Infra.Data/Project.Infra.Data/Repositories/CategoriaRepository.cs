@@ -11,5 +11,10 @@ namespace Project.Infra.Data.Repositories
         {
             return base.GetAll().OrderBy(c => c.Nome);
         }
+
+        public IEnumerable<Categoria> GetCategoriasAtivas()
+        {
+            return Db.Categorias.Include("SubCategorias").Where(c => c.MostrarNoMenuInicial);
+        }
     }
 }

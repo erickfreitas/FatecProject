@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Project.Domain.Entities;
+﻿using Project.Domain.Entities;
 using Project.Domain.Interfaces.Repositories;
+using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace Project.Infra.Data.Repositories
 {
@@ -25,5 +24,6 @@ namespace Project.Infra.Data.Repositories
         {
             return Db.Produtos.Where(p => p.UsuarioId == usuarioId).ToList();
         }
+
     }
 }

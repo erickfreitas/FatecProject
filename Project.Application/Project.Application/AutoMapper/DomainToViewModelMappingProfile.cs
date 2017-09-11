@@ -53,7 +53,6 @@ namespace Project.Application.AutoMapper
             CreateMap<Resposta, RespostaViewModel>();
             #endregion
 
-
             #region TrocaMaps
             CreateMap<Troca, TrocaViewModel>();
             #endregion

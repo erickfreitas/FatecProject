@@ -143,70 +143,7 @@
                     <li><a href="@Url.Action("Index", "Home")"> Início </a></li>
                     <li class="dropdown megamenu-fullwidth ">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">Produtos<b class="caret"> </b> </a>
-                        <ul class="dropdown-menu hero-submenu">
-                            <li class="megamenu-content">
-                                <ul class="col-lg-2  col-sm-2 col-md-2  unstyled">
-                                    <li>
-                                        <p class="menu-title"><strong> Informática </strong></p>
-                                    </li>
-                                    <li><a href="#"> Notebook </a></li>
-                                    <li><a href="#"> Smartphone </a></li>
-                                    <li><a href="#"> Tablet </a></li>
-                                    <li><a href="#"> Computador </a></li>
-                                    <li><a href="#"> Outros </a></li>
-                                </ul>
-                                <ul class="col-lg-2  col-sm-2 col-md-2  unstyled">
-                                    <li>
-                                        <p class="menu-title"><strong> Móveis </strong></p>
-                                    </li>
-                                    <li><a href="#"> Mesa </a></li>
-                                    <li><a href="#"> Sofá </a></li>
-                                    <li><a href="#"> Armário </a></li>
-                                    <li><a href="#"> Cama </a></li>
-                                    <li><a href="#"> Outros </a></li>
-                                </ul>
-                                <ul class="col-lg-2  col-sm-2 col-md-2  unstyled">
-                                    <li>
-                                        <p class="menu-title"><strong> Eletrodomésticos </strong></p>
-                                    </li>
-                                    <li><a href="#"> Geladeira </a></li>
-                                    <li><a href="#"> Fogão </a></li>
-                                    <li><a href="#"> Aspirador de pó </a></li>
-                                    <li><a href="#"> Televisor </a></li>
-                                    <li><a href="#"> Outros </a></li>
-                                </ul>
-                                <ul class="col-lg-2  col-sm-2 col-md-2  unstyled">
-                                    <li>
-                                        <p class="menu-title"><strong> Livros </strong></p>
-                                    </li>
-                                    <li><a href="#"> Técnico </a></li>
-                                    <li><a href="#"> Fantasia </a></li>
-                                    <li><a href="#"> Romance </a></li>
-                                    <li><a href="#"> Terror </a></li>
-                                    <li><a href="#"> Outros </a></li>
-                                </ul>
-                                <ul class="col-lg-2  col-sm-2 col-md-2  unstyled">
-                                    <li>
-                                        <p class="menu-title"><strong> Brinquedos </strong></p>
-                                    </li>
-                                    <li><a href="#"> Boneco </a></li>
-                                    <li><a href="#"> Carrinho </a></li>
-                                    <li><a href="#"> Tabuleiro </a></li>
-                                    <li><a href="#"> Pelúcia </a></li>
-                                    <li><a href="#"> Outros </a></li>
-                                </ul>
-                                <ul class="col-lg-2  col-sm-2 col-md-2  unstyled">
-                                    <li>
-                                        <p class="menu-title"><strong> Jogos </strong></p>
-                                    </li>
-                                    <li><a href="#">Console</a></li>
-                                    <li><a href="#">Pc</a></li>
-                                    <li><a href="#">Cartas</a></li>
-                                    <li><a href="#">Estratégia</a></li>
-                                    <li><a href="#">Outros</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        @Html.Action("CarregarCategorias", "Home")
                     </li>
                     <li><a href="@Url.Action("QuemSomos", "Home")"> Quem Somos? </a></li>
                     <li><a href="@Url.Action("PerguntasFrequentes", "Home")"> Como funciona? </a></li>

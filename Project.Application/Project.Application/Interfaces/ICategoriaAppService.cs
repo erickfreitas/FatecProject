@@ -15,5 +15,7 @@ namespace Project.Application.Interfaces
         void Remove(CategoriaViewModel categoriaViewModel);
 
         void Update(CategoriaViewModel categoriaViewModel);
+
+        IEnumerable<CategoriaViewModel> GetCategoriasAtivas();
     }
 }

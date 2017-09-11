@@ -18,6 +18,9 @@ namespace Project.Infra.Data.EntityConfig
                 .IsRequired()
                 .HasMaxLength(30);
 
+            Property(c => c.MostrarNoMenuInicial)
+                .IsRequired();
+
             Property(c => c.DataCriacao)
                 .IsRequired();
 

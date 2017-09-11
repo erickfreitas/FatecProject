@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AutoMapper;
 using Project.Application.Interfaces;
 using Project.Application.ViewModels;
 using Project.Domain.Entities;
 using Project.Domain.Interfaces.Services;
-using AutoMapper;
+using System.Collections.Generic;
 
 namespace Project.Application.AppServices
 {

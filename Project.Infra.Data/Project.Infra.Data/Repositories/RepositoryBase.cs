@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Project.Infra.Data.Repositories
 {
@@ -38,6 +39,13 @@ namespace Project.Infra.Data.Repositories
         {
             Db.Set<TEntity>().Remove(obj);
             Db.SaveChanges();
+        }
+
+
+        public virtual IQueryable<TEntity> GetByFilter(Expression<Func<TEntity, bool>> filter)
+        {
+            IQueryable<TEntity> query = Db.Set<TEntity>().Where(filter);
+            return query;
         }
 
         public void Dispose()

@@ -216,9 +216,9 @@
                     <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                         <h3> Informações </h3>
                         <ul>
-                            <li><a href="#">Sobre</a></li>
-                            <li><a href="#">Como Funciona?</a></li>
-                            <li><a href="#">Dúvidas Frequêntes</a></li>
+                            <li><a href="@Url.Action("QuemSomos", "Home")">Sobre</a></li>
+                            <li><a href="@Url.Action("PerguntasFrequentes", "Home")">Como Funciona?</a></li>
+                            <li><a href="@Url.Action("PerguntasFrequentes", "Home")">Dúvidas Frequêntes</a></li>
                             <li><a href="#">Torne-se um Parceiro</a></li>
                             <li><a href="#">Contato</a></li>
                         </ul>
@@ -226,11 +226,11 @@
                     <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                         <h3> Minha Conta </h3>
                         <ul>
-                            <li><a href="account.html"> Minha conta </a></li>
-                            <li><a href="my-address.html"> Meus produtos </a></li>
-                            <li><a href="wishlist.html"> Lista de desejos </a></li>
-                            <li><a href="order-list.html"> Histórico de trocas </a></li>
-                            <li><a href="order-status.html"> Usuários </a></li>
+                            <li><a href="@Url.Action("MeuPerfil", "Usuarios")"> Minha conta </a></li>
+                            <li><a href="@Url.Action("MeusProdutos", "Produtos")"> Meus produtos </a></li>
+                            <li><a href="@Url.Action("MeuPerfil", "Usuarios")"> Lista de desejos </a></li>
+                            <li><a href="@Url.Action("MeuPerfil", "Usuarios")"> Histórico de trocas </a></li>
+                            <li><a href="@Url.Action("MeuPerfil", "Usuarios")"> Usuários </a></li>
                         </ul>
                     </div>
                     <div style="clear:both" class="hide visible-xs"></div>

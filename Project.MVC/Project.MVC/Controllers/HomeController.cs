@@ -7,26 +7,20 @@ namespace Project.MVC.Controllers
     public class HomeController : Controller
     {
         private readonly IProdutoAppService _produtoAppService;
-        private readonly ICategoriaAppService _categoriaAppService;
+        private readonly ITrocaAppService _trocaAppService;
 
         public HomeController(IProdutoAppService produtoAppService,
-                                ICategoriaAppService categoriaAppService)
+            ITrocaAppService trocaAppService)
         {
             _produtoAppService = produtoAppService;
-            _categoriaAppService = categoriaAppService;
+            _trocaAppService = trocaAppService;
         }
 
         public ActionResult Index()
         {
-            ViewBag.Produtos = _produtoAppService.GetAll();            
+            ViewBag.Produtos = _produtoAppService.GetAll();
+            ViewBag.NumeroTrocas = _trocaAppService.GetByFilter(t => t.FlTrocaRealizada == true).Count();
             return View();
-        }
-
-        [HttpGet]
-        public ActionResult CarregarCategorias()
-        {
-            var categorias = _categoriaAppService.GetCategoriasAtivas();
-            return View("_MenuCategorias", categorias);
         }
 
         public ActionResult QuemSomos()

@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Project.Application.Interfaces;
 using Project.Application.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -15,15 +19,16 @@ namespace Project.MVC.Controllers
         private readonly IProdutoImagemAppService _produtoImagemAppService;
         private readonly IPerguntaAppService _perguntasAppService;
         private readonly IRespostaAppService _respostaAppServie;
+        private readonly ITrocaAppService _trocaAppService;
         private readonly IUsuarioAppService _usuarioAppService;
-
         public ProdutosController(IProdutoAppService produtoAppService, 
-                                    ICategoriaAppService categoriaAppService,
-                                        ISubCategoriaAppService subCategoriaAppService,
-                                            IProdutoImagemAppService produtoImagemAppService,
-                                                IPerguntaAppService perguntaAppService,
-                                                    IRespostaAppService respostaAppService, 
-                                                        IUsuarioAppService usuarioAppService)
+                                        ICategoriaAppService categoriaAppService,
+                                                ISubCategoriaAppService subCategoriaAppService,
+                                                    IProdutoImagemAppService produtoImagemAppService,
+                                                    IPerguntaAppService perguntaAppService,
+                                                    IRespostaAppService respostaAppService,
+                                                    ITrocaAppService trocaAppService,
+                                                    IUsuarioAppService usuarioAppService)
         {
             _produtoAppService = produtoAppService;
             _categoriaAppService = categoriaAppService;
@@ -31,7 +36,9 @@ namespace Project.MVC.Controllers
             _produtoImagemAppService = produtoImagemAppService;
             _perguntasAppService = perguntaAppService;
             _respostaAppServie = respostaAppService;
+            _trocaAppService = trocaAppService;
             _usuarioAppService = usuarioAppService;
+
         }
 
         [HttpGet]
@@ -39,6 +46,23 @@ namespace Project.MVC.Controllers
         public ActionResult MeusProdutos()
         {
             var produtoViewModels = _produtoAppService.GetByUsuario(User.Identity.GetUserId());
+
+            if (produtoViewModels.Count() != 0)
+            {
+                foreach (var produtoUsuario in produtoViewModels)
+                {
+                    var produtoTrocadoAceito = _trocaAppService.GetByFilter(p => p.IdProdutoSujeito == produtoUsuario.ProdutoId || p.IdProdutoProposto == produtoUsuario.ProdutoId && p.FlTrocaRealizada == true);
+                    var produtoTrocadoOferecido = _trocaAppService.GetByFilter(p => p.IdProdutoSujeito == produtoUsuario.ProdutoId || p.IdProdutoProposto == produtoUsuario.ProdutoId && p.FlTrocaRealizada == true);
+
+
+                    ViewBag.ProdutoTrocadoAceito = produtoTrocadoAceito.Count() != 0 ? produtoTrocadoAceito.FirstOrDefault().IdProdutoSujeito : 0 ;
+
+                    ViewBag.ProdutoTrocadoOferecido = produtoTrocadoOferecido.Count() != 0 ? produtoTrocadoOferecido.FirstOrDefault().IdProdutoProposto : 0;
+                    
+                }
+
+
+            }
             return View(produtoViewModels);
         }
 
@@ -121,12 +145,42 @@ namespace Project.MVC.Controllers
         [HttpGet]
         public ActionResult Detalhes(int? id)
         {
+
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
             var produtoViewModel = _produtoAppService.GetById(id.Value);
             produtoViewModel.PerguntaUsuarioViewModels = _perguntasAppService.GetByProduto(id.Value);
             ViewBag.Usuario = _usuarioAppService.GetById(produtoViewModel.UsuarioId);
             ViewBag.Produto = produtoViewModel;
+
+            var produtoTrocado = _trocaAppService.GetByFilter(t => t.IdProdutoProposto == id || t.IdProdutoSujeito == id && t.FlTrocaRealizada == true).ToList();
+            var produtoTrocadoViewModel = Mapper.Map<List<TrocaViewModel>>(produtoTrocado);
+            ViewBag.ProdutoTrocado = produtoTrocadoViewModel.Count;
+
+            var usuario = _usuarioAppService.GetById(User.Identity.GetUserId());
+            if (usuario != null)
+            {
+                var meusProdutos = _produtoAppService.GetByFilter(p => p.UsuarioId == usuario.UsuarioId).ToList();
+
+                foreach (var produtos in meusProdutos)
+                {
+
+                    var produtoNegociado = _trocaAppService.GetByFilter(t => t.IdProdutoProposto == produtos.ProdutoId && t.IdProdutoSujeito == id && t.FlTrocaProposta == true).ToList().Count();
+
+                    var meusProdutosViewModel = Mapper.Map<List<ProdutoViewModel>>(meusProdutos);
+                    //var produtoNegociadoViewModel = Mapper.Map<List<TrocaViewModel>>(produtoNegociado);
+
+                    ViewBag.MeusProdutos = meusProdutosViewModel;
+                    ViewBag.ProdutoNegociado = produtoNegociado;
+                }
+            }
+            var nomeDonoProduto = _usuarioAppService.GetByFilter(u => u.UsuarioId == produtoViewModel.UsuarioId).FirstOrDefault().Nome;
+            var sobrenomeDonoProduto = _usuarioAppService.GetByFilter(u => u.UsuarioId == produtoViewModel.UsuarioId).FirstOrDefault().Sobrenome;
+
+            var nomeCompletoDonoProduto = nomeDonoProduto + "" + sobrenomeDonoProduto;
+            ViewBag.NomeDonoProduto = nomeCompletoDonoProduto;
+            
             return View(produtoViewModel);
         }
 
@@ -201,6 +255,130 @@ namespace Project.MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var subCategorias = _subCategoriaAppService.GetByCategoria(categoriaId.Value);
             return Json(subCategorias, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult ProporTroca(int produtoPropostoId, int produtoSujeitoId, TrocaViewModel trocaViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+                
+                trocaViewModel.IdProdutoProposto = produtoPropostoId;
+                trocaViewModel.IdProdutoSujeito = produtoSujeitoId;
+
+                trocaViewModel.FlTrocaProposta = true;
+                trocaViewModel.FlTrocaAceita = false;
+                trocaViewModel.FlTrocaRealizada = false;
+                trocaViewModel.FlTrocaRejeitada = false;
+                
+                trocaViewModel.DtTrocaAceita = DateTime.Now;
+                trocaViewModel.DtTrocaProposta = DateTime.Now;
+                trocaViewModel.DtTrocaRealizada = DateTime.Now;
+                trocaViewModel.DtTrocaRejeitada = DateTime.Now;
+
+                var trocaproposta = _trocaAppService.Add(trocaViewModel);
+
+                ViewBag.MensagemTroca = "Troca enviada para o usuário.";
+
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult AceitarTroca(int produtoPropostoId, int produtoSujeitoId, int idTroca, TrocaViewModel trocaViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                //var idTroca = _trocaAppService.GetByFilter(c => c.IdProdutoProposto == produtoPropostoId && c.IdProdutoSujeito == produtoSujeitoId).FirstOrDefault().IdTroca;
+
+                trocaViewModel.IdTroca = idTroca;
+                trocaViewModel.IdProdutoProposto = produtoPropostoId;
+                trocaViewModel.IdProdutoSujeito = produtoSujeitoId;
+                trocaViewModel.FlTrocaProposta = true;
+                trocaViewModel.FlTrocaAceita = true;
+                trocaViewModel.FlTrocaRealizada = false;
+                trocaViewModel.FlTrocaRejeitada = false;
+
+                trocaViewModel.DtTrocaAceita = DateTime.Now;
+                trocaViewModel.DtTrocaProposta = DateTime.Now;
+                trocaViewModel.DtTrocaRealizada = DateTime.Now;
+                trocaViewModel.DtTrocaRejeitada = DateTime.Now;
+
+                _trocaAppService.Update(trocaViewModel);
+
+
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult ConfirmarTroca(int produtoPropostoId, int produtoSujeitoId, int idTroca, TrocaViewModel trocaViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+                //var idTroca = _trocaAppService.GetByFilter(c => c.IdProdutoProposto == produtoPropostoId).LastOrDefault().IdTroca;
+
+                trocaViewModel.IdTroca = idTroca;
+                trocaViewModel.IdProdutoProposto = produtoPropostoId;
+                trocaViewModel.IdProdutoSujeito = produtoSujeitoId;
+                trocaViewModel.FlTrocaProposta = true;
+                trocaViewModel.FlTrocaAceita = true;
+                trocaViewModel.FlTrocaRealizada = true;
+                trocaViewModel.FlTrocaRejeitada = false;
+
+
+                trocaViewModel.DtTrocaAceita = DateTime.Now;
+                trocaViewModel.DtTrocaProposta = DateTime.Now;
+                trocaViewModel.DtTrocaRealizada = DateTime.Now;
+                trocaViewModel.DtTrocaRejeitada = DateTime.Now;
+
+                _trocaAppService.Update(trocaViewModel);
+
+
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult RejeitarTroca(int produtoPropostoId, int produtoSujeitoId, int idTroca, TrocaViewModel trocaViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+                //var idTroca = _trocaAppService.GetByFilter(c => c.IdProdutoProposto == produtoPropostoId).LastOrDefault().IdTroca;
+
+                trocaViewModel.IdTroca = idTroca;
+                trocaViewModel.IdProdutoProposto = produtoPropostoId;
+                trocaViewModel.IdProdutoSujeito = produtoSujeitoId;
+                trocaViewModel.FlTrocaProposta = true;
+                trocaViewModel.FlTrocaAceita = false;
+                trocaViewModel.FlTrocaRealizada = false;
+                trocaViewModel.FlTrocaRejeitada = true;
+
+                trocaViewModel.DtTrocaAceita = DateTime.Now;
+                trocaViewModel.DtTrocaProposta = DateTime.Now;
+                trocaViewModel.DtTrocaRealizada = DateTime.Now;
+                trocaViewModel.DtTrocaRejeitada = DateTime.Now;
+
+                _trocaAppService.Update(trocaViewModel);
+
+
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
     }

@@ -162,6 +162,270 @@
                         }
                     </div>
                 </div>
+
+
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <span>
+                            <h1 class="panel-title pull-left" style="font-size:30px;">Propostas recebidas</h1>
+                        </span>
+                        <br>
+                        <br><hr>
+
+                        @if (ViewBag.ProdutoOfertados != null)
+                        {
+
+                        foreach (ProdutoViewModel produto in ViewBag.ProdutoOfertados)
+                        {
+
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6" style="max-height: 360px;">
+                                        <div class="product">
+                                            <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                                                <i class="glyphicon glyphicon-heart"></i>
+                                            </a>
+
+                                            <label>Produto Oferecido</label>
+                                            <div class="image">
+                                                @if (produto.ProdutoImagemViewModels.Any())
+                                                {
+                                                    <a href="@Url.Action("Detalhes", "Produtos", new { @id = produto.ProdutoId })">
+                                                        <img src="@Url.Content(produto.ProdutoImagemViewModels.FirstOrDefault().Caminho)" alt="img" class="img-responsive">
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="product-details.html">
+                                                        <img src="~/Content/StoreContent/img/sem-imagem.jpg" alt="img" class="img-responsive">
+                                                    </a>
+                                                }
+                                                <div class="promotion">
+                                                    <span class="new-product">Recente</span>
+                                                </div>
+                                            </div>
+                                            <div class="action-control">
+                                                <h4><a href="product-details.html">@produto.Nome</a></h4>
+                                                <a href="@Url.Action("Detalhes", "Produtos", new { @id = produto.ProdutoId })" class="btn btn-primary">
+                                                    <span class="add2cart">Detalhes</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    @foreach (ProdutoViewModel meusProdutos in ViewBag.MeusProdutosOfertados)
+                                    {
+                                        <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6" style="max-height: 360px;">
+                                            <div class="product">
+                                                <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                                                    <i class="glyphicon glyphicon-heart"></i>
+                                                </a>
+                                                <label>Produto Desejado</label>
+                                                <div class="image">
+                                                    @if (meusProdutos.ProdutoImagemViewModels.Any())
+                                                    {
+                                                        <a href="@Url.Action("Detalhes", "Produtos", new { @id = meusProdutos.ProdutoId })">
+                                                            <img src="@Url.Content(meusProdutos.ProdutoImagemViewModels.FirstOrDefault().Caminho)" alt="img" class="img-responsive">
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="product-details.html">
+                                                            <img src="~/Content/StoreContent/img/sem-imagem.jpg" alt="img" class="img-responsive">
+                                                        </a>
+                                                    }
+                                                    <div class="promotion">
+                                                        <span class="new-product">Recente</span>
+                                                    </div>
+                                                </div>
+                                                <div class="action-control">
+                                                    <h4><a href="product-details.html">@meusProdutos.Nome</a></h4>
+                                                    <a href="@Url.Action("Detalhes", "Produtos", new { @id = meusProdutos.ProdutoId })" class="btn btn-primary">
+                                                        <span class="add2cart">Detalhes</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        foreach (TrocaViewModel troca in ViewBag.Trocas)
+                                        {
+                                            <p>@troca.DtTrocaAceita</p>
+                                            if (troca.FlTrocaAceita == false && troca.FlTrocaRejeitada == false)
+                                            {
+                                                using (Ajax.BeginForm("AceitarTroca", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#trocaAceitaModal').modal('show'); " }))
+                                                {
+
+                                                @Html.Hidden("idTroca", troca.IdTroca)
+
+                                            @Html.Hidden("produtoPropostoId", produto.ProdutoId)
+                                            @Html.Hidden("produtoSujeitoId", meusProdutos.ProdutoId)
+                                        <button class="add2cart" type="submit">Aceitar Troca</button>
+                                        
+                                                }
+                                            }
+                                            else if(troca.FlTrocaAceita == true && troca.FlTrocaRejeitada == false)
+                                            {
+                                                <a class="btn-success" >Troca Aceita</a>
+                                            }
+
+                                            <br />
+                                            <br />
+
+
+                                            if (troca.FlTrocaAceita == false && troca.FlTrocaRejeitada == false)
+                                            {
+                                                using (Ajax.BeginForm("RejeitarTroca", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#trocaRejeitadaModal').modal('show'); " }))
+                                                {
+
+                                                    @Html.Hidden("idTroca", troca.IdTroca)
+
+                                                    @Html.Hidden("produtoPropostoId", produto.ProdutoId)
+                                                    @Html.Hidden("produtoSujeitoId", meusProdutos.ProdutoId)
+                                                    <button class="add2cart" type="submit">Rejeitar Troca</button>
+                                                }
+                                            }
+                                            else if(troca.FlTrocaRejeitada == true && troca.FlTrocaAceita == false)
+                                            {
+                                                <a class="btn-dark">Troca Rejeitada</a>
+                                            }
+
+
+
+
+                                            if (troca.FlTrocaAceita == true && troca.FlTrocaProposta == true && troca.FlTrocaRejeitada == false && troca.FlTrocaRealizada == false)
+                                            {
+                                                using (Ajax.BeginForm("ConfirmarTroca", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#trocaRealizadaModal').modal('show'); " }))
+                                                {
+
+                                                    @Html.Hidden("idTroca", troca.IdTroca)
+
+                                                    @Html.Hidden("produtoPropostoId", produto.ProdutoId)
+                                                    @Html.Hidden("produtoSujeitoId", meusProdutos.ProdutoId)
+                                                    <button class="add2cart" type="submit">Confirmar Troca</button>
+                                                }
+                                            }
+                                            else if (troca.FlTrocaAceita == true && troca.FlTrocaProposta == true && troca.FlTrocaRejeitada == false && troca.FlTrocaRealizada == true)
+                                            {
+                                                <a class="btn-success">Troca Realizada</a>
+                                            }
+
+
+
+
+
+                                            <div class="modal fade" id="trocaRealizadaModal" role="dialog">
+                                                <div class="modal-dialog">
+
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">Troca</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                @using (Ajax.BeginForm("ConfirmarTroca", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#trocaRealizadaModal').modal('show'); " }))
+                                                                {
+
+                                                                @Html.Hidden("idTroca", troca.IdTroca)
+
+                                                                @Html.Hidden("produtoPropostoId", produto.ProdutoId)
+                                                                @Html.Hidden("produtoSujeitoId", meusProdutos.ProdutoId)
+                                                                    <div class="col-md-7">
+                                                                        <input type="text" id="dsTroca" name="dsTroca" />
+                                                                    </div>
+                                                                <button class="add2cart" type="submit">Confirmar Troca</button>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar.</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="trocaAceitaModal" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Troca</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Troca aceita.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar.</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="trocaRejeitadaModal" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Troca</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Troca Rejeitada.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar.</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="trocaRealizadaModal" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Troca</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Troca Realizada.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar.</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            }
+                        }
+
+                    </div>
+                </div>
+
+
+
+
+
                 <hr>
             </div>
         </div>
@@ -242,9 +506,28 @@
 
         $("#Cep").blur(buscarEndereco());
 
-        $(document).ready(function () {
-            $("#Cep").mask("00000-000");
-        });
+
+        $('#trocaAceitaModal').on('hidden.bs.modal', function () {
+            location.reload();
+        })
+
+        $('#trocaRejeitadaModal').on('hidden.bs.modal', function () {
+            location.reload();
+        })
+
+        $('#trocaRealizadaModal').on('hidden.bs.modal', function () {
+            location.reload();
+        })
 
     </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+
+
+<script type="text/javascript">
+        $(function () {
+            $("#Cep").mask("99999-999");
+        });
+</script>
 }

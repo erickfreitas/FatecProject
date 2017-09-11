@@ -3,7 +3,7 @@ using Project.Application.Interfaces;
 using Project.Application.ViewModels;
 using Project.Domain.Entities;
 using Project.Domain.Interfaces.Services;
-using System.Collections.Generic;
+using AutoMapper;
 
 namespace Project.Application.AppServices
 {
@@ -47,5 +47,13 @@ namespace Project.Application.AppServices
         {
             _produtoService.Update(Mapper.Map<ProdutoViewModel, Produto>(produtoViewModel));
         }
+
+
+        public IQueryable<Produto> GetByFilter(Expression<Func<Produto, bool>> filter)
+        {
+            return _produtoService.GetByFilter(filter);
+
+        }
+
     }
 }

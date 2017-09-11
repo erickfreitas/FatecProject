@@ -1,4 +1,5 @@
-﻿using Project.Domain.Entities;
+﻿using System;
+using Project.Domain.Entities;
 using Project.Domain.Interfaces.Repositories;
 using Project.Domain.Interfaces.Services;
 
@@ -15,5 +16,9 @@ namespace Project.Domain.Services
             _trocaRepository = trocaRepository;
         }
 
+        public new Troca Add(Troca troca)
+        {
+            return _trocaRepository.Add(troca);
+        }
     }
 }

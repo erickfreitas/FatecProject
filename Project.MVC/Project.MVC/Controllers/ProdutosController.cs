@@ -164,6 +164,7 @@ namespace Project.MVC.Controllers
             {
                 var meusProdutos = _produtoAppService.GetByFilter(p => p.UsuarioId == usuario.UsuarioId).ToList();
 
+                
                 foreach (var produtos in meusProdutos)
                 {
 

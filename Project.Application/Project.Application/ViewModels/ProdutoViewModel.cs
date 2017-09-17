@@ -31,6 +31,9 @@ namespace Project.Application.ViewModels
 
         public string UsuarioId { get; set; }
 
+        [DisplayName("Produtos de Interesse")]
+        public string ProdutoInteresse { get; set; }
+
         [Required]
         [DisplayName("Categoria")]
         public int CategoriaId { get; set; }

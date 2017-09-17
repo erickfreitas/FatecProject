@@ -21,6 +21,8 @@ namespace Project.Domain.Entities
         public virtual ICollection<Pergunta> Perguntas { get; set; }
         public virtual ICollection<Troca> Trocas { get; set; }
 
+        public string ProdutoInteresse { get; set; }
+
 
     }
 }

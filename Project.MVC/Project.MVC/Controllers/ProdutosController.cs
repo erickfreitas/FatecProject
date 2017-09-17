@@ -58,6 +58,7 @@ namespace Project.MVC.Controllers
                     ViewBag.ProdutoTrocadoAceito = produtoTrocadoAceito.Count() != 0 ? produtoTrocadoAceito.FirstOrDefault().IdProdutoSujeito : 0 ;
 
                     ViewBag.ProdutoTrocadoOferecido = produtoTrocadoOferecido.Count() != 0 ? produtoTrocadoOferecido.FirstOrDefault().IdProdutoProposto : 0;
+
                     
                 }
 
@@ -379,6 +380,30 @@ namespace Project.MVC.Controllers
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Remover(int produtoId)
+        {
+
+            var produto = _produtoAppService.GetByFilter(t => t.ProdutoId == produtoId).FirstOrDefault();
+            if (ModelState.IsValid)
+            {                
+                var produtoTroca = _trocaAppService.GetByFilter(t => t.IdProdutoProposto == produtoId || t.IdProdutoSujeito == produtoId).ToList();
+                
+                foreach (var produtoPorposto in produtoTroca)
+                {
+                    _trocaAppService.Remove(produtoPorposto);
+                }
+
+
+                _produtoAppService.Remove(produto);
+                return RedirectToAction("MeusProdutos", new { @Controller = "Produtos"});
+            }
+            return View(produto);
         }
 
     }

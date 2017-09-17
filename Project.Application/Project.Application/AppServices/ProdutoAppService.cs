@@ -4,6 +4,10 @@ using Project.Application.ViewModels;
 using Project.Domain.Entities;
 using Project.Domain.Interfaces.Services;
 using AutoMapper;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System;
 
 namespace Project.Application.AppServices
 {
@@ -38,9 +42,9 @@ namespace Project.Application.AppServices
             return Mapper.Map<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_produtoService.GetByUsuario(usuarioId));
         }
 
-        public void Remove(ProdutoViewModel produtoViewModel)
+        public void Remove(Produto produtoViewModel)
         {
-            _produtoService.Remove(Mapper.Map<ProdutoViewModel, Produto>(produtoViewModel));
+            _produtoService.Remove(produtoViewModel);
         }
 
         public void Update(ProdutoViewModel produtoViewModel)

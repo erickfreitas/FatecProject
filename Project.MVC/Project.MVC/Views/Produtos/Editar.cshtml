@@ -55,6 +55,14 @@
                                     </div>
 
                                     <div class="form-group">
+                                        @Html.LabelFor(model => model.OutrasCategorias, new { @class = "col-md-4 control-label" })
+                                        <div class="col-md-7">
+                                            @Html.TextAreaFor(model => model.OutrasCategorias, new { @class = "form-control", @placeholder = "Outras Categorias", @style = "max-witdh: 450px;", @rows = "2" })
+                                            @Html.ValidationMessageFor(model => model.OutrasCategorias, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         @Html.LabelFor(model => model.ProdutoInteresse, new { @class = "col-md-4 control-label" })
                                         <div class="col-md-7">
                                             @Html.TextAreaFor(model => model.ProdutoInteresse, new { @class = "form-control", @placeholder = "Produtos de Interesse", @style = "max-witdh: 450px;", @rows = "2" })

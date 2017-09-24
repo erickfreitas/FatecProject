@@ -27,6 +27,10 @@ namespace Project.Infra.Data.EntityConfig
                 .HasMaxLength(1500);
 
 
+            Property(p => p.OutrasCategorias)
+                .HasMaxLength(50);
+
+
             Property(p => p.ProdutoInteresse)
                 .HasMaxLength(200);
 

@@ -23,6 +23,8 @@ namespace Project.Domain.Entities
 
         public string ProdutoInteresse { get; set; }
 
+        public string OutrasCategorias { get; set; }
+
 
     }
 }

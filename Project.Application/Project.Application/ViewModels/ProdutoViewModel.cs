@@ -50,5 +50,8 @@ namespace Project.Application.ViewModels
 
         public IEnumerable<PerguntaUsuarioViewModel> PerguntaUsuarioViewModels { get; set; }
 
+        [DisplayName("Outras Categorias")]
+        public string OutrasCategorias { get; set; }
+
     }
 }

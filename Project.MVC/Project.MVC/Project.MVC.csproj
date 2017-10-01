@@ -598,6 +598,7 @@
     <Content Include="Views\Portal\_EditarSubCategoria.cshtml" />
     <Content Include="Views\Portal\NovaSubCategoria.cshtml" />
     <Content Include="Views\Home\_MenuCategorias.cshtml" />
+    <Content Include="Views\Home\Pesquisa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

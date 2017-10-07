@@ -3,7 +3,10 @@ using Project.Application.Interfaces;
 using Project.Application.ViewModels;
 using Project.Domain.Entities;
 using Project.Domain.Interfaces.Services;
-using AutoMapper;
+using System.Collections.Generic;
+using System.Linq;
+using System;
+using System.Linq.Expressions;
 
 namespace Project.Application.AppServices
 {
@@ -54,6 +57,5 @@ namespace Project.Application.AppServices
             return _produtoService.GetByFilter(filter);
 
         }
-
     }
 }

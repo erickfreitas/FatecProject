@@ -1,5 +1,6 @@
 ﻿using Project.Application.Interfaces;
 using Project.Application.ViewModels;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
@@ -70,6 +71,17 @@ namespace Project.MVC.Controllers
                 RedirectToAction("EditarCategoria", "Portal", new { @id = categoriaViewModel.CategoriaId });
             }
             return View(categoriaViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult ModalRemoverCategoria(int categoriaId)
+        {
+            var subCategorias = _subCategoriaAppService.GetByCategoria(categoriaId);
+            if (!subCategorias.Any())
+            {
+
+            }
+            return View();
         }
 
         [HttpGet]

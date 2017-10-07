@@ -25,10 +25,10 @@ namespace Project.MVC.Controllers
                                         ICategoriaAppService categoriaAppService,
                                                 ISubCategoriaAppService subCategoriaAppService,
                                                     IProdutoImagemAppService produtoImagemAppService,
-                                                    IPerguntaAppService perguntaAppService,
-                                                    IRespostaAppService respostaAppService,
-                                                    ITrocaAppService trocaAppService,
-                                                    IUsuarioAppService usuarioAppService)
+                                                        IPerguntaAppService perguntaAppService,
+                                                            IRespostaAppService respostaAppService,
+                                                                ITrocaAppService trocaAppService,
+                                                                    IUsuarioAppService usuarioAppService)
         {
             _produtoAppService = produtoAppService;
             _categoriaAppService = categoriaAppService;

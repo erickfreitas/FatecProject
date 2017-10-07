@@ -88,12 +88,33 @@
                                             else
                                             {
                                                 <a href="@Url.Action("Editar", new { @Controller = "Produtos", @id = produto.ProdutoId })" class="btn btn-info"> <span> Editar </span> </a>
-                                                using (Ajax.BeginForm("Remover", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#produtoRemovidoModal').modal('show'); " }))
-                                                {
-                                                @Html.Hidden("produtoId", produto.ProdutoId)
-                                                <button type="submit" class="btn btn-danger" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Aguarde">Remover</button>
-                                                }
+                                                <a class="btn btn-danger" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Aguarde"  data-toggle="modal" href="#removerProdutoModal">Remover</a>
 
+
+                                                <div class="modal fade modal-sm col-lg-11" id="removerProdutoModal" role="dialog">
+                                                    @using (Ajax.BeginForm("Remover", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#produtoRemovidoModal').modal('show'); " }))
+                                                    {
+                                                    <div class="modal-dialog">
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-header" >
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Remover Produto</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                @Html.Hidden("produtoId", produto.ProdutoId)
+                                                                <button type="submit" class="btn btn-danger" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Aguarde">Confirmar</button>
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar.</button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    }
+                                                </div>
+                                            
                                                 <div class="modal fade" id="produtoRemovidoModal" role="dialog">
                                                     <div class="modal-dialog">
 

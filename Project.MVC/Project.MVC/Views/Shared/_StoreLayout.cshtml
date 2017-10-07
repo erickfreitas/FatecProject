@@ -153,19 +153,25 @@
                         <li><a href="@Url.Action("MeuPerfil", "Usuarios")"> Meu Perfil </a></li>
                     }                 
                 </ul>
-                <ul class="nav navbar-nav navbar-right"> 
-                    <li class="hide-xs"><a class="btn btn-nobg  search-trigger" href="@Url.Action("Pesquisa", "Home")"><i class="fa fa-search"> </i></a></li>
-                    @if (!User.Identity.IsAuthenticated)
+                <ul class="nav navbar-nav">
+                    @using (Ajax.BeginForm("Pesquisa", "Home", new AjaxOptions { HttpMethod = "POST" }))
                     {
-                    <li><a href="@Url.Action("NovoUsuario", "Conta" )"> Cadastre-se <i class="fa fa-user"></i> </a></li>
-                    <li><a href="@Url.Action("Login", "Conta" )"> Entrar <i class="fa fa-sign-in"></i> </a></li>
+                        <li><input type="search" name="texto"><input type="submit" class="btn btn-nobg  search-trigger"> <i class="fa fa-search"> </i></li>
                     }
-                    else
-                    {
-                        <li><a href="@Url.Action("Logout", "Conta" )"> Sair <i class="fa fa-sign-out"></i> </a></li>
-                    }
-                </ul>
-            </div>
+                  </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li><a href="@Url.Action("NovoUsuario", "Conta" )"> Cadastre-se <i class="fa fa-user"></i> </a></li>
+                            <li><a href="@Url.Action("Login", "Conta" )"> Entrar <i class="fa fa-sign-in"></i> </a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Logout", "Conta" )"> Sair <i class="fa fa-sign-out"></i> </a></li>
+                        }
+                    </ul>
+</div>
 
         </div>
         <div class="search-full text-right">

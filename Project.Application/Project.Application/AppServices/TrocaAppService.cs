@@ -41,5 +41,10 @@ namespace Project.Application.AppServices
         {
             _trocaService.Update(Mapper.Map<TrocaViewModel, Troca>(trocaViewModel));
         }
+
+        public void Remove(Troca trocaViewModel)
+        {
+            _trocaService.Remove(trocaViewModel);
+        }
     }
 }

@@ -42,5 +42,17 @@ namespace Project.MVC.Controllers
         {
             return View();
         }
+
+
+        [HttpGet]
+        public ActionResult Pesquisa()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Pesquisa(string texto)
+        {
+            return View(_produtoAppService.GetAll().Where(x => x.Nome.Contains(texto)).OrderBy(x => x.Nome));
+        }
     }
 }

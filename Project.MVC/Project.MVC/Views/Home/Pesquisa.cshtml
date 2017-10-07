@@ -8,13 +8,22 @@
         <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-12 col-md-offset-1">
                 <div class="w100 clearfix category-top text-center">
-                    <h1 class="section-title-inner">
-                        <span> Seus Produtos </span>
-                        <a class="btn btn-success pull-right" href="@Url.Action("Novo", "Produtos")"> <span class="add2cart"> Adicionar </span> </a>
-                    </h1>                    
+                    <h1 class="">
+                        <span> Pesquisar Produtos </span>
+
+                        
+                            @using (Html.BeginForm())
+                            {
+                                <p>Digite o nome</p>
+                                <input type="text" name="texto" id="texto" placeholder="Digite a pesquisa" />
+                                <button class="btn btn-success" type="submit">Filtrar</button>
+                            }
+                        
+                        
+                    </h1>
                 </div>
                 <div class="w100 productFilter clearfix">
-                    <p class="pull-left"> Mostrando <strong>@Model.Count()</strong> produtos </p>
+                    <p class="pull-left"> Mostrando <strong>@*@Model.Count()*@</strong> produtos </p>
                     <div class="pull-right ">
                         <div class="change-order pull-right">
                             <select class="form-control" name="orderby">
@@ -28,17 +37,18 @@
                         </div>
                         <div class="change-view pull-right">
                             <a href="#" title="Grid" class="grid-view"> <i class="fa fa-th-large"></i> </a>
-                            <a href="#" title="List" class="list-view "><i class="fa fa-th-list"></i></a>                            
+                            <a href="#" title="List" class="list-view "><i class="fa fa-th-list"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="row  categoryProduct xsResponse clearfix">
-
-
-                    @foreach (var produto in Model)
+                    @if (Model != null)
                     {
 
-                       
+                        foreach (var produto in Model)
+                        {
+
+
                         <div class="item col-sm-4 col-lg-4 col-md-4 col-xs-6 list-view">
                             <div class="product">
                                 <div class="image">
@@ -69,55 +79,52 @@
                                     <span>@produto.SubCategoriaViewModel.Nome</span>
                                 </div>
 
-                                
 
-                                   @*@if (ViewBag.ProdutoTrocadoAceito == 0 && ViewBag.ProdutoTrocadoOferecido == 0)
+
+                                @*@if (ViewBag.ProdutoTrocadoAceito == 0 && ViewBag.ProdutoTrocadoOferecido == 0)
                                     {*@
 
                                 <div class="action-control">
                                     <a href="@Url.Action("Detalhes", new { @Controller = "Produtos", @id = produto.ProdutoId })" class="btn btn-primary"> <span> Detalhes </span> </a>
 
+
+
+                                    @if (ViewBag.ProdutoTrocadoAceito == produto.ProdutoId || ViewBag.ProdutoTrocadoOferecido == produto.ProdutoId)
+                                    {
+                                        <div class="action-control">
+                                            <a class="btn-dark">Produto Trocado</a>
+                                        </div>
+                                    }
+                                    else
+                                    {
                                         
-                                       
-                                            @if (ViewBag.ProdutoTrocadoAceito == produto.ProdutoId || ViewBag.ProdutoTrocadoOferecido == produto.ProdutoId)
-                                            {
-                                                <div class="action-control">
-                                                    <a class="btn-dark">Produto Trocado</a>
-                                                </div>
-                                            }
-                                            else
-                                            {
-                                                <a href="@Url.Action("Editar", new { @Controller = "Produtos", @id = produto.ProdutoId })" class="btn btn-info"> <span> Editar </span> </a>
-                                                using (Ajax.BeginForm("Remover", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#produtoRemovidoModal').modal('show'); " }))
-                                                {
-                                                @Html.Hidden("produtoId", produto.ProdutoId)
-                                                <button type="submit" class="btn btn-danger" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Aguarde">Remover</button>
-                                                }
+                                        
 
-                                                <div class="modal fade" id="produtoRemovidoModal" role="dialog">
-                                                    <div class="modal-dialog">
+                                        <div class="modal fade" id="produtoRemovidoModal" role="dialog">
+                                            <div class="modal-dialog">
 
-                                                        <!-- Modal content-->
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                <h4 class="modal-title">Troca</h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p>Produto removido com sucesso.</p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar.</button>
-                                                            </div>
-                                                        </div>
-
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Troca</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Produto removido com sucesso.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar.</button>
                                                     </div>
                                                 </div>
-                                            }
+
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
-                                    @*}*@
+                                @*}*@
                             </div>
                         </div>
+                        }
                     }
                 </div>
                 <div class="w100 categoryFooter">

@@ -15,7 +15,7 @@ namespace Project.Application.Interfaces
 
         ProdutoViewModel GetById(int produtoId);
 
-        void Remove(ProdutoViewModel produtoViewModel);
+        void Remove(Produto produtoViewModel);
 
         void Update(ProdutoViewModel produtoViewModel);
 

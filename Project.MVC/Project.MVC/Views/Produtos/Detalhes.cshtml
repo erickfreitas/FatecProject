@@ -65,6 +65,12 @@
                             <span class="color-value">@Model.SubCategoriaViewModel.Nome</span>
                         </span>
                     </div>
+                    <div class="product-details-product-color">
+                        <span class="selected-color">
+                            <strong>Produtos de interesse:</strong>
+                            <span class="color-value">@Model.ProdutoInteresse</span>
+                        </span>
+                    </div>
                     <div class="row review-item">
                         <div class="col-lg-3 col-sm-3  left">
                             <div class="review-item-user">
@@ -128,7 +134,9 @@
                                                 <div class="modal-body">
                                                     
                                                     <div class="row xsResponse">
-                                                        @foreach (ProdutoViewModel produto in ViewBag.MeusProdutos)
+
+                                                        @if (ViewBag.MeusProdutos != null) { 
+                                                        foreach (ProdutoViewModel produto in ViewBag.MeusProdutos)
                                                         {
                                                             <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                                                 <div class="product">
@@ -159,7 +167,7 @@
                                                                         <span class="size">@produto.SubCategoriaViewModel.Nome</span>
                                                                     </div>
                                                                     <div class="price"><span>@produto.SubCategoriaViewModel.CategoriaViewModel.Nome</span></div>
-                                                                    @if (ViewBag.ProdutoNegociado != 0 )
+                                                                    @if (ViewBag.ProdutoNegociado != 0)
                                                                     {
                                                                         <div class="action-control">
                                                                             <a class="btn-dark" >Produto Negociado</a>
@@ -184,6 +192,7 @@
                                                                         </div>
                                                             </div>
                                                             }
+                                                        }
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">

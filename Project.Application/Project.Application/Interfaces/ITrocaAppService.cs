@@ -14,5 +14,7 @@ namespace Project.Application.Interfaces
 
 
         IQueryable<Troca> GetByFilter(Expression<Func<Troca, bool>> filter);
+
+        void Remove(Troca produtoViewModel);
     }
 }

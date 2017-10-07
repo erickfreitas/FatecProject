@@ -91,7 +91,7 @@
                 @foreach (ProdutoViewModel produto in ViewBag.Produtos)
                 {
                     <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                        <div class="product">
+                        <div id="listaProdutos" class="product">
                             <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
                                 <i class="glyphicon glyphicon-heart"></i>
                             </a>
@@ -130,7 +130,8 @@
             </div>
             <div class="row">
                 <div class="load-more-block text-center">
-                    <a class="btn btn-thin" href="#"> <i class="fa fa-plus-sign">+</i> carregar mais produtos</a>
+                    <button class="btn btn-thin" id="carregarProdutos"> <i class="fa fa-plus-sign">+</i> carregar mais produtos</button>
+                    <button class="btn btn-thin" id="ocultarProdutos"> <i class="fa fa-plus-sign">+</i> carregar menos produtos</button>
                 </div>
             </div>
         </div>
@@ -158,4 +159,24 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/StoreContent/necessary/script")
+
+<script>
+    $(document).ready(function () {
+    
+    var $items = $("#listaProdutos");
+    $items.filter(':lt(1)').show()
+
+    $('#carregarProdutos, #ocultarProdutos').click(function () {
+        var more = $(this).is('#carregarProdutos'),
+            first = $items.filter(':visible:first').index(),
+            start = more ? ++first : --first;
+
+        if (start > -1 && start <= $items.length - 3) {
+            $items.hide().slice(start, start + 3).show();
+        }
+    });
+
+    });
+    </script>
+
 }

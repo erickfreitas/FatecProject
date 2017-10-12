@@ -6,5 +6,6 @@ namespace Project.Domain.Interfaces.Services
     public interface ICategoriaService : IServiceBase<Categoria>
     {
         IEnumerable<Categoria> GetCategoriasAtivas();
+        bool PossuiProduto(int categoriaId);
     }
 }

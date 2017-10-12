@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Project.Domain.Entities;
+﻿using Project.Domain.Entities;
 using Project.Domain.Interfaces.Repositories;
+using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Project.Infra.Data.Repositories
 {
@@ -16,6 +16,11 @@ namespace Project.Infra.Data.Repositories
         public override IEnumerable<SubCategoria> GetAll()
         {
             return base.GetAll().OrderBy(c => c.Nome);
+        }
+
+        public bool PossuiProduto(int subCategoriaId)
+        {
+            return Db.Produtos.Any(p => p.SubCategoriaId == subCategoriaId);
         }
     }
 }

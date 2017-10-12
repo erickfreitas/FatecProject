@@ -136,7 +136,6 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     @foreach (var categoria in Model)
                                     {
@@ -163,7 +162,7 @@
                                                         <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                     </a>
 
-                                                    <a class="red tooltip-error" href="#" data-rel="tooltip" title="Remover">
+                                                    <a class="red tooltip-error" href="javascript:void(0)" data-rel="tooltip" title="Remover" onclick="ModalRemoverCategorias(@categoria.CategoriaId)">
                                                         <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                                     </a>
                                                 </div>
@@ -185,7 +184,7 @@
                                                             </li>
 
                                                             <li>
-                                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Remover">
+                                                                <a href="javascript:void(0)" class="tooltip-error" data-rel="tooltip" title="Remover" onclick="ModalRemoverCategorias(@categoria.CategoriaId)">
                                                                     <span class="red">
                                                                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                                     </span>
@@ -209,7 +208,7 @@
     </div><!-- /.page-content -->
 </div>
 
-@section scripts{
+@section scripts{    
     @Scripts.Render("~/PanelContent/jquery-datatables/script")
     @Scripts.Render("~/PanelContent/jquery-datatables-bootstrap/script")
     @Scripts.Render("~/PanelContent/datatables-buttons/script")
@@ -218,9 +217,44 @@
     @Scripts.Render("~/PanelContent/buttons-print/script")
     @Scripts.Render("~/PanelContent/buttons-colvis/script")
     @Scripts.Render("~/PanelContent/datatables-select/script")
+    @Scripts.Render("~/bundles/jqueryval")
 }
 
 @section inlinescripts{
+    <script>
+        function ModalRemoverCategorias(categoriaId){
+            //função para carregar o modal de remoção de categorias
+            $.ajax({
+                type: "POST",
+                url: '/Portal/ModalRemoverCategoria',
+                data: {
+                    categoriaId: categoriaId
+                },
+                success: function (data) {
+                    $("#remove-categoria-form").html(data);
+                    $("#remove-categoria-form").modal("show");
+                }
+            });
+        }
+
+        function DeletarCategoria(categoriaId) {
+            $.ajax({
+                type: "POST",
+                url: '/Portal/RemoverCategoria',
+                data: {
+                    categoriaId: categoriaId
+                },
+                success: function (data) {
+                    if (data.response === "Ok") {
+                        $("#remove-categoria-form").modal("hide");
+                        location.reload();
+                    }
+                }
+            });
+        }
+
+    </script>
+
     <script type="text/javascript">
         jQuery(function ($) {
             //initiate dataTables plugin
@@ -397,6 +431,7 @@
             
         })
 </script>   
+
 }
 
 <div id="remove-categoria-form" class="modal" tabindex="-1">

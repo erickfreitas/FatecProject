@@ -19,6 +19,7 @@ namespace Project.MVC.Controllers
             _categoriaAppService = categoriaAppService;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             ViewBag.Produtos = _produtoAppService.GetAll();
@@ -33,22 +34,24 @@ namespace Project.MVC.Controllers
             return View("_MenuCategorias", categorias);
         }
 
+        [HttpGet]
         public ActionResult QuemSomos()
         {
             return View();
         }
 
+        [HttpGet]
         public ActionResult PerguntasFrequentes()
         {
             return View();
         }
-
 
         [HttpGet]
         public ActionResult Pesquisa()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Pesquisa(string texto)
         {

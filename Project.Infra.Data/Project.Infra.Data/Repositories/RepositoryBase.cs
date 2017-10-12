@@ -37,11 +37,9 @@ namespace Project.Infra.Data.Repositories
 
         public virtual void Remove(TEntity obj)
         {
-            Db.Set<TEntity>().Attach(obj);
             Db.Set<TEntity>().Remove(obj);
             Db.SaveChanges();
         }
-
 
         public virtual IQueryable<TEntity> GetByFilter(Expression<Func<TEntity, bool>> filter)
         {

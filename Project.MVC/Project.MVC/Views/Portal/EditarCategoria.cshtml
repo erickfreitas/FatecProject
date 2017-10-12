@@ -113,7 +113,6 @@
 </div>
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/unobstrusive")
     @Scripts.Render("~/PanelContent/jquery-datatables/script")
     @Scripts.Render("~/PanelContent/jquery-datatables-bootstrap/script")
     @Scripts.Render("~/PanelContent/datatables-buttons/script")
@@ -125,6 +124,40 @@
 }
 
 @section inlinescripts{
+    <script>
+             function ModalRemoverSubCategorias(subCategoriaId) {
+                 //função para carregar o modal de remoção de sub-categorias
+                 $.ajax({
+                     type: "POST",
+                     url: '/Portal/ModalRemoverSubCategoria',
+                     data: {
+                         subCategoriaId: subCategoriaId
+                     },
+                     success: function (data) {
+                         $("#remove-subcategoria-form").html(data);
+                         $("#remove-subcategoria-form").modal("show");
+                     }
+                 });
+             }
+
+        function DeletarSubCategoria(subCategoriaId) {
+                 $.ajax({
+                     type: "POST",
+                     url: '/Portal/RemoverSubCategoria',
+                     data: {
+                         subCategoriaId: subCategoriaId
+                     },
+                     success: function (data) {
+                         if (data.response === "Ok") {
+                             $("#remove-subcategoria-form").modal("hide");
+                             location.reload();
+                         }
+                     }
+                 });
+             }
+
+    </script>
+
     <script type="text/javascript">
         jQuery(function ($) {
             //initiate dataTables plugin
@@ -302,3 +335,6 @@
         })
     </script>
 }
+
+<div id="remove-subcategoria-form" class="modal" tabindex="-1">
+</div>

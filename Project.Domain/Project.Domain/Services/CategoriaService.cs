@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Project.Domain.Entities;
+﻿using Project.Domain.Entities;
 using Project.Domain.Interfaces.Repositories;
 using Project.Domain.Interfaces.Services;
+using System.Collections.Generic;
+using System;
 
 namespace Project.Domain.Services
 {
@@ -19,6 +19,11 @@ namespace Project.Domain.Services
         public IEnumerable<Categoria> GetCategoriasAtivas()
         {
             return _categoriaRepository.GetCategoriasAtivas();
+        }
+
+        public bool PossuiProduto(int categoriaId)
+        {
+            return _categoriaRepository.PossuiProduto(categoriaId);
         }
     }
 }

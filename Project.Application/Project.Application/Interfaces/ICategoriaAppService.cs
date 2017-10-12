@@ -17,5 +17,7 @@ namespace Project.Application.Interfaces
         void Update(CategoriaViewModel categoriaViewModel);
 
         IEnumerable<CategoriaViewModel> GetCategoriasAtivas();
+
+        bool PossuiProduto(int categoriaId);
     }
 }

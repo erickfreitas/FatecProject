@@ -6,5 +6,7 @@ namespace Project.Domain.Interfaces.Repositories
     public interface ICategoriaRepository : IRepositoryBase<Categoria>
     {
         IEnumerable<Categoria> GetCategoriasAtivas();
+
+        bool PossuiProduto(int categoriaId);
     }
 }

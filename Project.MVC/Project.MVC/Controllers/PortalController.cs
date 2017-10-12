@@ -77,11 +77,26 @@ namespace Project.MVC.Controllers
         public ActionResult ModalRemoverCategoria(int categoriaId)
         {
             var subCategorias = _subCategoriaAppService.GetByCategoria(categoriaId);
-            if (!subCategorias.Any())
+            if (subCategorias.Any())
             {
-
+                ViewBag.Message = "Você deve remover todas as Sub-Categorias pertencentes a essa categoria antes de remove-la.";
+                return PartialView("_ModalMessage");
             }
-            return View();
+            if (_categoriaAppService.PossuiProduto(categoriaId))
+            {
+                ViewBag.Message = "Você não pode remover essa categoria pois ela possui produtos cadastrados.";
+                return PartialView("_ModalMessage");
+            }
+            var categoria = _categoriaAppService.GetById(categoriaId);
+            return PartialView("_ConfirmarDeletarCategoria", categoria);
+        }
+
+        [HttpPost]
+        public ActionResult RemoverCategoria(int categoriaId)
+        {
+            var categoria = _categoriaAppService.GetById(categoriaId);
+            _categoriaAppService.Remove(categoria);
+            return Json(new { response = "Ok" });
         }
 
         [HttpGet]
@@ -125,6 +140,26 @@ namespace Project.MVC.Controllers
                 return RedirectToAction("EditarSubCategoria", "Portal", new { @id = subCategoria.SubCategoriaId });
             }
             return View(subCategoriaViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult ModalRemoverSubCategoria(int subCategoriaId)
+        {            
+            if (_subCategoriaAppService.PossuiProduto(subCategoriaId))
+            {
+                ViewBag.Message = "Você não pode remover essa sub-categoria pois ela possui produtos cadastrados.";
+                return PartialView("_ModalMessage");
+            }
+            var subCategoria = _subCategoriaAppService.GetById(subCategoriaId);
+            return PartialView("_ConfirmarDeletarSubCategoria", subCategoria);
+        }
+
+        [HttpPost]
+        public ActionResult RemoverSubCategoria(int subCategoriaId)
+        {
+            var subCategoria = _subCategoriaAppService.GetById(subCategoriaId);
+            _subCategoriaAppService.Remove(subCategoria);
+            return Json(new { response = "Ok" });
         }
     }
 }

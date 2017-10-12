@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AutoMapper;
 using Project.Application.Interfaces;
 using Project.Application.ViewModels;
 using Project.Domain.Entities;
 using Project.Domain.Interfaces.Services;
-using AutoMapper;
+using System.Collections.Generic;
+using System;
 
 namespace Project.Application.AppServices
 {
@@ -38,9 +38,15 @@ namespace Project.Application.AppServices
             return Mapper.Map<SubCategoria, SubCategoriaViewModel>(_subCategoriaService.GetById(subCategoriaId));
         }
 
+        public bool PossuiProduto(int subCategoriaId)
+        {
+            return _subCategoriaService.PossuiProduto(subCategoriaId);
+        }
+
         public void Remove(SubCategoriaViewModel subCategoriaViewModel)
         {
-            _subCategoriaService.Remove(Mapper.Map<SubCategoriaViewModel, SubCategoria>(subCategoriaViewModel));
+            var subCategoria = _subCategoriaService.GetById(subCategoriaViewModel.SubCategoriaId);
+            _subCategoriaService.Remove(subCategoria);
         }
 
         public void Update(SubCategoriaViewModel subCategoriaViewModel)

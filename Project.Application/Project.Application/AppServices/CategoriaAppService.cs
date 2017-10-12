@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Project.Application.AutoMapper;
 using Project.Application.Interfaces;
 using Project.Application.ViewModels;
 using Project.Domain.Entities;
@@ -52,9 +51,15 @@ namespace Project.Application.AppServices
             return categorias;
         }
 
+        public bool PossuiProduto(int categoriaId)
+        {
+            return _categoriaService.PossuiProduto(categoriaId);
+        }
+
         public void Remove(CategoriaViewModel categoriaViewModel)
         {
-            _categoriaService.Remove(Mapper.Map<CategoriaViewModel, Categoria>(categoriaViewModel));
+            var categoria = _categoriaService.GetById(categoriaViewModel.CategoriaId);
+            _categoriaService.Remove(categoria);
         }
 
         public void Update(CategoriaViewModel categoriaViewModel)

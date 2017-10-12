@@ -57,7 +57,9 @@ namespace Project.Application.AutoMapper
             CreateMap<Troca, TrocaViewModel>();
             #endregion
 
-
+            #region InstituicaoCarenteMaps
+            CreateMap<InstituicaoCarente, InstituicaoCarenteViewModel>();
+            #endregion
         }
     }
 }

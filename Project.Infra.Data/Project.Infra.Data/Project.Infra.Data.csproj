@@ -54,6 +54,7 @@
     <Compile Include="EntityConfig\ClaimsConfiguration.cs" />
     <Compile Include="EntityConfig\ClienteWebConfiguration.cs" />
     <Compile Include="EntityConfig\EnderecoConfiguration.cs" />
+    <Compile Include="EntityConfig\InstituicaoCarenteConfiguration.cs" />
     <Compile Include="EntityConfig\PerguntaConfiguration.cs" />
     <Compile Include="EntityConfig\ProdutoImagemConfiguration.cs" />
     <Compile Include="EntityConfig\ProdutoConfiguration.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoriaRepository.cs" />
+    <Compile Include="Repositories\InstituicaoCarenteRepository.cs" />
     <Compile Include="Repositories\PerguntaRepository.cs" />
     <Compile Include="Repositories\ProdutoImagemRepository.cs" />
     <Compile Include="Repositories\ProdutoRepository.cs" />

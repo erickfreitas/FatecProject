@@ -49,6 +49,10 @@ namespace Project.Application.AutoMapper
             #region RespostaMaps
             CreateMap<RespostaViewModel, Resposta>();
             #endregion
+
+            #region InstituicaoCarenteMaps
+            CreateMap<InstituicaoCarenteViewModel, InstituicaoCarente>();
+            #endregion
         }
     }
 }

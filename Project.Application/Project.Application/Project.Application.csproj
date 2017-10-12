@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AppServices\AppServiceBase.cs" />
     <Compile Include="AppServices\CategoriaAppService.cs" />
+    <Compile Include="AppServices\InstituicaoCarenteAppService.cs" />
     <Compile Include="AppServices\PerguntaAppService.cs" />
     <Compile Include="AppServices\ProdutoAppService.cs" />
     <Compile Include="AppServices\ProdutoImagemAppService.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Interfaces\IAppServiceBase.cs" />
     <Compile Include="Interfaces\ICategoriaAppService.cs" />
+    <Compile Include="Interfaces\IInstituicaoCarenteAppService.cs" />
     <Compile Include="Interfaces\IPerguntaAppService.cs" />
     <Compile Include="Interfaces\IProdutoAppService.cs" />
     <Compile Include="Interfaces\IProdutoImagemAppService.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="Interfaces\IUsuarioAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CategoriaViewModel.cs" />
+    <Compile Include="ViewModels\InstituicaoCarenteViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PerguntaUsuarioViewModel.cs" />
     <Compile Include="ViewModels\PerguntaViewModel.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="ViewModels\TrocaViewModel.cs" />
     <Compile Include="ViewModels\UsuarioImagemViewModel.cs" />
     <Compile Include="ViewModels\UsuarioInformacaoViewModel.cs" />
+    <Compile Include="ViewModels\RegistrarInstituiçãoCarenteViewModel.cs" />
     <Compile Include="ViewModels\UsuarioPerfilViewModel.cs" />
     <Compile Include="ViewModels\UsuarioViewModel.cs" />
   </ItemGroup>

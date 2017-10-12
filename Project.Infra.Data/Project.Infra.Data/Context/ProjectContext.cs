@@ -27,6 +27,7 @@ namespace Project.Infra.Data.Context
         public DbSet<Pergunta> Perguntas { get; set; }
         public DbSet<Resposta> Respostas { get; set; }
         public DbSet<Troca> Trocas { get; set; }
+        public DbSet<InstituicaoCarente> InstituicoesCarentes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -54,6 +55,7 @@ namespace Project.Infra.Data.Context
             modelBuilder.Configurations.Add(new PerguntaConfiguration());
             modelBuilder.Configurations.Add(new RespostaConfiguration());
             modelBuilder.Configurations.Add(new TrocaConfiguration());
+            modelBuilder.Configurations.Add(new InstituicaoCarenteConfiguration());
         }
 
         public override int SaveChanges()

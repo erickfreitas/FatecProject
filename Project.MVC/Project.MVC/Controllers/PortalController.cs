@@ -11,12 +11,15 @@ namespace Project.MVC.Controllers
     {
         private readonly ICategoriaAppService _categoriaAppService;
         private readonly ISubCategoriaAppService _subCategoriaAppService;
+        private readonly IInstituicaoCarenteAppService _instituicaoCarenteAppService;
 
         public PortalController(ICategoriaAppService categoriaAppService,
-                                    ISubCategoriaAppService subCategoriaAppService)
+                                    ISubCategoriaAppService subCategoriaAppService,
+                                        IInstituicaoCarenteAppService instituicaoCarenteAppService)
         {
             _categoriaAppService = categoriaAppService;
             _subCategoriaAppService = subCategoriaAppService;
+            _instituicaoCarenteAppService = instituicaoCarenteAppService;
         }
 
         [HttpGet]
@@ -160,6 +163,19 @@ namespace Project.MVC.Controllers
             var subCategoria = _subCategoriaAppService.GetById(subCategoriaId);
             _subCategoriaAppService.Remove(subCategoria);
             return Json(new { response = "Ok" });
+        }
+
+        [HttpGet]
+        public ActionResult InstituicoesCarentes()
+        {
+            var instituicoesCarentes = _instituicaoCarenteAppService.GetAll();
+            return View(instituicoesCarentes);
+        }
+
+        [HttpGet]
+        public ActionResult NovaInstituicaoCarente()
+        {
+            return View();
         }
     }
 }

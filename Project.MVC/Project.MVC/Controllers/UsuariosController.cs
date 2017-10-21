@@ -69,6 +69,8 @@ namespace Project.MVC.Controllers
 
             var trocasUsuario = new List<Troca>();
 
+            var trocasUsuarioEnviadas = new List<Troca>();
+
             var meusProdutosOfertados = new List<Produto>();
 
             var produtoOfertados = new List<Produto>();
@@ -80,11 +82,36 @@ namespace Project.MVC.Controllers
 
                 trocasUsuario = _trocaAppService.GetByFilter(t => t.IdProdutoSujeito == produtos.ProdutoId).ToList();
 
+                trocasUsuarioEnviadas = _trocaAppService.GetByFilter(t => t.IdProdutoProposto == produtos.ProdutoId || t.IdProdutoSujeito == produtos.ProdutoId).ToList();
+
                 count++;
 
+                foreach (var trocas in trocasUsuarioEnviadas)
+                {
+                    meusProdutosOfertados = _produtoAppService.GetByFilter(p => p.UsuarioId == usuario.UsuarioId &&
+p.ProdutoId == trocas.IdProdutoSujeito &&
+trocas.FlTrocaProposta == true).ToList();
+
+                    produtoOfertados = _produtoAppService.GetByFilter(p => p.ProdutoId == trocas.IdProdutoProposto).ToList();
+
+                    count++;
+
+                    var meusProdutosOfertadosViewModel = Mapper.Map<List<ProdutoViewModel>>(meusProdutosOfertados);
 
 
-                foreach (var trocas in trocasUsuario)
+                    var produtoOfertadosViewModel = Mapper.Map<List<ProdutoViewModel>>(produtoOfertados);
+
+                    var trocasViewModel = Mapper.Map<List<TrocaViewModel>>(trocasUsuario);
+
+
+                    ViewBag.TrocasEnviadas = trocasViewModel;
+
+                    ViewBag.MeusProdutosEnviados = meusProdutosOfertadosViewModel;
+
+                    
+                    ViewBag.ProdutoEnviadas = produtoOfertadosViewModel;
+                }
+                    foreach (var trocas in trocasUsuario)
                 {
                     meusProdutosOfertados = _produtoAppService.GetByFilter(p => p.UsuarioId == usuario.UsuarioId &&
                    p.ProdutoId == trocas.IdProdutoSujeito &&

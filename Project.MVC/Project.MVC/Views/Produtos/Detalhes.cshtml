@@ -176,14 +176,37 @@
                                                                     else
                                                                     {
                                                                             <div class="action-control">
-                                                                                @using (Ajax.BeginForm("ProporTroca", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#trocaEnviadaModal').modal('show'); " }))
-                                                                                {
-                                                                                    @Html.Hidden("produtoSujeitoId", Model.ProdutoId)
-                                                                                    @Html.Hidden("produtoPropostoId", produto.ProdutoId)
-                                                                                    <button class="add2cart" type="submit">Oferecer produto</button>
+                                                                                <a class="btn btn-success" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Aguarde" data-toggle="modal" href="#oferecerTrocaModal">Oferecer Produto</a>           
+                                                                            </div>
 
 
-                                                                                }
+                                                                            <div class="modal fade" id="oferecerTrocaModal" role="dialog">
+                                                                                <div class="modal-dialog modal-sm">
+
+                                                                                    <!-- Modal content-->
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                            <h4 class="modal-title">Troca</h4>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <label>Tem certeza que deseja iniciar a troca?</label>
+                                                                                            <div class="form-group">
+                                                                                                @using (Ajax.BeginForm("ProporTroca", "Produtos", new AjaxOptions { HttpMethod = "POST", OnSuccess = "$('#trocaEnviadaModal').modal('show'); " }))
+                                                                                                {
+                                                                                                    @Html.Hidden("produtoSujeitoId", Model.ProdutoId)
+                                                                                                    @Html.Hidden("produtoPropostoId", produto.ProdutoId)
+                                                                                                    <button class="btn btn-success" type="submit">Sim</button>
+                                                                                                    <a class="btn btn-default" data-dismiss="modal">Não</a>
+                                                                                                }
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <a class="btn btn-default" data-dismiss="modal">Fechar.</a>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
                                                                             </div>
                                                                     }
 
@@ -214,7 +237,7 @@
                                                     <h4 class="modal-title">Troca</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Troca enviado com sucesso.</p>
+                                                    <p>Troca enviada com sucesso.</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar.</button>

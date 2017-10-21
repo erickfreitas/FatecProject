@@ -51,8 +51,8 @@ namespace Project.MVC.Controllers
             {
                 foreach (var produtoUsuario in produtoViewModels)
                 {
-                    var produtoTrocadoAceito = _trocaAppService.GetByFilter(p => p.IdProdutoSujeito == produtoUsuario.ProdutoId || p.IdProdutoProposto == produtoUsuario.ProdutoId && p.FlTrocaRealizada == true);
-                    var produtoTrocadoOferecido = _trocaAppService.GetByFilter(p => p.IdProdutoSujeito == produtoUsuario.ProdutoId || p.IdProdutoProposto == produtoUsuario.ProdutoId && p.FlTrocaRealizada == true);
+                    var produtoTrocadoAceito = _trocaAppService.GetByFilter(p => (p.IdProdutoSujeito == produtoUsuario.ProdutoId && p.FlTrocaRealizada == true )|| (p.IdProdutoProposto == produtoUsuario.ProdutoId && p.FlTrocaRealizada == true));
+                    var produtoTrocadoOferecido = _trocaAppService.GetByFilter(p => (p.IdProdutoSujeito == produtoUsuario.ProdutoId && p.FlTrocaRealizada == true) || (p.IdProdutoProposto == produtoUsuario.ProdutoId && p.FlTrocaRealizada == true));
 
 
                     ViewBag.ProdutoTrocadoAceito = produtoTrocadoAceito.Count() != 0 ? produtoTrocadoAceito.FirstOrDefault().IdProdutoSujeito : 0 ;

@@ -68,7 +68,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var categoria in Model)
+                                    @foreach (var instituicao in Model)
                                     {
                                         <tr>
                                             <td>
@@ -82,30 +82,30 @@
                                                     <div class="media-body">
                                                         <div>
                                                             <h4 class="media-heading">
-                                                                <a href="#" class="blue">@categoria.Nome</a>
+                                                                <a href="#" class="blue">@instituicao.Nome</a>
                                                             </h4>
                                                         </div>
-                                                        <p>@categoria.Historia</p>
+                                                        <p>@instituicao.Historia</p>
 
                                                         <div class="search-actions text-center">
                                                             <span class="text-info"><i class="ace-icon fa fa-phone green"></i></span>
 
-                                                            <span class="blue bolder">(11) 5555-5555</span>
+                                                            <span class="blue bolder">@instituicao.UsuarioViewModel.Telefone</span>
                                                             <br />
                                                             <div class="action-buttons bigger-125">
-                                                                <a href="#">
+                                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="@instituicao.UsuarioViewModel.Nome">
                                                                     <i class="ace-icon fa fa-heart red"></i>
                                                                 </a>
 
-                                                                <a href="#">
+                                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="@instituicao.UsuarioViewModel.Email">
                                                                     <i class="ace-icon fa fa-at green"></i>
                                                                 </a>                                                                
 
-                                                                <a href="#">
+                                                                <a href="#" class="tooltip-warning" data-rel="tooltip" title="@instituicao.DataCriacao.ToString("dd/MM/yyyy")">
                                                                     <i class="ace-icon fa fa-calendar orange2"></i>
                                                                 </a>
                                                             </div>
-                                                            <a class="search-btn-action btn btn-sm btn-block btn-info">Detalhes</a>
+                                                            <a href="@Url.Action("DetalhesInstituicaoCarente", "Portal", new { id = instituicao.InstituicaoCarenteId })" class="search-btn-action btn btn-sm btn-block btn-info">Detalhes</a>
                                                         </div>
                                                     </div>
                                                 </div>

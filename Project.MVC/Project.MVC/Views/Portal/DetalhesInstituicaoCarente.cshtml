@@ -1,0 +1,212 @@
+﻿@using Project.Application.ViewModels
+@using System.Globalization;
+@model UsuarioPerfilViewModel
+@{
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+@section Styles {
+    @Styles.Render("~/StoreContent/file-input/css")
+    
+}
+
+<div class="main-content-inner">
+    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="ace-icon fa fa-home home-icon"></i>
+                <a href="@Url.Action("Index", "Portal")">Dashboard</a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Categorias", "Portal")">Categorias</a>
+            </li>
+            <li class="active">Nova Categoria</li>
+        </ul><!-- /.breadcrumb -->
+
+        <div class="nav-search" id="nav-search">
+            <form class="form-search">
+                <span class="input-icon">
+                    <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off">
+                    <i class="ace-icon fa fa-search nav-search-icon"></i>
+                </span>
+            </form>
+        </div><!-- /.nav-search -->
+    </div>
+
+    <div class="page-content">
+        <div class="ace-settings-container" id="ace-settings-container">
+            <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+                <i class="ace-icon fa fa-cog bigger-130"></i>
+            </div>
+
+            <div class="ace-settings-box clearfix" id="ace-settings-box">
+                <div class="pull-left width-50">
+                    <div class="ace-settings-item">
+                        <div class="pull-left">
+                            <select id="skin-colorpicker" class="hide">
+                                <option data-skin="no-skin" value="#438EB9">#438EB9</option>
+                                <option data-skin="skin-1" value="#222A2D">#222A2D</option>
+                                <option data-skin="skin-2" value="#C6487E">#C6487E</option>
+                                <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+                            </select><div class="dropdown dropdown-colorpicker">		<a data-toggle="dropdown" class="dropdown-toggle"><span class="btn-colorpicker" style="background-color:#438EB9"></span></a><ul class="dropdown-menu dropdown-caret"><li><a class="colorpick-btn selected" style="background-color:#438EB9;" data-color="#438EB9"></a></li><li><a class="colorpick-btn" style="background-color:#222A2D;" data-color="#222A2D"></a></li><li><a class="colorpick-btn" style="background-color:#C6487E;" data-color="#C6487E"></a></li><li><a class="colorpick-btn" style="background-color:#D0D0D0;" data-color="#D0D0D0"></a></li></ul></div>
+                        </div>
+                        <span>&nbsp; Choose Skin</span>
+                    </div>
+
+                    <div class="ace-settings-item">
+                        <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off">
+                        <label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
+                    </div>
+
+                    <div class="ace-settings-item">
+                        <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off">
+                        <label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+                    </div>
+
+                    <div class="ace-settings-item">
+                        <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off">
+                        <label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+                    </div>
+
+                    <div class="ace-settings-item">
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off">
+                        <label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
+                    </div>
+
+                    <div class="ace-settings-item">
+                        <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off">
+                        <label class="lbl" for="ace-settings-add-container">
+                            Inside
+                            <b>.container</b>
+                        </label>
+                    </div>
+                </div><!-- /.pull-left -->
+
+                <div class="pull-left width-50">
+                    <div class="ace-settings-item">
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off">
+                        <label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
+                    </div>
+
+                    <div class="ace-settings-item">
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off">
+                        <label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
+                    </div>
+
+                    <div class="ace-settings-item">
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off">
+                        <label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
+                    </div>
+                </div><!-- /.pull-left -->
+            </div><!-- /.ace-settings-box -->
+        </div><!-- /.ace-settings-container -->
+
+        <div class="page-header">
+            <h1>
+                Categorias
+                <small>
+                    <i class="ace-icon fa fa-angle-double-right"></i>
+                    Cadastrar nova Categoria
+                </small>
+            </h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                <div class="col-lg-3 col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="text-center">
+                                    @if (Model.UsuarioViewModel.ImagemCaminho != null)
+                                    {
+                                        <img class="thumbnail img-responsive" src="@Url.Content(Model.UsuarioViewModel.ImagemCaminho)" width="300px" height="300px" onclick="$('#CadastrarImagem').modal('show');">
+                                    }
+                                    else
+                                    {
+                                        <img class="thumbnail img-responsive" src="@Url.Content("~/Images/Users/Default.png")" width="300px" height="300px" onclick="$('#CadastrarImagem').modal('show');">
+                                    }
+                                </div>
+                                <div class="media-body">
+                                    <hr>
+                                    <h3><strong>@ViewBag.InstituicaoCarente.Nome</strong></h3>
+                                    <hr>
+                                    @if (Model.UsuarioInformacaoViewModel.Cidade != null)
+                                    {
+                                        <h3><strong>Localização</strong></h3>
+                                        <p>@Model.UsuarioInformacaoViewModel.Cidade</p>
+                                        <hr>
+                                    }
+                                    <h3><strong>Usuário desde:</strong> @Model.UsuarioViewModel.DataCriacao.ToString("MMMM yyyy", new CultureInfo("pt-BR"))</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    @Html.Partial("_EditarInformacao", Model.UsuarioInformacaoViewModel)
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <span>
+                                <h1 class="panel-title pull-left" style="font-size:30px;">Produtos de Daenerys Targaryen</h1>
+                            </span>
+                            <br>
+                            <br><hr>
+                            <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6" style="max-height: 360px;">
+                                <div class="product">
+                                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                                        <i class="glyphicon glyphicon-heart"></i>
+                                    </a>
+                                    <div class="image">
+                                        <a href="/Produtos/Detalhes/12">
+                                            <img src="/Images/Products/5661cb77-df76-41a3-adc7-a9d15a8705ec.jpg" alt="img" class="img-responsive">
+                                        </a>
+                                        <div class="promotion">
+                                            <span class="new-product">Recente</span>
+                                        </div>
+                                    </div>
+                                    <div class="action-control">
+                                        <h4><a href="product-details.html">asdsa</a></h4>
+                                        <a href="/Produtos/Detalhes/12" class="btn btn-primary">
+                                            <span class="add2cart">Detalhes</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item col-lg-3 col-md-3 col-sm-4 col-xs-6" style="max-height: 360px;">
+                                <div class="product">
+                                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist" data-placement="left">
+                                        <i class="glyphicon glyphicon-heart"></i>
+                                    </a>
+                                    <div class="image">
+                                        <a href="/Produtos/Detalhes/13">                                            
+                                            @if (Model.UsuarioViewModel.ImagemCaminho != null)
+                                            {
+                                                <img src="/Images/Products/050abb5c-0041-4a02-9be7-8cf3948338b2.jpg" alt="img" class="img-responsive">
+                                            }
+                                            else
+                                            {
+                                                <img class="thumbnail img-responsive" src="@Url.Content("~/Images/Users/Default.png")" width="300px" height="300px" onclick="$('#CadastrarImagem').modal('show');">
+                                            }
+                                        </a>
+                                        <div class="promotion">
+                                            <span class="new-product">Recente</span>
+                                        </div>
+                                    </div>
+                                    <div class="action-control">
+                                        <h4><a href="product-details.html">Eletrônicos</a></h4>
+                                        <a href="/Produtos/Detalhes/13" class="btn btn-primary">
+                                            <span class="add2cart">Detalhes</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div>
+</div>

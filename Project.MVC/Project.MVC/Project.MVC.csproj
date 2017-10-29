@@ -605,6 +605,8 @@
     <Content Include="Views\Portal\InstituicoesCarentes.cshtml" />
     <Content Include="Views\Portal\NovaInstituicaoCarente.cshtml" />
     <Content Include="Views\Portal\_PainelSettings.cshtml" />
+    <Content Include="Views\Portal\DetalhesInstituicaoCarente.cshtml" />
+    <Content Include="Views\Portal\_EditarInformacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

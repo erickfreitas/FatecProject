@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AutoMapper;
 using Project.Application.Interfaces;
 using Project.Application.ViewModels;
 using Project.Domain.Entities;
 using Project.Domain.Interfaces.Services;
-using AutoMapper;
+using System;
+using System.Collections.Generic;
 
 namespace Project.Application.AppServices
 {
@@ -18,9 +18,21 @@ namespace Project.Application.AppServices
             _instituicaoCarenteService = instituicaoCarenteService;
         }
 
+        public void Add(RegistrarInstituiçãoCarenteViewModel viewModel, string userId)
+        {
+            var instituicaoCarente = Mapper.Map<RegistrarInstituiçãoCarenteViewModel, InstituicaoCarente>(viewModel);
+            instituicaoCarente.InstituicaoCarenteId = userId;
+            _instituicaoCarenteService.Add(instituicaoCarente);
+        }
+
         public IEnumerable<InstituicaoCarenteViewModel> GetAll()
         {
             return Mapper.Map<IEnumerable<InstituicaoCarente>, IEnumerable<InstituicaoCarenteViewModel>>(_instituicaoCarenteService.GetAll());
+        }
+
+        public InstituicaoCarenteViewModel GetById(string id)
+        {
+            return Mapper.Map<InstituicaoCarente, InstituicaoCarenteViewModel>(_instituicaoCarenteService.GetById(id));
         }
     }
 }

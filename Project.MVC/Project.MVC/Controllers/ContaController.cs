@@ -130,7 +130,6 @@ namespace Project.MVC.Controllers
             }
         }
 
-
         [Authorize]
         public async Task<ActionResult> Logout()
         {

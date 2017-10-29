@@ -36,6 +36,7 @@ namespace Project.Application.AutoMapper
                 .ForMember(dest => dest.Logradouro, opt => opt.MapFrom(src => src.Logradouro))
                 .ForMember(dest => dest.Complemento, opt => opt.MapFrom(src => src.Complemento))
                 .ForMember(dest => dest.Numero, opt => opt.MapFrom(src => src.Numero));
+            CreateMap<RegistrarInstituiçãoCarenteViewModel, InstituicaoCarente>();
             #endregion
 
             #region PerguntaMaps

@@ -111,46 +111,70 @@
                     @using (Html.BeginForm("NovaInstituicaoCarente", "Portal", FormMethod.Post, new { @class = "form-horizontal", @id = "Categoria-Form" }))
                     {
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nome </label>
+                            <label class="col-sm-3 control-label no-padding-right"> Nome </label>
                             <div class="col-sm-9">
                                 @Html.TextBoxFor(model => model.Nome, new { @placeholder = "Nome da Instituição", @class = "col-xs-10 col-sm-5" })
                                 @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger col-xs-10 col-sm-9" })
                             </div>
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> História </label>
+                            <label class="col-sm-3 control-label no-padding-right"> História </label>
                             <div class="col-sm-9">
                                 @Html.TextAreaFor(model => model.Historia, new { @placeholder = "História da Instituição", @class = "col-xs-10 col-sm-5" })
                                 @Html.ValidationMessageFor(model => model.Historia, "", new { @class = "text-danger col-xs-10 col-sm-9" })
                             </div>
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Missão </label>
+                            <label class="col-sm-3 control-label no-padding-right"> Missão </label>
                             <div class="col-sm-9">
                                 @Html.TextAreaFor(model => model.Missao, new { @placeholder = "Missão da Instituição", @class = "col-xs-10 col-sm-5" })
                                 @Html.ValidationMessageFor(model => model.Missao, "", new { @class = "text-danger col-xs-10 col-sm-9" })
                             </div>
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Visão </label>
+                            <label class="col-sm-3 control-label no-padding-right"> Visão </label>
                             <div class="col-sm-9">
                                 @Html.TextAreaFor(model => model.Visao, new { @placeholder = "Visão da Instituição", @class = "col-xs-10 col-sm-5" })
                                 @Html.ValidationMessageFor(model => model.Visao, "", new { @class = "text-danger col-xs-10 col-sm-9" })
                             </div>
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Valores </label>
+                            <label class="col-sm-3 control-label no-padding-right"> Valores </label>
                             <div class="col-sm-9">
                                 @Html.TextAreaFor(model => model.Valores, new { @placeholder = "Valores da Instituição", @class = "col-xs-10 col-sm-5" })
                                 @Html.ValidationMessageFor(model => model.Valores, "", new { @class = "text-danger col-xs-10 col-sm-9" })
                             </div>
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Equipe </label>
+                            <label class="col-sm-3 control-label no-padding-right"> Equipe </label>
                             <div class="col-sm-9">
                                 @Html.TextAreaFor(model => model.Equipe, new { @placeholder = "Equipe da Instituição", @class = "col-xs-10 col-sm-5" })
                                 @Html.ValidationMessageFor(model => model.Equipe, "", new { @class = "text-danger col-xs-10 col-sm-9" })
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Mostrar no menu inicial? </label>
-                            <div class="col-xs-3">
-                                <label>
-                                    <input name="MostrarNoMenuInicial" id="MostrarNoMenuInicial" class="ace ace-switch ace-switch-6" value="true" type="checkbox">
-                                    <span class="lbl"></span>
-                                    <input name="MostrarNoMenuInicial" type="hidden" value="false"
-                                </label>
+                            <label class="col-sm-3 control-label no-padding-right"> Nome do Usuário </label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(model => model.UsuarioNome, new { @placeholder = "Nome do Usuário", @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.UsuarioNome, "", new { @class = "text-danger col-xs-10 col-sm-9" })
+                            </div>
+                            <label class="col-sm-3 control-label no-padding-right"> Sobrenome de Usuário </label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(model => model.Sobrenome, new { @placeholder = "Sobrenome de Usuário", @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.Sobrenome, "", new { @class = "text-danger col-xs-10 col-sm-9" })
+                            </div>
+                            <label class="col-sm-3 control-label no-padding-right"> RG </label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(model => model.Rg, new { @placeholder = "RG", @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.Rg, "", new { @class = "text-danger col-xs-10 col-sm-9" })
+                            </div>                  
+                            <label class="col-sm-3 control-label no-padding-right"> CPF </label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(model => model.Cpf, new { @placeholder = "CPF", @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.Cpf, "", new { @class = "text-danger col-xs-10 col-sm-9" })
+                            </div>
+                            <label class="col-sm-3 control-label no-padding-right"> E-mail </label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(model => model.Email, new { @placeholder = "E-mail", @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger col-xs-10 col-sm-9" })
+                            </div>
+                            <label class="col-sm-3 control-label no-padding-right"> Senha </label>
+                            <div class="col-sm-9">
+                                @Html.PasswordFor(model => model.Senha, new { @placeholder = "Senha", @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger col-xs-10 col-sm-9" })
+                            </div>
+                            <label class="col-sm-3 control-label no-padding-right"> Confirmar Senha </label>
+                            <div class="col-sm-9">
+                                @Html.PasswordFor(model => model.ConfirmarSenha, new { @placeholder = "Confirmar Senha", @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.ConfirmarSenha, "", new { @class = "text-danger col-xs-10 col-sm-9" })
                             </div>
                         </div>
                         <div class="space-4"></div>

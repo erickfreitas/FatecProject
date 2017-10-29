@@ -58,7 +58,8 @@ namespace Project.Application.AutoMapper
             #endregion
 
             #region InstituicaoCarenteMaps
-            CreateMap<InstituicaoCarente, InstituicaoCarenteViewModel>();
+            CreateMap<InstituicaoCarente, InstituicaoCarenteViewModel>()
+                .ForMember(dest => dest.UsuarioViewModel, opt => opt.MapFrom(src => src.Usuario));
             #endregion
         }
     }

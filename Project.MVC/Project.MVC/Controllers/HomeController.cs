@@ -27,7 +27,6 @@ namespace Project.MVC.Controllers
             return View();
         }
 
-        [HttpGet]
         public ActionResult CarregarCategorias()
         {
             var categorias = _categoriaAppService.GetCategoriasAtivas();

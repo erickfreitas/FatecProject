@@ -19,5 +19,7 @@ namespace Project.Application.ViewModels
 
         [ScaffoldColumn(false)]
         public DateTime DataAlteracao { get; set; }
+
+        public virtual UsuarioViewModel UsuarioViewModel { get; set; }
     }
 }
